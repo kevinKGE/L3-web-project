@@ -24,7 +24,7 @@
                     <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
                 </form>
                 <form class="container-fluid justify-content-start">
-                    <button class="btn btn-outline-success me-2" type="button" href="Projets/front/login.php">Connexion</button>
+                    <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">Connexion</button>
                 </form>
             </div>
         </nav>
