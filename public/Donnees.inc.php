@@ -591,7 +591,7 @@
     'preparation' => ' Peler et couper les fruits en morceaux. Les mettre dans le blender (ou tout autre récipient à cocktail), puis mixer le tout, en rajoutant peu à peu l\'eau, jusqu\'à obtention de la consistance voulue (moi j\'aime bien quand c\'est un peu épais). Rajouter ensuite le sucre vanillé et la cassonade, selon le goût. Mixer une dernière fois pour que le sucre s\'intègre bien au mélange. Mettre au frais pendant une petite heure et déguster ! ',
     'index' => 
     array (
-      0 => 'Banane',<
+      0 => 'Banane',
       1 => 'Pomme',
       2 => 'Kiwi',
       3 => 'Eau',
