@@ -1,10 +1,12 @@
-<!-- Traitement des données -->
+<!-- Data treatment -->
 
 <?php
+session_start();
+require_once 'source/head.php';
 require_once 'source/header.php';
 ?>
 
-<!-- Page principale -->
+<!-- Main page -->
 
 <?php
 require_once 'source/footer.php';

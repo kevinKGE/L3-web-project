@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <title>Main</title>
-</head>
-
-<body>
-    <header>
+<header>
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <form class="container-fluid justify-content-start">
@@ -23,9 +10,22 @@
                     <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
                 </form>
+<?php 
+if (!isset($_SESSION['email'])) {?>
                 <form class="container-fluid justify-content-start">
-                    <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">Connexion</button>
+                    <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">Profile</button>
+                    <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">Se déconnecter</button>
                 </form>
-            </div>
-        </nav>
-    </header>
+<?php
+} else?>
+            <form class="container-fluid justify-content-start">
+                <label>Login</label>
+                <input></input>
+                <label>Mot de passe </label>
+                <input></input>
+                <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">Connexion</button>
+                <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">S'inscrire</button>
+            </form>
+        </div>
+    </nav>
+</header>
