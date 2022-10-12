@@ -1,14 +1,18 @@
 <?php
 require_once 'source/head.php';
 require_once 'source/header.php';
+require_once '../public/functions.php';
 
 if (isset($_POST['submit'])) {
-
+    echo $_POST['submit'];
     $name = htmlspecialchars(trim($_POST['Nom']));
     $firstName = htmlspecialchars(trim($_POST['Prenom']));
     $email = htmlspecialchars(trim($_POST['email']));
     $password = htmlspecialchars(trim($_POST['password']));
+    $sex = htmlspecialchars(trim($_POST['repeatpassword']));
     $repeatPassword = htmlspecialchars(trim($_POST['repeatpassword']));
+    $birthDate = htmlspecialchars(trim($_POST['birthDate']));
+    $sex = htmlspecialchars(trim($_POST['sex']));
 
     if ($name && $firstName && $email && $password && $repeatpassword) {
         if (strlen($password) >= 6) {
@@ -38,7 +42,7 @@ if (isset($_POST['submit'])) {
     <!-- zone de connexion -->
     <div class="row">
         <div class="col">
-            <form class="container-fluid justify-content-start" action="./login.php" method="POST">
+            <form class="container-fluid justify-content-start" action="./index.php" method="POST">
                 <p>Nom</p>
                 <input type="text" name="name">
 
@@ -55,16 +59,16 @@ if (isset($_POST['submit'])) {
                 <input type="password" name="repeatpassword" required="required"><br>
 
                 <p>Date de naissance</p>
-                <input type="date" name="password" required="required">
+                <input type="date" name="birthDate">
 
                 <p>Sexe</p>
-                <input type="radio" name="sexe" value="homme" checked>
-                <label for="huey">Homme</label>
+                <input type="radio" name="sex" value="male" checked>
+                <label for="male">Homme</label>
 
-                <input type="radio" name="sexe" value="femme">
-                <label for="dewey">Femme</label>
+                <input type="radio" name="sex" value="female">
+                <label for="female">Femme</label>
 
-                <input type="submit" name="submit" value="Valider">
+                <input type="submit" name="submit" onclick="user_signup($_POST)" value="inscription">
 
             </form>
         </div>
