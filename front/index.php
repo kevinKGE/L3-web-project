@@ -8,19 +8,22 @@ require_once '../public/users.inc.php';
 
 // ************* essais : ************** //
 if (isset($_POST['submit'])) {
+    echo "</br>contenue de POST : </br>";
     foreach ($_POST as $key => $value) {
         echo $key . " : " . $value . "</br>";
     };
 }
-
+echo "</br>essai d'affichage de POST : </br>";
 print_r(array_values($_POST));
 
+echo "</br>contenue de mes données users : </br>";
 foreach ($users as $user) {
     foreach ($user as $value) {
         echo $value . "</br>";
     }
 }
 
+echo "</br>contenue de mes données users : </br>";
 print_r(array_values($users))
 
 // ************* fin essais ************* //

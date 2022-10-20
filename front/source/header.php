@@ -24,7 +24,7 @@
                 <label>Mot de passe </label>
                 <input></input>
                 <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">Connexion</button>
-                <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">S'inscrire</button>
+                <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./signup.php'">S'inscrire</button>
             </form>
         </div>
     </nav>
