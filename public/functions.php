@@ -1,4 +1,6 @@
 <?php
+require_once 'users.inc.php';
+
 /* work in progress ...
 
 function user_already_registered($userRequest) {
@@ -26,4 +28,21 @@ function logout(){
 
 function hash_password(string $passwd){
     return password_hash($passwd, PASSWORD_ARGON2I);
+}
+
+function authentication_check(string $login, string $passwd){
+// ICI email != username : à régler
+    foreach ($users.$email as $user){
+        if(($user.$email === $login) && (password_verify($user.$password, $passwd))){
+            return true;
+        }
+    }
+    return false;
+}
+
+function connection(string $login, string $passwd){ // ICI à reformuler
+    if (authentication_check($login, $passwd)){
+        return true;
+    }
+    return false;
 }
