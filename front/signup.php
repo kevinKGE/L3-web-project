@@ -5,34 +5,39 @@ require_once '../public/functions.php';
 
 if (isset($_POST['submit'])) {
     echo $_POST['submit'];
-    $name = htmlspecialchars(trim($_POST['Nom']));
-    $firstName = htmlspecialchars(trim($_POST['Prenom']));
+    $name = htmlspecialchars(trim($_POST['name']));
+    $firstName = htmlspecialchars(trim($_POST['firstName']));
     $email = htmlspecialchars(trim($_POST['email']));
     $password = htmlspecialchars(trim($_POST['password']));
-    $sex = htmlspecialchars(trim($_POST['repeatpassword']));
-    $repeatPassword = htmlspecialchars(trim($_POST['repeatpassword']));
+    $repeatPassword = htmlspecialchars(trim($_POST['repeatPassword']));
     $birthDate = htmlspecialchars(trim($_POST['birthDate']));
     $sex = htmlspecialchars(trim($_POST['sex']));
 
-    if ($name && $firstName && $email && $password && $repeatpassword) {
-        if (strlen($password) >= 6) {
-            if ($password == $repeatpassword) {
-                // On crypte le mot de passe
-                $password = md5($password);
+    // ICI bugg : userToAdd n'est pas un array
+    $userToAdd = array(
+        'name' => $name,
+        'firstname' => $firstName,
+        'email' => $email,
+        'password' => $password,
+        'sex' => $sex,
+        'birthDate' => $birthDate
+    );
 
-                // on se connecte à MySQL et on sélectionne la base
-                $c = new mysqli("localhost", "root", "", "ecobank");
+    if ($email && $password && $repeatPassword) {
+        if (strlen($password) >= 1) { // ICI 6
+            if ($password == $repeatPassword) {
 
-                //On créé la requête
-                $sql = "INSERT INTO newclient VALUES ('','$Nom','$Prenom','email','$password')";
+                // Hash password
+                //$password = md5($password);
+                foreach($userToAdd as $value){
 
-                // On envoie la requête
-                $res = $c->query($sql);
-                // on ferme la connexion
-                mysqli_close($c);
+                    echo "ICI: ".$value."</br>";
+                }
+                user_signup($userToAdd); // dans la fonction "arg 1 = NULL"
+
             } else echo "Les mots de passe ne sont pas identiques";
         } else echo "Le mot de passe est trop court !";
-    } else echo "Veuillez saisir tous les champs !";
+    } else echo "Veuillez saisir tous les champs obligatoires !";
 }
 
 ?>
@@ -42,7 +47,7 @@ if (isset($_POST['submit'])) {
     <!-- zone de connexion -->
     <div class="row">
         <div class="col">
-            <form class="container-fluid justify-content-start" action="./index.php" method="POST">
+            <form class="container-fluid justify-content-start" action=# method="POST">
                 <p>Nom</p>
                 <input type="text" name="name">
 
@@ -56,7 +61,7 @@ if (isset($_POST['submit'])) {
                 <input type="password" name="password" required="required">
                 <p>Répetez votre password*</p>
 
-                <input type="password" name="repeatpassword" required="required"><br>
+                <input type="password" name="repeatPassword" required="required"><br>
 
                 <p>Date de naissance</p>
                 <input type="date" name="birthDate">

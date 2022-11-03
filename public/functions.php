@@ -1,22 +1,22 @@
 <?php
 require_once 'users.inc.php';
 
-/* work in progress ...
+//work in progress ...
 
-function user_already_registered($userRequest) {
+function user_already_registered($email) {
     foreach($users as $user){
-        if ($userRequest.$email === $user.$email) {
+        // if ($email === $user.$email) {
+        if (strcasecmp($email, $user.'email')) {
             return true;
         }
     }
     return false;
 }
 
-*/
 
 function user_signup($user){
     // if(!user_already_registered($user)){
-        array_push($users, $user);
+        array_push($users, $user); // ICI argument 1 null ???
     // }
 }
 
@@ -46,3 +46,8 @@ function connection(string $login, string $passwd){ // ICI à reformuler
     }
     return false;
 }
+
+function essai() {
+    return 0;
+}
+
