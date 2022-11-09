@@ -31,7 +31,7 @@ if (isset($_POST['submit'])) {
                 // Hash password
                 //$password = md5($password);
 
-                var_dump($users);
+                //var_dump($users);
                 user_signup($users, $userToAdd);
                 
             } else echo "Les mots de passe ne sont pas identiques";

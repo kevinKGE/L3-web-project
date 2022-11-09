@@ -9,11 +9,31 @@ if(!isset($_GET['page'])){
 }
 else
 {
-    $historique[] = $_SESSION['way'];
+    $historique = $_SESSION['way'];
     $historique[] = $_GET['page'];
     $ListRecipe=$Hierarchie[$_GET['page']];
 }
 
+
+?>
+    <strong>Aliment courant</strong>
+<?php
+    if(isset($_GET['page'])){
+        $n = count($historique);
+        if(in_array($_GET['page'], $_SESSION['way'])){
+            array_splice($historique, $n);
+            $found = array_search($_GET['page'], $historique);
+            for($n-1; $n>$found ; $n--){
+                array_splice($historique, $n);
+            }
+        }
+    }
+        foreach ($historique as $key => $value) {
+            ?>
+                <a href="?page=<?php echo $value; ?>"> <?php echo $value; ?></a> /
+            <?php
+        }
+    
        /********** debut de la génération php *********/
        ?>
        <ul>
@@ -35,3 +55,4 @@ else
        $_SESSION['way'] = $historique;
        var_dump($_SESSION['way']);
        ?>
+       
