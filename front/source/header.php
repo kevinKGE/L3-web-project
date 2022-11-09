@@ -17,7 +17,7 @@
                     <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">Se déconnecter</button>
                 </form>
             <?php
-            } else ?>
+            } else {?>
             <form class="container-fluid justify-content-start">
                 <label>Login</label>
                 <input></input>
@@ -26,6 +26,9 @@
                 <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">Connexion</button>
                 <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./signup.php'">S'inscrire</button>
             </form>
+            <?php
+            }
+            ?>
         </div>
     </nav>
 </header>

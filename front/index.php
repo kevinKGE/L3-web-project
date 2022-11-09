@@ -5,9 +5,10 @@ session_start();
 require_once 'source/head.php';
 require_once 'source/header.php';
 require_once '../public/users.inc.php';
+require_once '../public/Donnees.inc.php';
 
-// ************* essais : ************** //
-if (isset($_POST['submit'])) {
+// ************* essais Kevin : ************** //
+/*if (isset($_POST['submit'])) {
     echo "</br>contenue de POST : </br>";
     foreach ($_POST as $key => $value) {
         echo $key . " : " . $value . "</br>";
@@ -24,27 +25,18 @@ foreach ($users as $user) {
 }
 
 echo "</br>contenue de mes données users : </br>";
-print_r(array_values($users))
+print_r(array_values($users));*/
 
-// ************* fin essais ************* //
+// ************* fin essais Kevin ************* //
 
 // ******* Partie navigation ************ //
-include("Donnees.inc.php");
-$ListeRecettes=array_keys($Recettes);
+
 
 ?>
 
 <nav>
     <?php
-
-    /********** debut de la génération php *********/
-    foreach($ListeRecettes as $Recette)
-    {
-        echo '
-        <li><a href="?page=recette&recette='.$Recette.'">'.$Recette.'</a></li>';
-    }
-    /********** fin de la génération php *********/
-
+        require_once 'navigation.php';
     ?>
 </nav>
 

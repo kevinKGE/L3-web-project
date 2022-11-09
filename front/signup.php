@@ -2,6 +2,7 @@
 require_once 'source/head.php';
 require_once 'source/header.php';
 require_once '../public/functions.php';
+require_once '../public/users.inc.php';
 
 if (isset($_POST['submit'])) {
     echo $_POST['submit'];
@@ -13,7 +14,6 @@ if (isset($_POST['submit'])) {
     $birthDate = htmlspecialchars(trim($_POST['birthDate']));
     $sex = htmlspecialchars(trim($_POST['sex']));
 
-    // ICI bugg : userToAdd n'est pas un array
     $userToAdd = array(
         'name' => $name,
         'firstname' => $firstName,
@@ -29,12 +29,10 @@ if (isset($_POST['submit'])) {
 
                 // Hash password
                 //$password = md5($password);
-                foreach($userToAdd as $value){
 
-                    echo "ICI: ".$value."</br>";
-                }
-                user_signup($userToAdd); // dans la fonction "arg 1 = NULL"
-
+                var_dump($users);
+                user_signup($users, $userToAdd);
+                
             } else echo "Les mots de passe ne sont pas identiques";
         } else echo "Le mot de passe est trop court !";
     } else echo "Veuillez saisir tous les champs obligatoires !";

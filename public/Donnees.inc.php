@@ -70,12 +70,12 @@
   5 => 
   array (
     'titre' => 'Bora bora',
-    'ingredients' => '10 cl de jus d\'ananas|6 cl de jus de fruits de la passion|2 cl de sirop de grenadine|1 cl de jus de citrons|3 glaçons',
+    'ingredients' => '10 cl de jus d\'ananas|6 cl de Jus de fruit de la passion|2 cl de sirop de grenadine|1 cl de jus de citrons|3 glaçons',
     'preparation' => 'Réaliser cette recette au shaker. Servir dans un verre contenant des glaçons avec une rondelle d\'orange.',
     'index' => 
     array (
       0 => 'Jus d\'ananas',
-      1 => 'Jus de fruits de la passion',
+      1 => 'Jus de fruit de la passion',
       2 => 'Sirop de grenadine',
       3 => 'Jus de citron',
       4 => 'Glaçon',
@@ -631,7 +631,7 @@
   47 => 
   array (
     'titre' => 'Cocktail de pomme ambrée',
-    'ingredients' => '1 pomme|1 citron|6 glaçons|10 cl de jus de pomme|5 cl de calvados|10 cl de crème de cassis|champagne|un peu de cassis|morceaux de pommes|morceaux d\'ananas',
+    'ingredients' => '1 pomme|1 citron|6 glaçons|10 cl de jus de pomme|5 cl de calvados|10 cl de crème de cassis|champagne|un peu de cassis|morceaux d\'ananas',
     'preparation' => 'Taillez une pomme en fines tranches et arrosez-les avec le jus d\'un citron. Réservez. Mettez 6 glaçons dans votre shaker, versez 10 cl de jus de pomme, 5 cl de calvados et 10 cl de crème de cassis. Agitez pendant 10 secondes. Répartissez dans 4 verres à cocktail, puis remplissez de champagne. Décorez de cassis, pomme et ananas.',
     'index' => 
     array (
@@ -643,8 +643,7 @@
       5 => 'Crème de cassis',
       6 => 'Champagne',
       7 => 'Cassis',
-      8 => 'Pomme',
-      9 => 'Ananas',
+      8 => 'Ananas',
     ),
   ),
   48 => 
@@ -663,7 +662,7 @@
   49 => 
   array (
     'titre' => 'Cocktail des îles Praslin',
-    'ingredients' => '40 cl de jus de mangue|30 cl de jus d\'ananas|20 cl de jus de fruit de la passion|10 cl de jus de citron vert|1 cuillère à soupe de sucre',
+    'ingredients' => '40 cl de jus de mangue|30 cl de jus d\'ananas|20 cl de Jus de fruit de la passion|10 cl de jus de citron vert|1 cuillère à soupe de sucre',
     'preparation' => 'On mélange le tout dans une bouteille. On secoue bien pendant 20 secondes environ et on met au frigo pour que ça soit bien frais au moment de servir. A servir dans des grands verres à cocktail et avec des jolies pailles colorées.',
     'index' => 
     array (
@@ -919,7 +918,7 @@
   68 => 
   array (
     'titre' => 'Cocktail sans alcool KidiCana',
-    'ingredients' => '5 cl de jus de pomme pétillant kidibul|gingembre|1 cl de sirop de cassis|1 brin de citronnelle|1 pointe de couteau de gingembre en poudre|5 à 6 cuillères à soupe de glace pilée',
+    'ingredients' => '5 cl de jus de pomme pétillant kidibul|gingembre|1 cl de sirop de cassis|1 brin de citronnelle|5 à 6 cuillères à soupe de glace pilée',
     'preparation' => 'Ciseler la citronnelle. Mettre tous les ingrédients dans un shaker. Ajouter la moitié de la glace pilée. Secouer et verser dans un verre garni du reste de la glace pilée. A votre santé !',
     'index' => 
     array (
@@ -927,8 +926,7 @@
       1 => 'Gingembre',
       2 => 'Sirop de cassis',
       3 => 'Citronnelle',
-      4 => 'Gingembre',
-      5 => 'Glace pilée',
+      4 => 'Glace pilée',
     ),
   ),
   69 => 
@@ -1664,9 +1662,8 @@
     array (
       0 => 'Amer',
       1 => 'Boisson gazeuse alcoolisée',
-      2 => 'Jus d\'ananas',
-      3 => 'Liqueur',
-      4 => 'Vin',
+      2 => 'Liqueur',
+      3 => 'Vin',
     ),
   ),
   'Spiritueux' => 
@@ -2792,17 +2789,16 @@
       4 => 'Jus de bananes',
       5 => 'Jus de canneberge',
       6 => 'Jus de cerises',
-      7 => 'Jus de fruits de la passion',
-      8 => 'Jus de fruit de la passion',
-      9 => 'Jus de goyave',
-      10 => 'Jus de litchis',
-      11 => 'Jus de mangue',
-      13 => 'Jus de pêches',
-      14 => 'Jus de poires',
-      15 => 'Jus de pommes',
-      17 => 'Jus de raisins',
-      19 => 'Jus de tomates',
-      20 => 'Jus multivitaminé',
+      7 => 'Jus de fruit de la passion',
+      8 => 'Jus de goyave',
+      9 => 'Jus de litchis',
+      10 => 'Jus de mangue',
+      11 => 'Jus de pêches',
+      12 => 'Jus de poires',
+      13 => 'Jus de pommes',
+      14 => 'Jus de raisins',
+      15 => 'Jus de tomates',
+      16 => 'Jus multivitaminé',
     ),
     'super-categorie' => 
     array (
@@ -2846,8 +2842,7 @@
   array (
     'super-categorie' => 
     array (
-      0 => 'Alcool',
-      1 => 'Jus de fruits',
+      0 => 'Jus de fruits',
     ),
   ),
   'Jus d\'orange' => 
@@ -2924,13 +2919,6 @@
     'super-categorie' => 
     array (
       0 => 'Jus de baies',
-    ),
-  ),
-  'Jus de fruits de la passion' => 
-  array (
-    'super-categorie' => 
-    array (
-      0 => 'Jus de fruits',
     ),
   ),
   'Jus de fruit de la passion' => 
