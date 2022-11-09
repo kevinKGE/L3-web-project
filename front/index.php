@@ -18,13 +18,6 @@ echo "</br>essai d'affichage de POST : </br>";
 print_r(array_values($_POST));
 
 echo "</br>contenue de mes données users : </br>";
-foreach ($users as $user) {
-    foreach ($user as $value) {
-        echo $value . "</br>";
-    }
-}
-
-echo "</br>contenue de mes données users : </br>";
 print_r(array_values($users));*/
 
 // ************* fin essais Kevin ************* //

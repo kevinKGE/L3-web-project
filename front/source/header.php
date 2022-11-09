@@ -11,7 +11,7 @@
                 <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
             </form>
             <?php
-            if (!isset($_SESSION['email'])) { ?>
+            if (isset($_SESSION['email'])) { ?>
                 <form class="container-fluid justify-content-start">
                     <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">Profile</button>
                     <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">Se déconnecter</button>

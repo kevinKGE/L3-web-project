@@ -13,9 +13,9 @@ function user_already_registered($email) {
 
 function user_signup($users, $user){
     // if(!user_already_registered($user)){
-        var_dump($users);
+
         array_push($users, $user);
-        var_dump($users);
+        file_put_contents('../public.users.inc.php', print_r($users, true));
     // }
 }
 
