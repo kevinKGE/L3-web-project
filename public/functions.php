@@ -1,6 +1,4 @@
 <?php
-require_once 'users.inc.php';
-
 //work in progress ...
 
 function user_already_registered($email) {
@@ -13,10 +11,11 @@ function user_already_registered($email) {
     return false;
 }
 
-
-function user_signup($user){
+function user_signup($users, $user){
     // if(!user_already_registered($user)){
-        array_push($users, $user); // ICI argument 1 null ???
+
+        array_push($users, $user);
+        file_put_contents('../public.users.inc.php', print_r($users, true));
     // }
 }
 
