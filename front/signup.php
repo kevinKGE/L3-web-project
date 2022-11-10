@@ -2,8 +2,6 @@
 require_once 'source/head.php';
 require_once 'source/header.php';
 require_once '../public/functions.php';
-require_once '../public/users.inc.php';
-require_once '../public/users.inc.php';
 
 if (isset($_POST['submit'])) {
     echo $_POST['submit'];
