@@ -1,25 +1,15 @@
-Array
-(
-    [0] => Array
-        (
-            [email] => kevin.gerber@live.fr
-            [password] => sfmlkghl
-            [favorites] => Array
-                (
-                )
-
+<?php
+// var export à voir
+// $user = var_export($user, true);
+    $user = array(
+        0 => array(
+            'name' => 'Dupont',
+            'login' => 'dupont@gmail.com'
+        ),
+        1 => array(
+            'name' => 'Bertrand',
+            'login' => 'bertrand@gmail.com'
         )
-
-    [1] => Array
-        (
-            [name] => essai4
-            [firstname] => essai4
-            [email] => mlhj@jmj.kl
-            [password] => oui
-            [sex] => male
-            [birthDate] => 
-        )
-
-)
+    )
 
 ?>

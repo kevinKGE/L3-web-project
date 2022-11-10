@@ -1,25 +1,28 @@
 <?php
 //work in progress ...
 
-function user_already_registered($email) {
-    foreach($users as $user){
-        // if ($email === $user.$email) {
-        if (strcasecmp($email, $user.'email')) {
-            return true;
-        }
+function user_registered($user_login) {
+    $file = 'users/$user_login.inc.php';
+    if (file_exists($file)) {
+        return true;
     }
     return false;
 }
 
-function user_signup($users, $user){
-    // if(!user_already_registered($user)){
+function user_signup($user) {
+    // Pour pouvoir recuperer les données utilisateur : include
+    $user_login = $user['login'];
 
-        array_push($users, $user);
-        file_put_contents('../public.users.inc.php', print_r($users, true));
-    // }
+    $user_data = var_export($user, true);
+    echo "ICI :".$user_data;
+
+    if(!user_registered($user_login)){
+        file_put_contents('../public/users/'.$user_login.'.inc.php', print_r("<?php ".$user_data."?>", true));
+    }
+    
 }
 
-function logout(){
+function logout() {
     $_SESSION = array();
 
     session_destroy();
@@ -30,23 +33,20 @@ function hash_password(string $passwd){
 }
 
 function authentication_check(string $login, string $passwd){
-// ICI email != username : à régler
-    foreach ($users.$email as $user){
-        if(($user.$email === $login) && (password_verify($user.$password, $passwd))){
+    //ICI tout à refaire
+    foreach ($users . $login as $user) {
+        if (($user . $login === $login) && (password_verify($user . $password, $passwd))) {
             return true;
         }
     }
     return false;
 }
 
-function connection(string $login, string $passwd){ // ICI à reformuler
-    if (authentication_check($login, $passwd)){
+function connection(string $login, string $passwd) { // ICI à reformuler
+    if (authentication_check($login, $passwd)) {
         return true;
     }
     return false;
 }
 
-function essai() {
-    return 0;
-}
-
+?>

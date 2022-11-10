@@ -9,8 +9,8 @@ require_once 'source/header.php';
             <form action="./login.php" method="POST">
                 <h1 class="text-white">Connexion</h1>
 
-                <label for="email"><b>Nom d'utilisateur *</b></label>
-                <input class="form-control" type="email" placeholder="Entrer l'email utilisateur" name="email" required>
+                <label for="login"><b>Nom d'utilisateur *</b></label>
+                <input class="form-control" type="text" placeholder="Entrer le login utilisateur" name="login" required>
 
                 <label for="password"><b>Mot de passe *</b></label>
                 <input class="form-control" type="text" placeholder="Entrer le mot de passe" name="password" required>
