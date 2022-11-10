@@ -2,11 +2,12 @@
 //work in progress ...
 
 function user_registered($user_login) {
-    $file = 'users/$user_login.inc.php';
+    $file = '../public/users/'.$user_login.'.inc.php';
     if (file_exists($file)) {
-        return true;
+        echo 'true';
+    } else {
+        echo 'false';
     }
-    return false;
 }
 
 function user_signup($user) {
@@ -14,12 +15,12 @@ function user_signup($user) {
     $user_login = $user['login'];
 
     $user_data = var_export($user, true);
-    echo "ICI :".$user_data;
 
     if(!user_registered($user_login)){
         file_put_contents('../public/users/'.$user_login.'.inc.php', print_r("<?php ".$user_data."?>", true));
+    } else {
+        echo "User already registered";
     }
-    
 }
 
 function logout() {
