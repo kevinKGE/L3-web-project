@@ -1,49 +1,51 @@
 <?php
+$ListeRecipe = null; // List of recipes
 
-
-
-$ListeRecipe = null;
-if(!isset($_GET['page'])){
-    $historique[] = 'Aliment';
-    $ListRecipe=$Hierarchie['Aliment'];
+if(!isset($_GET['page'])){ // If the page is not defined
+    $history[] = 'Aliment'; // Add the page to the history
+    $ListRecipe=$Hierarchie['Aliment']; // Get the list of recipes
 }
-else
-{
-    $historique = $_SESSION['way'];
-    $historique[] = $_GET['page'];
-    $ListRecipe=$Hierarchie[$_GET['page']];
+else{ // If the page is defined
+    $history = $_SESSION['way']; // Get the history of the session
+    $history[] = $_GET['page']; // Add the page to the array 'history'
+    $ListRecipe=$Hierarchie[$_GET['page']]; // Get the page where we are
 }
 
+?> 
+    <strong>Aliment courant</strong> 
+    </br>
+    </br>
+<?php 
 
-?>
-    <strong>Aliment courant</strong>
-<?php
-    if(isset($_GET['page'])){
-        $n = count($historique);
-        if(in_array($_GET['page'], $_SESSION['way'])){
-            array_splice($historique, $n);
-            $found = array_search($_GET['page'], $historique);
-            for($n-1; $n>$found ; $n--){
-                array_splice($historique, $n);
+    if(isset($_GET['page'])){ // If the page is defined
+        $n = count($history); // Get the number of elements in the array 'history'
+        if(in_array($_GET['page'], $_SESSION['way'])){ // If the name of page is in the array 'history'
+            array_splice($history, $n); // Delete the elements of the page where we are
+            $found = array_search($_GET['page'], $history); // Get the position of the page where we are
+            for($n-1; $n>$found ; $n--){ // Delete the elements after the page where we are
+                array_splice($history, $n); 
             }
         }
     }
-        foreach ($historique as $key => $value) {
-            ?>
-                <a href="?page=<?php echo $value; ?>"> <?php echo $value; ?></a> /
-            <?php
+
+    foreach ($history as $key => $value) { // For each element of the array 'history'
+          ?>
+              <a href="?page=<?php echo $value; ?>"> <?php echo $value; ?></a> /  <!-- Create a link to the page where we are in an ariana file--> 
+          <?php
         }
+    ?>
+    </br>
     
-       /********** debut de la génération php *********/
-       ?>
+    </br>
+    <p>Sous-catégories : </p>  
+    
        <ul>
          <?php
-       foreach ($ListRecipe as $key => $SC) {
-            if($key != "super-categorie"){
-                foreach($SC as $indice => $Fruit)
-                {
+       foreach ($ListRecipe as $key => $SC) { // For each element of the array 'ListRecipe', SC = sous-categorie
+            if($key != "super-categorie"){ // If the element is not a super-category
+                foreach($SC as $indice => $Fruit) { // For each element of the array 'sous-categorie'
                     ?>
-                    <li><a href="?page=<?php echo $Fruit; ?>"> <?php echo $Fruit; ?></a> </li>
+                    <li><a href="?page=<?php echo $Fruit; ?>"> <?php echo $Fruit; ?></a> </li> <!-- Show a link word of the array $Recette -->
                     <?php
                 }
             }
@@ -51,8 +53,8 @@ else
         ?>
        </ul>
         <?php
-       /********** fin de la génération php *********/
-       $_SESSION['way'] = $historique;
-       var_dump($_SESSION['way']);
+       
+       $_SESSION['way'] = $history; // Save the array history in the session
+       //var_dump($_SESSION['way']); // Display the history
        ?>
        

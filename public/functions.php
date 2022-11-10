@@ -50,4 +50,19 @@ function connection(string $login, string $passwd) { // ICI à reformuler
     return false;
 }
 
+?>/*function show_coktails($coktails, $ingredients){
+    foreach ($coktails as $coktail){
+        echo '<div class="coktail">';
+        echo '<h2>'.$coktail['name'].'</h2>';
+        echo '<img src="'.$coktail['image'].'" alt="'.$coktail['name'].'">';
+        echo '<p>'.$coktail['description'].'</p>';
+        echo '<ul>';
+        foreach ($coktail['ingredients'] as $ingredient){
+            echo '<li>'.$ingredients[$ingredient]['name'].'</li>';
+        }
+        echo '</ul>';
+        echo '</div>';
+    }
+}*/
+
 ?>

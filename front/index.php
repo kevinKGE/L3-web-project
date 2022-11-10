@@ -35,6 +35,7 @@ print_r(array_values($users));*/
 
 <main>
     <?php
+        require_once 'main.php';
     //mettre les differentes recette correcspondant aux recherches
     // + mettre le coeur rouge si il y en a un 
     //faire une verification dans ce type la pour filtrer la gestion des cookie et de favori
