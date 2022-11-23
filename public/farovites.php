@@ -32,7 +32,7 @@ function addFavorite($favorite)
 
         $favoritesList[] = $favorite;
 
-        setcookie("favorite", serialize($favoritesList), 2147483647, '/');
+        setcookie("favorite", serialize($favoritesList), 2147483647, '/'); 
     }
 }
 

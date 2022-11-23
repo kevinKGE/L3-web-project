@@ -52,7 +52,7 @@ foreach($matches[0] as $matches)
     /// If the first letter is a '-', we don't want this ingredient.
 
     if($firstCharacter == '-'){
-        if(isset($Hierarchies[$matches])){
+        if(isset($result['exclude'][$matches])){
             if(!in_array($matches, $result['exclude'])){
                 $result['exclude'][] = $matches;
             }
@@ -62,7 +62,7 @@ foreach($matches[0] as $matches)
 }
     else
     {
-        if(isset($Hierarchies[$matches])){
+        if(isset($result['include'][$matches])){
             if(!in_array($matches, $result['include'])){
                 $result['include'][] = $matches;
             }

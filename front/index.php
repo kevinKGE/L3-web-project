@@ -5,6 +5,7 @@ session_start();
 require_once 'source/head.php';
 require_once 'source/header.php';
 require_once '../public/Donnees.inc.php';
+require_once '../public/functions.php';
 
 // ************* essais Kevin : ************** //
 /*if (isset($_POST['submit'])) {
