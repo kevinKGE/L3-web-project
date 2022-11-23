@@ -50,10 +50,14 @@ function connection(string $login, string $passwd) { // ICI à reformuler
     return false;
 }
 
-function show_coktails($Coktails){
-   // foreach($Coktails as $Recipe){
+function show_coktails($Coktails){ // Show the cocktails in the list
+    //foreach($Coktails as $Recipe){
          
     //}
+}
+
+function Transformation_Fromat($element){// Change the format of the name of cocktails to have the good pictures
+
 }
 
 function getCurrentUser(){
