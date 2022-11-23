@@ -50,7 +50,7 @@ function connection(string $login, string $passwd) { // ICI à reformuler
     return false;
 }
 
-?>/*function show_coktails($coktails, $ingredients){
+/*function show_coktails($coktails, $ingredients){
     foreach ($coktails as $coktail){
         echo '<div class="coktail">';
         echo '<h2>'.$coktail['name'].'</h2>';
@@ -64,5 +64,39 @@ function connection(string $login, string $passwd) { // ICI à reformuler
         echo '</div>';
     }
 }*/
+
+function getCurrentUser(){
+    if (isset($_SESSION['user'])) {
+        return $_SESSION['user'];
+    }
+    return false;
+}
+
+function buildPath($path) {
+    return _DIR_ . "/../../users/" . $file; 
+}
+
+
+function save($path, $data) {
+    $path = buildPath($path);
+    if($data == NULL){
+        unlink($path); } //delete file
+    else {
+        file_put_contents($path, serialize($data)); } //save file
+    
+}
+
+
+function exists($path) { 
+    $path = buildPath($path);
+    return file_exists($path);
+}
+
+function get($path) {
+    $path = buildPath($path);
+    $rawdata = file_get_contents($path);
+    $data = json_decode($rawdata, true);
+   return $data;
+}
 
 ?>

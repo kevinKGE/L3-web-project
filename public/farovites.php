@@ -15,19 +15,19 @@ function addFavorite($favorite)
     if ($user) {
         // Si l'utilateur est connecté, on stocke les favoris dans un fichier permanent situé en ...
 
-        $favoritesList = [];
+        $favoritesList = []; // We create an array to store the favorites of the user
 
-        $login = $user["login"];
+        $login = $user["login"]; // We get the login of the user
 
-        if (exist("favorite/$login"))
-            $favoritesList = get("favorite/$login");
-
+        if (exist("favorite/$login")) { // If the file exists
+            $favoritesList = get("favorite/$login"); // We get the favorites of the user
+        }
+        
         $favoritesList[] = $favorite;
 
         save("favorite/$login", $favoritesList);
     } else {
-        // Si l'utilisateur n'est pas connecté, on stocke les favoris dans les cookies de son navigateur.
-
+        //if the user is not connected, we store the favorites in a session variable
         $favoritesList = getFavorite();
 
         $favoritesList[] = $favorite;
@@ -36,7 +36,7 @@ function addFavorite($favorite)
     }
 }
 
-function deleteFavorite($favorite)
+function deleteFavorite($favorite)  
 {
     $user = getCurrentUser();
     $favoritesList = getFavorite();
@@ -60,15 +60,15 @@ function getFavorite()
         $login = $user["login"];
         $favoritesList = [];
 
-        if (exist("favorite/$login"))
+        if (exist("favorite/$login")) {
             $favoritesList = get("favorite/$login");
-
+        }
         return $favoritesList;
     } else {
         $favoritesList = isset($_COOKIE["favorite"]) ? unserialize($_COOKIE["favorite"]) : [];
 
         if (!is_array($favoritesList))
-            return []; // On force une liste.
+            return []; // force the array type
 
         return $favoritesList;
     }
