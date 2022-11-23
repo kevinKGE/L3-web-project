@@ -1,4 +1,4 @@
-<?php  
+<?php 
 if(!isset($_GET['page'])){ // If the page is not defined
     $page = 'Aliment'; // Add the page to the page
 }
@@ -23,4 +23,8 @@ else{ // If the page is defined
             }
         }
     }
+?>
+
+<?php
+    show_coktails($Coktails);
 ?>
