@@ -1,3 +1,21 @@
+<?php
+include_once './public/functions.php';
+
+$login = $_POST['login'];
+$password = $_POST['password'];
+// vérifie que les champs ne sont pas vides
+if ($login && $password) {
+    // vérifie que le login et le mot de passe correspondent à ceux de la base de données
+    $user = login($login, $password);
+    if ($user) {
+        $_SESSION['user'] = $user;
+    } else {
+        echo 'Mauvais login ou mot de passe !';
+    }
+}
+
+?>
+
 <header>
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">

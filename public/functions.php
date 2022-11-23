@@ -1,15 +1,6 @@
 <?php
 //work in progress ...
 
-function user_registered($user_login) {
-    $file = '../public/users/'.$user_login.'.inc.php';
-    if (file_exists($file)) {
-        echo 'true';
-    } else {
-        echo 'false';
-    }
-}
-
 function user_signup($user) {
     // Pour pouvoir recuperer les données utilisateur : include
     $user_login = $user['login'];
@@ -29,32 +20,49 @@ function logout() {
     session_destroy();
 }
 
+function user_registered($user_login) {
+    $file = '../public/users/'.$user_login.'.inc.php';
+    if (file_exists($file)) {
+        echo 'true';
+    } else {
+        echo 'false';
+    }
+}
+
+function login($user_login, $user_password) {
+
+
+    if(user_registered($user_login)) {
+        $user_data = include '../public/users/'.$user_login.'.inc.php';
+        if($user_data['password'] == $user_password) {
+            $_SESSION['user'] = $user_data;
+            echo 'Connexion réussie';
+        } else {
+            echo 'Mot de passe incorrect';
+        }
+    } else {
+        echo 'Utilisateur non enregistré';
+    }
+}
+
 function hash_password(string $passwd){
     return password_hash($passwd, PASSWORD_ARGON2I);
 }
 
-function authentication_check(string $login, string $passwd){
-    //ICI tout à refaire
-    foreach ($users . $login as $user) {
-        if (($user . $login === $login) && (password_verify($user . $password, $passwd))) {
-            return true;
+/*function show_coktails($coktails, $ingredients){
+    foreach ($coktails as $coktail){
+        echo '<div class="coktail">';
+        echo '<h2>'.$coktail['name'].'</h2>';
+        echo '<img src="'.$coktail['image'].'" alt="'.$coktail['name'].'">';
+        echo '<p>'.$coktail['description'].'</p>';
+        echo '<ul>';
+        foreach ($coktail['ingredients'] as $ingredient){
+            echo '<li>'.$ingredients[$ingredient]['name'].'</li>';
         }
+        echo '</ul>';
+        echo '</div>';
     }
-    return false;
-}
-
-function connection(string $login, string $passwd) { // ICI à reformuler
-    if (authentication_check($login, $passwd)) {
-        return true;
-    }
-    return false;
-}
-
-function show_coktails($Coktails){ // Show the cocktails in the list
-    //foreach($Coktails as $Recipe){
-         
-    //}
-}
+}*/
 
 function Transformation_Fromat($element){// Change the format of the name of cocktails to have the good pictures
 
