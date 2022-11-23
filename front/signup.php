@@ -26,17 +26,17 @@ if (isset($_POST['submit'])) {
     if ($login && $password && $repeatPassword) {
         if (strlen($password) >= 1) {
             if ($password == $repeatPassword) {
-                if (preg_match($loginRegex, $userToAdd['login'])) {
-                    if (preg_match('$([A-Z][a-z][0-9] -\')+$', $userToAdd['name'])) {
-                        if (preg_match('$([A-Z][a-z][0-9] -\')+$', $userToAdd['firstname'])) {
-                            if (preg_match('$([A-Z][a-z][0-9])+$', $userToAdd['birthDate'])) {
+                // if (preg_match($loginRegex, $userToAdd['login'])) {
+                //     if (preg_match('$([A-Z][a-z][0-9] -\')+$', $userToAdd['name'])) {
+                //         if (preg_match('$([A-Z][a-z][0-9] -\')+$', $userToAdd['firstname'])) {
+                //             if (preg_match('$([A-Z][a-z][0-9])+$', $userToAdd['birthDate'])) {
                                 user_signup($userToAdd);
 
                                 echo 'Inscription réussie';
-                            } else echo "Votre date de naissance doit être anterieure à 18 ans de la date du jour à  et des chiffres";
-                        } else echo "Votre prenom doit contenir uniquement des lettres et des chiffres";
-                    } else echo "Votre nom doit contenir uniquement des lettres et des chiffres";
-                } else echo "Votre login doit contenir uniquement des lettres et des chiffres";
+                //             } else echo "Votre date de naissance doit être anterieure à 18 ans de la date du jour à  et des chiffres";
+                //         } else echo "Votre prenom doit contenir uniquement des lettres et des chiffres";
+                //     } else echo "Votre nom doit contenir uniquement des lettres et des chiffres";
+                // } else echo "Votre login doit contenir uniquement des lettres et des chiffres";
             } else echo "Les mots de passe ne sont pas identiques";
         } else echo "Le mot de passe est trop court !";
     } else echo "Veuillez saisir tous les champs obligatoires !";

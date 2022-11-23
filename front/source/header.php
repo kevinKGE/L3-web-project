@@ -1,19 +1,25 @@
 <?php
-include_once './public/functions.php';
+require_once '../public/functions.php';
+require_once '../public/regex.php';
+require_once '../public/Donnees.inc.php';
 
-$login = $_POST['login'];
-$password = $_POST['password'];
-// vérifie que les champs ne sont pas vides
-if ($login && $password) {
-    // vérifie que le login et le mot de passe correspondent à ceux de la base de données
-    $user = login($login, $password);
-    if ($user) {
-        $_SESSION['user'] = $user;
-    } else {
-        echo 'Mauvais login ou mot de passe !';
+if (isset($_POST['submit2'])) {
+    $login = $_POST['login'];
+    $password = $_POST['password'];
+    // vérifie que les champs ne sont pas vides
+    if ($login && $password) {
+        // vérifie que le login et le mot de passe correspondent à ceux de la base de données
+        echo 'champs non vides</br>';
+        $user = login($login, $password);
+        echo "user:".$user."</br>";
+        if ($user) {
+            $_SESSION['user'] = $user;
+            echo "session OK</br>";
+        } else {
+            echo 'Mauvais login ou mot de passe !</br>';
+        }
     }
 }
-
 ?>
 
 <header>
@@ -29,21 +35,21 @@ if ($login && $password) {
                 <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
             </form>
             <?php
-            if (isset($_SESSION['login'])) { ?>
+            if (isset($_SESSION['user'])) { ?>
                 <form class="container-fluid justify-content-start">
                     <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">Profile</button>
                     <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">Se déconnecter</button>
                 </form>
             <?php
-            } else {?>
-            <form class="container-fluid justify-content-start">
-                <label>Login</label>
-                <input></input>
-                <label>Mot de passe </label>
-                <input></input>
-                <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">Connexion</button>
+            } else { ?>
+                <form class="container-fluid justify-content-start" action=# method="POST">
+                    <label>Login</label>
+                    <input name="login"></input>
+                    <label>Mot de passe </label>
+                    <input name='password'></input>
+                    <button class="btn btn-outline-success me-2" type="submit" name="submit2">Connexion</button>
+                </form>
                 <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./signup.php'">S'inscrire</button>
-            </form>
             <?php
             }
             ?>

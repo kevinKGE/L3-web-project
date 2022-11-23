@@ -1,5 +1,4 @@
 <?php
-//work in progress ...
 
 function user_signup($user) {
     // Pour pouvoir recuperer les données utilisateur : include
@@ -14,6 +13,21 @@ function user_signup($user) {
     }
 }
 
+function login($user_login, $user_password) {
+    if(user_registered($user_login)) {
+        $user_data = include '../public/users/'.$user_login.'.inc.php';
+        echo "password:".$user_data['password'].'<br>';
+        if($user_data['password'] == $user_password) {
+            echo 'Connexion réussie</br>';
+            return $user_data;
+        } else {
+            echo 'Mauvais mot de passe</br>';
+        }
+    } else {
+        echo 'Utilisateur non enregistré</br>';
+    }
+}
+
 function logout() {
     $_SESSION = array();
 
@@ -23,25 +37,9 @@ function logout() {
 function user_registered($user_login) {
     $file = '../public/users/'.$user_login.'.inc.php';
     if (file_exists($file)) {
-        echo 'true';
+       return true;
     } else {
-        echo 'false';
-    }
-}
-
-function login($user_login, $user_password) {
-
-
-    if(user_registered($user_login)) {
-        $user_data = include '../public/users/'.$user_login.'.inc.php';
-        if($user_data['password'] == $user_password) {
-            $_SESSION['user'] = $user_data;
-            echo 'Connexion réussie';
-        } else {
-            echo 'Mot de passe incorrect';
-        }
-    } else {
-        echo 'Utilisateur non enregistré';
+        return false;
     }
 }
 
@@ -75,7 +73,6 @@ function buildPath($path) {
     return _DIR_ . "/../../users/" . $file; 
 }
 
-
 function save($path, $data) {
     $path = buildPath($path);
     if($data == NULL){
@@ -84,7 +81,6 @@ function save($path, $data) {
         file_put_contents($path, serialize($data)); } //save file
     
 }
-
 
 function exists($path) { 
     $path = buildPath($path);

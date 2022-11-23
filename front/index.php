@@ -4,8 +4,6 @@
 session_start();
 require_once 'source/head.php';
 require_once 'source/header.php';
-require_once '../public/Donnees.inc.php';
-require_once '../public/functions.php';
 
 // ************* essais Kevin : ************** //
 /*if (isset($_POST['submit'])) {
@@ -24,24 +22,6 @@ print_r(array_values($users));*/
 
 // ******* Partie navigation ************ //
 
-// créer une connexion d'utilisateur avec les fichiers users.inc.php
-// ICI à tester (ne pas oublier de rendre la partie connextion sous forme de formulaire)
-if (isset($_POST['submit'])) {
-    $login = htmlspecialchars(trim($_POST['login']));
-    $password = htmlspecialchars(trim($_POST['password']));
-    $userToConnect = array(
-        'login' => $login,
-        'password' => $password
-    );
-    if ($login && $password) {
-        if (preg_match($loginRegex, $userToConnect['login'])) {
-            if (preg_match('$([A-Z][a-z][0-9] -\')+$', $userToConnect['password'])) {
-                user_connect($userToConnect);
-                echo 'Connexion réussie';
-            } else echo "Votre mot de passe doit contenir uniquement des lettres et des chiffres";
-        } else echo "Votre login doit contenir uniquement des lettres et des chiffres";
-    } else echo "Veuillez saisir tous les champs obligatoires !";
-}
 
 ?>
 
