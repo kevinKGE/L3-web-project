@@ -10,7 +10,7 @@ Sinon il faudrait juste donner à chaque user un array() de favoris ... on en di
 
 function addFavorite($favorite)
 {
-    $user = getCurrentUser();
+    $user = getCurrentUser(); //Recupérer les information de l'utilisateur si connecté
 
     if ($user) {
         // Si l'utilateur est connecté, on stocke les favoris dans un fichier permanent situé en ...
