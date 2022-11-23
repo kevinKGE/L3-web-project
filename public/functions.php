@@ -62,6 +62,10 @@ function hash_password(string $passwd){
     }
 }*/
 
+function Transformation_Fromat($element){// Change the format of the name of cocktails to have the good pictures
+
+}
+
 function getCurrentUser(){
     if (isset($_SESSION['user'])) {
         return $_SESSION['user'];
