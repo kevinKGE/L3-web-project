@@ -2,6 +2,7 @@
 require_once '../public/functions.php';
 require_once '../public/regex.php';
 require_once '../public/Donnees.inc.php';
+require_once '../front/search.php';
 
 if (isset($_POST['submit2'])) {
     $login = $_POST['login'];
@@ -29,10 +30,10 @@ if (isset($_POST['submit2'])) {
                 <button class="btn btn-outline-success me-2" type="button">Navigation</button>
                 <button class="btn btn-outline-success me-2" type="button">Recettes <i class="bi bi-heart-fill"></i></button>
             </form>
-            <form class="d-flex" role="search">
+            <form class="d-flex" role="search" action=# method="POST">
                 <label class="">Recette : </label>
-                <input class="form-control me-2" type="search" placeholder="" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit"><i class="bi bi-search"></i></button>
+                <input class="form-control me-2" name="search" type="search" placeholder="" aria-label="Search">
+                <button class="btn btn-outline-success" name="submit3" type="submit"><i class="bi bi-search"></i></button>
             </form>
             <?php
             if (isset($_SESSION['user'])) { ?>

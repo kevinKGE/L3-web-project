@@ -1,101 +1,94 @@
 <?php
-    $query = isset($_GET['query']) ? $_GET['query'] : null;
+require_once 'source/head.php';
+require_once 'source/header.php';
+require_once '../public/Donnees.inc.php';
 
-if(!$query){
-    $result = [
-        'status' => true,
-        'message' => 'No query provided'
-    ];
-    return;
-}
+if (isset($_POST['submit3'])) {
+    echo $_POST['submit3'];
 
-$query = trim($query);
+    $result = array (
+        'include' => $include = array(),
+        'exclude' => $exclude = array(),
+        'unknown'=> $unknown = array(),
+        'ListIngredients' => $ListIngredients = array(),
+    );
+    $search = $_POST['search'];
 
-// The search must only containe letters, double quotes, spaces, +, -
-if(preg_match_all('/[^a-zÀ-ú" +-]/i', $query)){
-    $result = [
-        'status' => true,
-        'message' => 'Query contains multiple words'
-    ];
-    return;
-}
+    preg_match_all('/[-+]?"[^"]+"|[^ ]+/', $search, $matches);
 
-//Normal treatment
 
-$result = [
-    'status' => true,
-    'exclude' => [],
-    'include' => [],
-    'unknown' => [],
-    'data' => [],
-];
-
-preg_match_all('/[-+]?"[^"]+"|[^ ]+/', $query, $matches);
-
-if(substr_count($query, '"') % 2 != 0){
-    $result = [
-        'status' => true,
-        'message' => 'Query contains multiple words'
-    ];
-    return;
-}
-
-foreach($matches[0] as $matches)
-{
-    $firstCharacter = substr($matches, 0, 1);
-
-    if($firstCharacter == '-' || $firstCharacter == '+'){
-        $matches = substr($matches, 1);
+    if(empty($search)){
+        echo 'Veuillez saisir une recipe';
     }
-
-    $matches = trim($matches, '"');
-    /// If the first letter is a '-', we don't want this ingredient.
-
-    if($firstCharacter == '-'){
-        if(isset($result['exclude'][$matches])){
-            if(!in_array($matches, $result['exclude'])){
-                $result['exclude'][] = $matches;
-            }
-    } else {
-        $result['unknown'][] = $matches;
+    else if(preg_match('/[^a-zÀ-ú" +-]/i', $search)){
+        echo 'Veuillez saisir une recipe valide';
     }
-}
-    else
-    {
-        if(isset($result['include'][$matches])){
-            if(!in_array($matches, $result['include'])){
-                $result['include'][] = $matches;
+    else{
+
+       if(substr_count($search, '"' ) % 2 != 0){
+            echo 'Nombre de guillemets impairs';
+        }
+        else{
+            foreach ($matches[0] as $matches) {
+                $key = substr($matches, 0, 1);
+                if ($key == '+') {
+                        if(!in_array(substr($matches, 1), $result['include'])){
+                            $result['include'][] = substr($matches, 1);
+                        }
+                } else if ($key == '-') {
+                        if(!in_array(substr($matches, 1), $result['exclude'])){
+                            $result['exclude'][] = substr($matches, 1);
+                        }
+                } 
+                else if($key == '"'){
+                    if(!in_array(substr($matches, 1, -1), $result['include'])){
+                        $result['include'][] = substr($matches, 1, -1);
+                    }
+                }
+                else if(preg_match('/^[a-z]/i', $matches)){
+                    echo 'Les mots suivants doivent commencer par une majuscule'. " " . $matches;
+                    echo "<br>";
+                }
+                else{
+                    if(!in_array($matches, $result['include'])){
+                        $result['include'][] = $matches;;
+                    }
+                }
+
+        }
+        foreach($Recettes as $OneRecipe => $ListInRecettes){
+            foreach($ListInRecettes[array_keys($ListInRecettes)[3]] as $rank => $ingredient){
+                if(!in_array($ingredient, $result['ListIngredients'])){
+                    $result['ListIngredients'][] = $ingredient;
+                }
             }
-        } else {
-            $result['unknown'][] = $matches;
+          }
+
+
+        echo "Liste des Aliment souhaiter";
+        foreach ($result['include'] as $i => $value) {
+           foreach ($result['ListIngredients'] as $j => $value2) {
+                if($value == $value2){
+                    echo " " . $result['include'][$i] . " ";
+                }
+                else{
+                    $result['unknown'][] = $value;
+                }
+            }
         }
     }
-    
-}
-
-/** 
- * For each recipe, we will look for all the common points
- * and assign them a score according to this principle:
- * If the ingredient is requested +1; otherwise -1
- * At the output, we can therefore sort according to this score to make an efficient search,
- * the higher the score, the closer to what the user wanted */
-foreach($Recipes as $recipe){
-    $score = 0;
-    foreach($recipe['ingredients'] as $ingredient){
-        if(in_array($ingredient, $result['include'])){
-            $score++;
-        } else if(in_array($ingredient, $result['exclude'])){
-            $score--;
+        echo "<br>";
+        echo "Liste des Aliment a exclure";
+        foreach ($result['exclude'] as $i => $value) {
+            foreach($Recettes as $key => $value){
+                if(in_array($value['ingredients'], $result['exclude'])){
+                    echo " " . $result['exclude'][$i] . " ";
+                }
+                else{
+                    unset($result['exclude'][$i]);
+                }
+            }
+         }
         }
     }
-    $result['data'][] = [
-        'score' => $score,
-        'recipe' => $recipe
-    ];
-}
-
-function cmp($a, $b){
-    return $a['score'] < $b['score'];
-}
-
-usort($result['data'], 'cmp');
+?>
