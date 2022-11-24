@@ -1,6 +1,7 @@
 <!-- Data treatment -->
 
 <?php
+// ICI session_start utile ?
 session_start();
 require_once 'source/head.php';
 require_once 'source/header.php';

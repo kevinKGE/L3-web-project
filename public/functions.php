@@ -3,6 +3,10 @@
 function user_signup($user) {
     // Pour pouvoir recuperer les données utilisateur : include
     $user_login = $user['login'];
+    // ICI a finir
+    //hashage du mot de passe
+    echo ($user['password']);   
+    // $user['password'] = hash_password($user['password']);
 
     $user_data = var_export($user, true);
 
@@ -32,8 +36,8 @@ function login($user_login, $user_password) {
 }
 
 function logout() {
-    echo "déconnexion</br>";
-    
+    echo "déconnexion PHP</br>";
+
     $_SESSION = array();
     session_destroy();
 
