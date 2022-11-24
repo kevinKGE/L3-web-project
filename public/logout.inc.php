@@ -1,9 +1,8 @@
 <?php
-    session_start();
     echo "déconnexion PHP</br>";
-
-    $_SESSION = array();
+    session_start();
     session_destroy();
+    $_SESSION = array();
 
     header("Refresh:0");
 ?>

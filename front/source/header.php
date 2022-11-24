@@ -38,7 +38,8 @@ if (isset($_POST['submit2'])) {
             if (isset($_SESSION['user'])) { ?>
                 <form class="container-fluid justify-content-start" >
                     <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./profile.php'">Profile</button>
-                    <button class="btn btn-outline-success me-2" type="button" onclick="logout()">Se déconnecter</button>
+
+                    <a type="button" href="public/logout.inc.php"><button class="btn btn-outline-success me-2">se déconnecter</button></a>
                 </form>
             <?php
             } else { ?>
@@ -56,15 +57,3 @@ if (isset($_POST['submit2'])) {
         </div>
     </nav>
 </header>
-
-<script>
-    function logout() {
-        console.log("déconnexion");
-        $.ajax({
-            url: 'public\logout.inc.php',
-        });
-        // sessionStorage.clear();
-
-        // location.reload();
-    }
-</script>
