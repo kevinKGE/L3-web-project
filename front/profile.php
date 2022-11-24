@@ -1,7 +1,35 @@
 <?php
 require_once 'source/head.php';
 require_once 'source/header.php';
-require_once '../public/functions.php';
+require_once '../public/functions.inc.php';
+
+session_start();
+
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user'];
+}
+
+if (isset($_POST['change'])) {
+    $name = htmlspecialchars(trim($_POST['name']));
+    $firstName = htmlspecialchars(trim($_POST['firstName']));
+    $login = htmlspecialchars(trim($_POST['login']));
+    $password = htmlspecialchars(trim($_POST['password']));
+    $birthDate = htmlspecialchars(trim($_POST['birthDate']));
+    $sex = htmlspecialchars(trim($_POST['sex']));
+
+    $new_values = array(
+        'login' => $login,
+        'password' => $password,
+        'name' => $name,
+        'firstname' => $firstName,
+        'sex' => $sex,
+        'birthDate' => $birthDate
+    );
+
+    // ICI vérifications à faire (regex etc)
+
+    modify_user($new_values);
+}
 
 ?>
 
@@ -10,34 +38,31 @@ require_once '../public/functions.php';
     <!-- zone de connexion -->
     <div class="row">
         <div class="col">
-            <form class="container-fluid justify-content-start" action=# method="POST">
+            <form class="container-fluid justify-content-start" method="POST">
 
                 <p>Login*</p>
-                <input type="login" name="login" required="required" value="<?php $_SESSION('login')?>>
+                <input type="login" name="login" required="required" value="<?php echo $user['login'] ?>">
 
                 <p>Password*</p>
-                <input type="password" name="password" required="required">
-                <p>Répetez votre password*</p>
-
-                <input type="password" name="repeatPassword" required="required"><br>
+                <input type="password" name="password" required="required" value="<?php echo $user['password'] ?>">
 
                 <p>Nom</p>
-                <input type="text" name="name">
+                <input type="text" name="name" value="<?php echo $user['firstname'] ?>">
 
                 <p>Prenom</p>
-                <input type="text" name="firstName">
+                <input type="text" name="firstName" value="<?php echo $user['name'] ?>">
 
                 <p>Date de naissance</p>
-                <input type="date" name="birthDate">
+                <input type="date" name="birthDate" value="<?php echo $user['birthDay'] ?>">
 
                 <p>Sexe</p>
-                <input type="radio" name="sex" value="male" checked>
+                <input type="radio" name="sex" value="male" checked value="<?php echo $user['sex'] ?>">
                 <label for="male">Homme</label>
 
-                <input type="radio" name="sex" value="female">
+                <input type="radio" name="sex" value="female" value="<?php echo $user['sex'] ?>">
                 <label for="female">Femme</label>
 
-                <input type="submit" name="submit" onclick="" value="modifier">
+                <input type="submit" name="change" onclick="" value="modifier">
 
             </form>
         </div>

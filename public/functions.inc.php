@@ -57,55 +57,14 @@ function hash_password(string $passwd){
     return password_hash($passwd, PASSWORD_ARGON2I);
 }
 
-/*function show_coktails($coktails, $ingredients){
-    foreach ($coktails as $coktail){
-        echo '<div class="coktail">';
-        echo '<h2>'.$coktail['name'].'</h2>';
-        echo '<img src="'.$coktail['image'].'" alt="'.$coktail['name'].'">';
-        echo '<p>'.$coktail['description'].'</p>';
-        echo '<ul>';
-        foreach ($coktail['ingredients'] as $ingredient){
-            echo '<li>'.$ingredients[$ingredient]['name'].'</li>';
-        }
-        echo '</ul>';
-        echo '</div>';
-    }
-}*/
+function modify_user($user) {
 
-function Transformation_Fromat($element){// Change the format of the name of cocktails to have the good pictures
+    var_dump($user);
 
-}
+    $user_data = var_export($user, true);
 
-function getCurrentUser(){
-    if (isset($_SESSION['user'])) {
-        return $_SESSION['user'];
-    }
-    return false;
-}
-
-function buildPath($path) {
-    return _DIR_ . "/../../users/" . $file; 
-}
-
-function save($path, $data) {
-    $path = buildPath($path);
-    if($data == NULL){
-        unlink($path); } //delete file
-    else {
-        file_put_contents($path, serialize($data)); } //save file
+   file_put_contents('../public/users/'.$user['login'].'.inc.php', print_r("<?php \$user =".$user_data."?>", true));
     
-}
-
-function exists($path) { 
-    $path = buildPath($path);
-    return file_exists($path);
-}
-
-function get($path) {
-    $path = buildPath($path);
-    $rawdata = file_get_contents($path);
-    $data = json_decode($rawdata, true);
-   return $data;
 }
 
 ?>

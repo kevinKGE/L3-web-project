@@ -1,5 +1,5 @@
 <?php
-require_once '../public/functions.php';
+require_once '../public/functions.inc.php';
 require_once '../public/regex.php';
 require_once '../public/Donnees.inc.php';
 
