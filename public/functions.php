@@ -7,7 +7,7 @@ function user_signup($user) {
     $user_data = var_export($user, true);
 
     if(!user_registered($user_login)){
-        file_put_contents('../public/users/'.$user_login.'.inc.php', print_r("<?php ".$user_data."?>", true));
+        file_put_contents('../public/users/'.$user_login.'.inc.php', print_r("<?php \$user =".$user_data."?>", true));
     } else {
         echo "User already registered";
     }
@@ -15,23 +15,29 @@ function user_signup($user) {
 
 function login($user_login, $user_password) {
     if(user_registered($user_login)) {
-        $user_data = include '../public/users/'.$user_login.'.inc.php';
-        echo "password:".$user_data['password'].'<br>';
-        if($user_data['password'] == $user_password) {
+        include '../public/users/'.$user_login.'.inc.php';
+        var_dump($user);
+        echo "password:".$user['password'].'<br>';
+        if($user['password'] == $user_password) {
             echo 'Connexion réussie</br>';
-            return $user_data;
+            return $user;
         } else {
             echo 'Mauvais mot de passe</br>';
+            return false;
         }
     } else {
         echo 'Utilisateur non enregistré</br>';
+        return false;
     }
 }
 
 function logout() {
+    echo "déconnexion</br>";
+    
     $_SESSION = array();
-
     session_destroy();
+
+    header("Refresh:0");
 }
 
 function user_registered($user_login) {

@@ -38,7 +38,7 @@ if (isset($_POST['submit2'])) {
             if (isset($_SESSION['user'])) { ?>
                 <form class="container-fluid justify-content-start">
                     <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">Profile</button>
-                    <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">Se déconnecter</button>
+                    <button class="btn btn-outline-success me-2" type="button" onclick="() => {<?php logout() ?>}">Se déconnecter</button>
                 </form>
             <?php
             } else { ?>
