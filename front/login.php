@@ -1,3 +1,5 @@
+<!-- // ICI à supprimer -->
+
 <?php
 require_once 'source/head.php';
 require_once 'source/header.php';

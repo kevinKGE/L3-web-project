@@ -1,5 +1,5 @@
 <?php
-require_once '../public/functions.php';
+require_once '../public/functions.inc.php';
 require_once '../public/regex.php';
 require_once '../public/Donnees.inc.php';
 require_once '../front/search.php';
@@ -12,7 +12,6 @@ if (isset($_POST['submit2'])) {
         // vérifie que le login et le mot de passe correspondent à ceux de la base de données
         echo 'champs non vides</br>';
         $user = login($login, $password);
-        echo "user:".$user."</br>";
         if ($user) {
             $_SESSION['user'] = $user;
             echo "session OK</br>";
@@ -27,7 +26,7 @@ if (isset($_POST['submit2'])) {
     <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
             <form class="container-fluid justify-content-start">
-                <button class="btn btn-outline-success me-2" type="button">Navigation</button>
+                <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./index.php'">Navigation</button>
                 <button class="btn btn-outline-success me-2" type="button">Recettes <i class="bi bi-heart-fill"></i></button>
             </form>
             <form class="d-flex" role="search" action=# method="POST">
@@ -37,16 +36,16 @@ if (isset($_POST['submit2'])) {
             </form>
             <?php
             if (isset($_SESSION['user'])) { ?>
-                <form class="container-fluid justify-content-start">
-                    <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./login.php'">Profile</button>
-                    <button class="btn btn-outline-success me-2" type="button" onclick="() => {<?php logout() ?>}">Se déconnecter</button>
+                <form class="container-fluid justify-content-start" >
+                    <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./profile.php'">Profile</button>
+                    <button class="btn btn-outline-success me-2" type="button" onclick="logout()">Se déconnecter</button>
                 </form>
             <?php
             } else { ?>
                 <form class="container-fluid justify-content-start" action=# method="POST">
                     <label>Login</label>
                     <input name="login"></input>
-                    <label>Mot de passe </label>
+                    <label>Mot de passe</label>
                     <input name='password'></input>
                     <button class="btn btn-outline-success me-2" type="submit" name="submit2">Connexion</button>
                 </form>
@@ -57,3 +56,15 @@ if (isset($_POST['submit2'])) {
         </div>
     </nav>
 </header>
+
+<script>
+    function logout() {
+        console.log("déconnexion");
+        $.ajax({
+            url: 'public\logout.inc.php',
+        });
+        // sessionStorage.clear();
+
+        // location.reload();
+    }
+</script>
