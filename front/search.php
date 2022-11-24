@@ -1,6 +1,6 @@
 <?php
     $query = isset($_GET['query']) ? $_GET['query'] : null;
-    
+
 if(!$query){
     $result = [
         'status' => true,

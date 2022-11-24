@@ -1,8 +1,8 @@
-<?php array (
+<?php $user =array (
   'login' => 'admin',
   'password' => 'admin',
-  'name' => 'doe',
-  'firstname' => 'john',
+  'name' => '',
+  'firstname' => '',
   'sex' => 'male',
-  'birthDate' => '2022-11-23',
+  'birthDate' => '',
 )?>
