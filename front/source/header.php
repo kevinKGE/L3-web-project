@@ -1,4 +1,5 @@
 <?php
+
 require_once '../public/functions.inc.php';
 require_once '../public/regex.php';
 require_once '../public/Donnees.inc.php';
@@ -37,9 +38,9 @@ if (isset($_POST['submit2'])) {
             <?php
             if (isset($_SESSION['user'])) { ?>
                 <form class="container-fluid justify-content-start" >
-                    <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./profile.php'">Profile</button>
+                    <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./profile.php'">Profil</button>
 
-                    <a type="button" href="public/logout.inc.php"><button class="btn btn-outline-success me-2">se déconnecter</button></a>
+                    <a type="button" href="public/logout.inc.php"><button class="btn btn-outline-success me-2">Se déconnecter</button></a>
                 </form>
             <?php
             } else { ?>
