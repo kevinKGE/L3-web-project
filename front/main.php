@@ -15,72 +15,43 @@ else{ // If the page is defined
         foreach($ListInRecettes[array_keys($ListInRecettes)[3]] as $rank => $ingredient){ // For each element of the array 'index'
             if($page == 'Aliment' && !in_array($ListInRecettes, $Cocktail)){ // If the element is the home page we need to take all the recipes 
                 array_push($Cocktail, $ListInRecettes); // Add the recipe to the list of cocktails
-                //var_dump($ListInRecettes);
             }
             else{ // If the element is not the page where we are we need to take all the recipes where the page where we are is in the array 'index'
                 if($ingredient == $page){ // If the element is the page where we are
                     if(!in_array($ListInRecettes, $Cocktail)){
                         array_push($Cocktail, $ListInRecettes); // Add the recipe to the list of cocktails
                     }
-                    //var_dump($ListInRecettes);
-                }else{ //il faut regarder si la page actuelle est une super categorie --> recupere la sous categorie et si oui, il faut mettre toutes les recettes dispo dans cette categories.
-                    $ListRecipe=$Hierarchie[$_GET['page']];
-                    foreach ($ListRecipe as $key => $SC) { // For each element of the array 'ListRecipe', SC = sous-categorie
-                            if($key != "super-categorie"){ // If the element is a super-category
-                                foreach($SC as $indice => $Fruit) { // For each element of the array 'sous-categorie'
-                                    var_dump($Fruit);
-                                    var_dump($ingredient);
-                    echo "<br>"; 
-                                    if($ingredient == $Fruit && !in_array($ListInRecettes, $Cocktail)){
-                                      // echo "ok";
-                                       //echo "<br>";
-
-                                        //array_push($Cocktail, $ListInRecettes); // Add the recipe to the list of cocktails
-                                       // var_dump($);
-                                        //$ListRecipe=$Fruit;
-                                    }else{
-                                        //echo "noooo";
-                                        //echo "<br>";
-                                    }
-                                } 
-                            }
-                        }
+                }else{  
+                    if (isset($Hierarchie[$ingredient]['super-categorie'])){ // If it's a 'super-categorie'
+                        $Check = $Hierarchie[$ingredient]['super-categorie'][0]; // Get the super-category of the ingredient
                     }
-
-
-
-
-                    
-                    /*if($page = $ListRecipe){
-                        foreach ($ListRecipe as $key => $SC) { // For each element of the array 'ListRecipe', SC = sous-categorie
-                            if($key != "super-categorie"){ // If the element is a super-category
-                                foreach($SC as $indice => $Fruit) { // For each element of the array 'sous-categorie'
-                                    if($ingredient == $Fruit && !in_array($ListInRecettes, $Cocktail)){
-                                        array_push($Cocktail, $ListInRecettes); // Add the recipe to the list of cocktails
-                                        //var_dump($Cocktail);
-                                        $ListRecipe=$Fruit;
-                                    }
-                                } 
+                    while(isset($Hierarchie[$Check]['super-categorie'])) {  // While the super-category is not empty
+                        if ($Check == $page){
+                            if(!in_array($ListInRecettes, $Cocktail)){
+                                array_push($Cocktail, $ListInRecettes); // Add the recipe to the list of cocktails
                             }
                         }
-                    }else{
-                        foreach ($ListRecipe as $key => $SC) { // For each element of the array 'ListRecipe', SC = sous-categorie
-                            if($key != "super-categorie"){ // If the element is a super-category
-                                foreach($SC as $indice => $Fruit) { // For each element of the array 'sous-categorie'
-                                    if($ingredient == $Fruit && !in_array($ListInRecettes, $Cocktail)){
-                                        array_push($Cocktail, $ListInRecettes); // Add the recipe to the list of cocktails
-                                        var_dump($Cocktail);
-                                    }
-                                } 
-                            }
-                        }
-                    }*/
+                        $Check = $Hierarchie[$Check]['super-categorie'][0]; //iteration
+                    }
                 }
             }
         }
+    }
+
+    // Delete duplicates recipes in the list $cocktail
+    $NewCocktailArray = array(); // New list of cocktails to show
+    $WasteArgument = array(); // List will contain the id to avoid
+    foreach($Cocktail as $Id){
+        if(!in_array($Id['titre'], $WasteArgument)){ 
+            $NewCocktailArray[] = $Id;
+            $WasteArgument[] = $Id['titre'];   
+        }
+    }
+    var_dump($NewCocktailArray);
+
     
 ?>
 
 <?php
-    //show_coktails($Coktails);
+   // require_once();
 ?>
