@@ -11,21 +11,13 @@ else{ // If the page is defined
     //Get the recipe that corresponds with the ingredients (page where we are)
     $cocktails = array(); // List of cocktails to show
 
-    $cocktails = Tourner_Recettes($curent_page);
+    $cocktails = research_recipe($curent_page, $cocktails); // Get the recipe that corresponds with the ingredients (page where we are)
 
     var_dump($cocktails);
     echo"<br>";
 
 
-    // Delete duplicates recipes in the list $cocktail
-    $new_cocktails = array(); // New list of cocktails to show
-    $unwanted_arguments = array(); // List will contain the id to avoid
-    foreach($cocktails as $ids){
-        if(!in_array($ids['titre'], $unwanted_arguments)){ 
-            $new_cocktails[] = $ids;
-            $unwanted_arguments[] = $ids['titre'];   
-        }
-    }
+    
 
   require_once 'show.php'; // Show the cocktails
 ?>
