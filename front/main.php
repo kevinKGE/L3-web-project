@@ -11,32 +11,11 @@ else{ // If the page is defined
     //Get the recipe that corresponds with the ingredients (page where we are)
     $cocktails = array(); // List of cocktails to show
 
-    foreach($Recettes as $index_recipe => $recipes){ // For each element of the array 'Recettes'
-        foreach($recipes[array_keys($recipes)[3]] as $rank => $ingredients){ // For each element of the array 'index'
-            if($curent_page == 'Aliment' && !in_array($recipes, $cocktails)){ // If the element is the home page we need to take all the recipes 
-                array_push($cocktails, $recipes); // Add the recipe to the list of cocktails
-            }
-            else{ // If the element is not the page where we are we need to take all the recipes where the page where we are is in the array 'index'
-                if($ingredients == $curent_page){ // If the element is the page where we are
-                    if(!in_array($recipes, $cocktails)){
-                        array_push($cocktails, $recipes); // Add the recipe to the list of cocktails
-                    }
-                }else{  
-                    if (isset($Hierarchie[$ingredients]['super-categorie'])){ // If it's a 'super-categorie'
-                        $check = $Hierarchie[$ingredients]['super-categorie'][0]; // Get the super-category of the ingredient
-                    }
-                    while(isset($Hierarchie[$check]['super-categorie'])) {  // While the super-category is not empty
-                        if ($check == $curent_page){
-                            if(!in_array($recipes, $cocktails)){
-                                array_push($cocktails, $recipes); // Add the recipe to the list of cocktails
-                            }
-                        }
-                        $check = $Hierarchie[$check]['super-categorie'][0]; //iteration
-                    }
-                }
-            }
-        }
-    }
+    $cocktails = Tourner_Recettes($curent_page);
+
+    var_dump($cocktails);
+    echo"<br";
+
 
     // Delete duplicates recipes in the list $cocktail
     $new_cocktails = array(); // New list of cocktails to show
@@ -47,8 +26,7 @@ else{ // If the page is defined
             $unwanted_arguments[] = $ids['titre'];   
         }
     }
+
+  require_once 'show.php'; // Show the cocktails
 ?>
 
-<?php
-   require_once 'show.php';
-?>

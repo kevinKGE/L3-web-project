@@ -1,5 +1,5 @@
 <?php
-
+require_once 'Donnees.inc.php';
 function user_signup($user) {
     // Pour pouvoir recuperer les données utilisateur : include
     $user_login = $user['login'];
@@ -160,4 +160,6 @@ function replace_special_char($chain) { // Replace special characters by a stand
         return $new_chain;
     }
 
-?>
+  
+
+    ?>
