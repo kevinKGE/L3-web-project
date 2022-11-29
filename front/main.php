@@ -14,7 +14,7 @@ else{ // If the page is defined
     $cocktails = Tourner_Recettes($curent_page);
 
     var_dump($cocktails);
-    echo"<br";
+    echo"<br>";
 
 
     // Delete duplicates recipes in the list $cocktail
