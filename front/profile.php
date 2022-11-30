@@ -33,7 +33,11 @@ if (isset($_POST['change'])) {
 }
 
 ?>
-
+<style> 
+    #champ {
+        
+    }
+</style>
 <h1>Inscription</h1>
 <div class="container-fluid bg-light">
     <!-- zone de connexion -->
