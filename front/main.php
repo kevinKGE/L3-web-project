@@ -11,13 +11,8 @@ else{ // If the page is defined
     //Get the recipe that corresponds with the ingredients (page where we are)
     $cocktails = array(); // List of cocktails to show
 
-    $cocktails = research_recipe($curent_page, $cocktails); // Get the recipe that corresponds with the ingredients (page where we are)
-
-    var_dump($cocktails);
-    echo"<br>";
-
-
-    
+    research_recipe($curent_page); // Get the recipe that corresponds with the ingredients (page where we are)
+    $cocktails = delete_duplicate_cocktails($cocktails); // Delete the duplicate cocktails in the list to show   
 
   require_once 'show.php'; // Show the cocktails
 ?>

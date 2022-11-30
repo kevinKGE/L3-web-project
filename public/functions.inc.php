@@ -158,65 +158,67 @@ function replace_special_char($chain) { // Replace special characters by a stand
         $new_chain = str_replace(' ', '_', $new_chain); // Replace the blank by _
         $convert = '.jpg'; 
         $new_chain = $new_chain.$convert; // Put the abreviation a the end of the chain
-        return $new_chain;
+        return $new_chain;  // Return the new chain witch correct format 
     }
 
-    function delete_duplicate($array, $pattern){
+    function delete_duplicate_cocktails($array){
         // Delete duplicates recipes in the list $cocktail
         $new_arrays = array(); // New list of cocktails to show
         $unwanted_arguments = array(); // List will contain the id to avoid
-        foreach($array as $ids){
-            if(!in_array($ids[$pattern], $unwanted_arguments)){ 
-                $new_arrays[] = $ids;
-                $unwanted_arguments[] = $ids[$pattern];   
+        foreach($array as $ids){ // For each list of cocktails
+            if(!in_array($ids['titre'], $unwanted_arguments)){  // Check if the cocktail by is title is in the list and if it's not in the avoid list
+                $new_arrays[] = $ids; // Add the cocktail in the new list
+                $unwanted_arguments[] = $ids['titre']; // Add the title of the cocktail in the avoid list 
             }
         }
-        return $new_arrays;
+        return $new_arrays; // Return the new list of cocktails
     }
 
-    function research_recipe($check, $cocktails){
-        // Search the recipe with the $check in the list of recipe to add it in $cocktails to show after
-        global $Recettes, $Hierarchie;
-        $title = 'titre';
-        $sc = array();
-        $i = -1;
-
-        do{
-            foreach($Recettes as $index_recipe => $recipes){ // For each element of the array 'Recettes'
-                foreach($recipes[array_keys($recipes)[3]] as $rank => $ingredients){ // For each element of the array 'index'
-                    if($check == $ingredients ){ // If the element is the home page or the curent page
-                        if(!in_array($recipes, $cocktails)){ // If the element is not already in the array
-                            array_push($cocktails, $recipes); // Add the recipe to the list of cocktails
+    function research_recipe($check)
+    {
+        $curent_page = $check;
+        global $Recettes, $Hierarchie, $cocktails;
+        $nb_sc = array();
+        $iterator = -1;
+        
+    
+        do {
+            foreach ($Recettes as $index_recipe => $recipes) {                                    
+                foreach ($recipes[array_keys($recipes)[3]] as $rank => $ingredients) { 
+                    if($curent_page == 'Aliment'){
+                        array_push($cocktails, $recipes);
+                    }else if ($ingredients == $curent_page) {               
+                        if (!isset($cocktails)) { 
+                            array_push($cocktails, $recipes);                                             
+                        } elseif (!in_array($recipes, $cocktails)) {                            
+                            array_push($cocktails, $recipes);                 
                         }
                     }
-                    else if(isset($Hierarchie[$check]['sous-categorie'])){
-                        foreach($Hierarchie[$check]['sous-categorie'] as $index_sc => $sous_categorie){
-                            if (!isset($sc)) { 
-                                array_push($sc, $sous_categorie);                                        //on stocke la première sous-catégorie 
-                            } elseif (!in_array($sous_categorie, $sc)) {                        //si la sous-catégorie n'est pas déjà stockée
-                                array_push($sc, $sous_categorie);                                        //on stocke la sous-catégorie
+                    if (isset($Hierarchie[$check]['sous-categorie'])) {                                       
+                        foreach ($Hierarchie[$check]['sous-categorie'] as $index_sc => $sc) {    
+                            if (!isset($nb_sc)) { 
+                                array_push($nb_sc, $sc);                                        
+                            } else if (!in_array($sc, $nb_sc)) {                        
+                                array_push($nb_sc, $sc);                                     
                             }
-                                                                    //on stocke la sous-catégorie
-                            if ($ingredients == $sous_categorie) {                              //si l'ingrédient est égal à la sous-catégorie
-                                if (!isset($cocktails)) {
-                                    if(!in_array($recipes, $cocktails)){ // If the element is not already in the array
-                                        array_push($cocktails, $recipes); // Add the recipe to the list of cocktails
-                                    } 
-                                } 
+                            if ($ingredients == $sc) {                             
+                                if (!isset($cocktails)) { 
+                                    array_push($cocktails, $recipes);                                   
+                                } else if (!in_array($recipes, $cocktails)) {                    
+                                    array_push($cocktails, $recipes);                                             
+                                }
                             }
-                            
-                            $cocktails = delete_duplicate($cocktails, $title);    
-                        }              
+                        }
                     }
                 }
             }
-
-            $i++;                                                                               //on incrémente i pour passer à la sous-catégorie suivante
-            if (isset($sc[$i])) {                                                               //si la sous-catégorie existe
-                $Lien = $Hierarchie[$sc[$i]];                                                   //on change le lien
+    
+            $iterator++;                                                                               
+            if (isset($nb_sc[$iterator])) {                                                               
+                $Hierarchie[$check] = $Hierarchie[$nb_sc[$iterator]];                                                   
             }
-        } while ($i < count($sc));
-        return $cocktails;
+            
+        } while ($iterator < count($nb_sc));                                                               
     }
 
     ?>
