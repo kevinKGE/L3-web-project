@@ -2,6 +2,7 @@
 require_once 'source/head.php';
 require_once 'source/header.php';
 require_once '../public/functions.inc.php';
+require_once '../public/regex.php';
 
 if (isset($_POST['submit'])) {
     $name = htmlspecialchars(trim($_POST['name']));
@@ -11,31 +12,31 @@ if (isset($_POST['submit'])) {
     $birthDate = htmlspecialchars(trim($_POST['birthDate']));
     $sex = htmlspecialchars(trim($_POST['sex']));
 
+    
     // hash of password:
     $password = password_hash($password, PASSWORD_DEFAULT);
-
+    
     $userToAdd = array(
         'login' => $login,
         'password' => $password,
         'name' => $name,
         'firstname' => $firstName,
         'sex' => $sex,
-        'birthDate' => $birthDate
+        'birthDate' => $birthDate,
+        'favorites' => array()
     );
-    // ICI vérifications à effectuer
-    if ($login && $password) {
-        if (strlen($password) >= 1) {
-            // if (preg_match($loginRegex, $userToAdd['login'])) {
-            //     if (preg_match('$([A-Z][a-z][0-9] -\')+$', $userToAdd['name'])) {
-            //         if (preg_match('$([A-Z][a-z][0-9] -\')+$', $userToAdd['firstname'])) {
-            //             if (preg_match('$([A-Z][a-z][0-9])+$', $userToAdd['birthDate'])) {
-            user_signup($userToAdd);
 
+    $signUp = validate_format($userToAdd);
+    if ($signUp != true){
+        echo $signUp;
+    };
+
+    if ($login && $password) {
+        if ($password != "") {
+
+            user_signup($userToAdd);
             echo 'Inscription réussie';
-            //             } else echo "Votre date de naissance doit être anterieure à 18 ans de la date du jour à  et des chiffres";
-            //         } else echo "Votre prenom doit contenir uniquement des lettres et des chiffres";
-            //     } else echo "Votre nom doit contenir uniquement des lettres et des chiffres";
-            // } else echo "Votre login doit contenir uniquement des lettres et des chiffres";
+
         } else echo "Le mot de passe est trop court !";
     } else echo "Veuillez saisir tous les champs obligatoires !";
 }
