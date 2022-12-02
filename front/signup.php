@@ -11,7 +11,6 @@ if (isset($_POST['submit'])) {
     $password = htmlspecialchars(trim($_POST['password']));
     $birthDate = htmlspecialchars(trim($_POST['birthDate']));
     $sex = htmlspecialchars(trim($_POST['sex']));
-
     
     // hash of password:
     $password = password_hash($password, PASSWORD_DEFAULT);
@@ -20,15 +19,15 @@ if (isset($_POST['submit'])) {
         'login' => $login,
         'password' => $password,
         'name' => $name,
-        'firstname' => $firstName,
+        'firstName' => $firstName,
         'sex' => $sex,
         'birthDate' => $birthDate,
         'favorites' => array()
     );
 
-    $signUp = validate_format($userToAdd);
-    if ($signUp != true){
-        echo $signUp;
+    $sign_up_status = validate_format($userToAdd);
+    if ($sign_up_status != true){
+        echo $sign_up_status;
     };
 
     if ($login && $password) {
@@ -41,7 +40,6 @@ if (isset($_POST['submit'])) {
     } else echo "Veuillez saisir tous les champs obligatoires !";
 }
 ?>
-
 
 <h1>Inscription</h1>
 <div class="container-fluid bg-light">

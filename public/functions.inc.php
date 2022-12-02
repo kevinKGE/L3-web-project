@@ -22,7 +22,7 @@ function login($user_login, $user_password) {
         include '../public/users/'.$user_login.'.inc.php';
         var_dump($user);
         echo "password:".$user['password'].'<br>';
-        if(check_password($user_password, $user['password'])) {
+        if(password_verify($user_password, $user['password'])){
             echo 'Connexion réussie</br>';
             return $user;
         } else {
@@ -53,6 +53,7 @@ function user_registered($user_login) {
     }
 }
 
+/*
 function hash_password(string $passwd){
     return password_hash($passwd, PASSWORD_DEFAULT);
 }
@@ -60,6 +61,7 @@ function hash_password(string $passwd){
 function check_password(string $passwd, string $hash){
     return password_verify($passwd, $hash);
 }
+*/
 
 function modify_user($user) {
 

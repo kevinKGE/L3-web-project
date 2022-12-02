@@ -11,10 +11,12 @@ function regex($value, $regex) {
 function validate_format($user){
 
     $date_of_the_day = date("yyyy-mm-dd");
-    $res = abs($date_of_the_day - $user['birthDate']);
+    $res = (abs($date_of_the_day - $user['birthDate'])/31536000);
+    $res2 = $user['birthDate']->diff($date_of_the_day);
     echo "<br>";
-    echo $res;
+    echo $res2;
     echo "<br>";
+
 
     if ($user['login'] === "" || !regex($user['login'], "/^[a-zA-Z0-9]*$/")) {
         return 'le login doit contenir uniquement des minuscules, majuscules non accentuées et des chiffres';

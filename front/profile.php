@@ -22,7 +22,7 @@ if (isset($_POST['change'])) {
         'login' => $login,
         'password' => $password,
         'name' => $name,
-        'firstname' => $firstName,
+        'firstName' => $firstName,
         'sex' => $sex,
         'birthDate' => $birthDate
     );
@@ -52,7 +52,7 @@ if (isset($_POST['change'])) {
                 <input type="password" name="password" required="required" value="<?php echo $user['password'] ?>">
 
                 <p>Nom</p>
-                <input type="text" name="name" value="<?php echo $user['firstname'] ?>">
+                <input type="text" name="name" value="<?php echo $user['firstName'] ?>">
 
                 <p>Prenom</p>
                 <input type="text" name="firstName" value="<?php echo $user['name'] ?>">
