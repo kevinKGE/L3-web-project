@@ -31,7 +31,7 @@ if (isset($_POST['submit2'])) {
                 <button class="btn btn-outline-success me-2" type="button">Recettes <i class="bi bi-heart-fill"></i></button>
             </form>
             <form class="d-flex" role="search" action=# method="POST">
-                <label class="">Recette : </label>
+                <label class="">Recette:  </label>
                 <input class="form-control me-2" name="search" type="search" placeholder="" aria-label="Search">
                 <button class="btn btn-outline-success" name="submit3" type="submit"><i class="bi bi-search"></i></button>
             </form>

@@ -26,7 +26,7 @@ print_r(array_values($users));*/
 
 ?>
 
-<nav>
+<nav id="nav_index">
     <?php
         require_once 'navigation.php';
     ?>

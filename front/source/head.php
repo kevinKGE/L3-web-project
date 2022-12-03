@@ -9,6 +9,71 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <title>Mon site de cocktails</title>
+    <style> 
+       main{
+        background-color: #f8f9fa;
+        min-height : 450px;
+        height:100%;
+        right : 5px;
+        bottom: 8px;
+        padding-left : 25%;
+        padding-bottom : 8px;
+       }
+       #nav_index{
+        position : fixed;
+        float: left;
+        background-color: #f8f9fa;
+        width: auto;
+        max-width: 24%;
+        min-width: 24%;
+        height: auto;
+        max-height: 100%;
+       }
+       header{
+        position: sticky;
+        top: 0px;
+       }
+       footer{
+        position: sticky;
+       }
+       form{
+        display: block;
+       }
+       #card{
+        border-color: #198754;
+        border-width: 2px;
+       }
+       #card img{
+        margin-left: auto;
+        margin-right: auto;
+       }
+       .card{
+        border: var(--bs-card-border-width) solid #198754;
+        align-items: center;
+        --bs-card-bg: #f8f9fa;
+       }
+       a{
+        color: #198754;
+       }
+       h5{
+        text-align: center;
+       }
+       .navbar>.container-fluid{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: row;
+        flex-wrap: nowrap;
+      }
+      .form-control{
+        width: 200px;
+        padding: 0.3rem 0.2rem;
+      }
+      label{
+        margin-right: 3px;
+      }
+
+    </style>
 </head>
 
 <body>
