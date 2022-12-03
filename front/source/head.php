@@ -69,6 +69,9 @@
        a{
         color: #198754;
        }
+       a:hover {
+        color: #11c974;
+      }
        h5{
         text-align: center;
        }
@@ -89,7 +92,20 @@
       img{
         margin-top: 1rem
       }
-
+      
+      input[type="radio"].demo3 {
+        display: none;
+      }
+      input[type="radio"].demo3 + label {
+        display:none;
+        border: 1px solid #000;
+        padding: 0.5rem 1rem;
+        min-width:50px;
+        text-align:center;
+      }
+      input[type="radio"].demo3:checked + label {
+        display: inline-block;
+      }
     </style>
 </head>
 
