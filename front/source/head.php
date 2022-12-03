@@ -18,6 +18,9 @@
         bottom: 8px;
         padding-left : 25%;
         padding-bottom : 8px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
        }
        #nav_index{
         position : fixed;
@@ -28,13 +31,19 @@
         min-width: 24%;
         height: auto;
         max-height: 100%;
+        margin-left: 5px;
        }
        header{
         position: sticky;
         top: 0px;
+        z-index:1;
        }
        footer{
         position: sticky;
+        height: 10%;
+        text-align: center;
+        margin-bottom: 10px;
+        background-color: #f8f9fa;
        }
        form{
         display: block;
@@ -46,11 +55,16 @@
        #card img{
         margin-left: auto;
         margin-right: auto;
+        margin-top: 2px;
        }
        .card{
         border: var(--bs-card-border-width) solid #198754;
         align-items: center;
         --bs-card-bg: #f8f9fa;
+        margin: 3px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        height: 410px;
        }
        a{
         color: #198754;
@@ -71,6 +85,9 @@
       }
       label{
         margin-right: 3px;
+      }
+      img{
+        margin-top: 1rem
       }
 
     </style>

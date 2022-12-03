@@ -117,4 +117,5 @@ foreach ($Recettes as $recipe) {
     usort($result["PrintSearch"], "tri");
    
 }
+}
 ?>
