@@ -11,6 +11,7 @@ if (isset($_POST['submit3'])) {
         'exclude' => $exclude = array(),
         'unknown'=> $unknown = array(),
         'ListIngredients' => $ListIngredients = array(),
+        'PrintSearch' => $Affichage = array(),
     );
     $search = $_POST['search'];
 
@@ -64,6 +65,8 @@ if (isset($_POST['submit3'])) {
             }
           }
 
+          $result['ListIngredients'] = array_unique($result['ListIngredients']);
+
 
         echo "Liste des Aliment souhaiter";
         foreach ($result['include'] as $i => $value) {
@@ -90,5 +93,28 @@ if (isset($_POST['submit3'])) {
             }
          }
         }
+
+foreach ($Recettes as $recipe) {
+    $score = 0;
+    foreach ($result["include"] as $include) {
+        if (in_array($include, $recipe['index']))
+            $score += 1; 
     }
+    foreach ($result["exclude"] as $exclude) {
+        if (in_array($exclude, $recipe['index']))
+            $score -= 1; 
+    }
+
+    if ($score > 0) {
+
+        $result["PrintSearch"][] = $recipe;
+    }
+
+    function tri($a, $b) {
+        return $a['score'] - $b['score'];
+    }
+
+    usort($result["PrintSearch"], "tri");
+   
+}
 ?>
