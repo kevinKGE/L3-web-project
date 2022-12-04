@@ -106,6 +106,28 @@
       input[type="radio"].demo3:checked + label {
         display: inline-block;
       }
+      h3{
+        color: #198754;
+      }
+      h4{
+        color: #198754;
+      }
+      u{
+        color: #198754;
+      }
+      #recipe{
+        align-items: center;
+      }
+      ::marker{
+        color: #198754;
+      }
+      table{
+        display: flex;
+      }
+      table>* {
+        margin: 0 10px;
+        flex: 1;
+      }
     </style>
 </head>
 

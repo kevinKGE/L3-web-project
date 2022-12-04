@@ -1,11 +1,14 @@
 <?php
     if(isset($_GET['recipe'])){
+        echo "<div class='recipe'>";
         foreach ($Recettes as $index_recipe => $recipes){
             if($recipes['titre'] == $_GET['recipe']){
                 $title = $recipes[array_keys($recipes)[0]];
                 $ingredients = $recipes[array_keys($recipes)[1]];
-                $preparation = $recipes[array_keys($recipes)[2]];
+                $preparations = $recipes[array_keys($recipes)[2]];
                 $index = $recipes[array_keys($recipes)[3]];
+                $ingredients_split = split_chain($ingredients, '|');
+                $preparations_split = split_chain($preparations, '.');
         
                 $name = valid_name($title);
         
@@ -13,16 +16,29 @@
                     $name = 'cocktail.png';
                 }
 
-                echo '<img src="../public/photos/' . $name . '" alt="img" width="100">';
-                echo " ' . $ingredients . ' ";
-                echo " ' . $preparation . ' ";
+                echo "<center><h3> $title </h3></center>";
+                echo "<br>";
+
+                echo '<center><img src="../public/photos/' . $name . '" alt="img" width="200"></center>';
+                echo "<br>";
+
+                echo "<u><h4>Liste d'ingrédient :</h4></u>";
                 echo "<ul>";
-                foreach($index as $key => $value){ 
-                    echo "<li>" . $value . "</li>";
+                foreach($ingredients_split as $key => $ingredient){
+                    echo "<li>" . $ingredient . "</li>";
                 }
-            echo "</ul>";
+                echo "</ul>";
+
+                echo "<br>";
+                echo "<u><h4>Préparation :</h4></u>";
+                echo "<ol>";
+                foreach($preparations_split as $key => $preparation){
+                    echo "<li>" . $preparation . "</li>";
+                }
+                echo "</ol>";
             }
         }
+        echo "</div>";
     }else{
         // Show all the cocktails in the list 
     foreach($cocktails as $recipes){

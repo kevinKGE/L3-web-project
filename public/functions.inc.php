@@ -227,4 +227,11 @@ function replace_special_char($chain) { // Replace special characters by a stand
         } while ($iterator < count($nb_sc));                                                               
     }
 
+    function split_chain($chain, $separator){
+        $array_split = array();
+        $array_split = explode($separator, $chain);
+        $array_split = array_filter($array_split);
+        return $array_split;
+    }
+
     ?>
