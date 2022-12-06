@@ -1,3 +1,16 @@
+    <script>
+        function fav(imgid) {
+            /*var img = document.getElementById(imgid); 
+            if (img.src.match(../public/photos/heart_empty.png)) {
+                img.src = "../public/photos/heart_full.png";
+            }
+            else {
+                img.src = "../public/photos/heart_empty.png";
+            }
+            img.hide();*/
+        }
+    </script>
+
 <?php
     if(isset($_GET['recipe'])){
         echo "<div class='recipe'>";
@@ -39,6 +52,12 @@
             }
         }
         echo "</div>";
+    } else if(isset($_GET['favorite'])){
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
     }else{
         // Show all the cocktails in the list 
     foreach($cocktails as $recipes){
@@ -53,15 +72,12 @@
 
         echo "<div class='card' style='width: 18rem;'>";
 
-            
-        //<a><img class='heart' id=\"".$Recette['titre']."\" height=\"20\" width=\"20\" src=\"../Photos/coeur.png\"/></a>
-            echo '<img src="../public/photos/' . $name . '" alt="img" width="100">';
-            echo "<div class='card-body'>";
+        echo "<div class='button'>";
+        echo "<input type='image' src='../public/photos/heart_empty.png' id='button' onclick='fav('button')'/>";
+        echo "</div>";
 
-            /*echo "<input type='radio' name='demo3' class='demo3 demoyes' id='demo3-a' checked>";
-            echo "<label for='demo3-a'><img src='../public/photos/heart_empty' alt='heart full green'></label>";
-            echo "<input type='radio' name='demo3' class='demo3 demono' id='demo3-b' >";
-            echo "<label for='demo3-b'><img src='../public/photos/heart_full' alt='heart full green'></label>";*/
+        echo '<img src="../public/photos/' . $name . '" alt="img" width="100">';
+        echo "<div class='card-body'>";
             
                 echo "<h5 class='card-title'>";
                     echo "<a href='?recipe=" . $title . "'>" . $title . "</a>"; 

@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="stylesheet.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <title>Mon site de cocktails</title>
@@ -55,7 +54,8 @@
        #card img{
         margin-left: auto;
         margin-right: auto;
-        margin-top: 2px;
+        padding-top: 1rem;
+        margin-top: 1rem;
        }
        .card{
         border: var(--bs-card-border-width) solid #198754;
@@ -88,24 +88,7 @@
       }
       label{
         margin-right: 3px;
-      }
-      img{
-        margin-top: 1rem
-      }
-      
-      input[type="radio"].demo3 {
-        display: none;
-      }
-      input[type="radio"].demo3 + label {
-        display:none;
-        border: 1px solid #000;
-        padding: 0.5rem 1rem;
-        min-width:50px;
-        text-align:center;
-      }
-      input[type="radio"].demo3:checked + label {
-        display: inline-block;
-      }
+      }      
       h3{
         color: #198754;
       }
@@ -127,6 +110,9 @@
       table>* {
         margin: 0 10px;
         flex: 1;
+      }
+      #button img{
+        margin-top: 0rem;
       }
     </style>
 </head>
