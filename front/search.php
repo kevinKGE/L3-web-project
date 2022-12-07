@@ -81,15 +81,14 @@ if (isset($_POST['submit3'])) {
         echo "<br>";
         echo "Liste des Aliment a exclure";
         foreach ($result['exclude'] as $i => $value) {
-            foreach($Recettes as $key => $value){
-                if(in_array($value['ingredients'], $result['exclude'])){
+            foreach ($result['ListIngredients'] as $j => $value2) {
+                if($value == $value2){
                     echo " " . $result['exclude'][$i] . " ";
                 }
                 else{
-                    unset($result['exclude'][$i]);
+                    $result['unknown'][] = $value;
                 }
             }
-         }
         }
 
 foreach ($Recettes as $recipe) {
@@ -104,17 +103,54 @@ foreach ($Recettes as $recipe) {
     }
     
 
-    if ($score => 0) {
+    if ($score > 0) {
         $result["score"] = $score;
         $result["PrintSearch"][] = $recipe;
     }
 
-    usort($result["PrintSearch"]["List"], $result["PrintSearch"]["score"]);
+    }
 
+    /**Affiche tout les éléments du tableau $result["PrintSearch"]["List] */
+    echo "<div class='recipe'>";
+    foreach ($result['PrintSearch'] as $index_recipe => $recipes){
+        if($index_recipe != 0){
+            $title = $recipes[array_keys($recipes)[0]];
+            $ingredients = $recipes[array_keys($recipes)[1]];
+            $preparations = $recipes[array_keys($recipes)[2]];
+            $index = $recipes[array_keys($recipes)[3]];
+            $ingredients_split = split_chain($ingredients, '|');
+            $preparations_split = split_chain($preparations, '.');
     
+            $name = valid_name($title);
     
+            if(!file_exists("../public/photos/".$name)){
+                $name = 'cocktail.png';
+            }
+
+            echo "<center><h3> $title </h3></center>";
+            echo "<br>";
+
+            echo '<center><img src="../public/photos/' . $name . '" alt="img" width="200"></center>';
+            echo "<br>";
+
+            echo "<u><h4>Liste d'ingrédient :</h4></u>";
+            echo "<ul>";
+            foreach($ingredients_split as $key => $ingredient){
+                echo "<li>" . $ingredient . "</li>";
+            }
+            echo "</ul>";
+
+            echo "<br>";
+            echo "<u><h4>Préparation :</h4></u>";
+            echo "<ol>";
+            foreach($preparations_split as $key => $preparation){
+                echo "<li>" . $preparation . "</li>";
+            }
+            echo "</ol>";
+        }
+    }
+    echo "</div>";
     
-   
 }
 }
 ?>
