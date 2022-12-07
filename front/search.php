@@ -45,10 +45,6 @@ if (isset($_POST['submit3'])) {
                         $result['include'][] = substr($matches, 1, -1);
                     }
                 }
-                else if(preg_match('/^[a-z]/i', $matches)){
-                    echo 'Les mots suivants doivent commencer par une majuscule'. " " . $matches;
-                    echo "<br>";
-                }
                 else{
                     if(!in_array($matches, $result['include'])){
                         $result['include'][] = $matches;;
