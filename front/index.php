@@ -26,7 +26,7 @@ print_r(array_values($users));*/
 
 ?>
 
-<nav>
+<nav id="nav_index">
     <?php
         require_once 'navigation.php';
     ?>
@@ -35,20 +35,8 @@ print_r(array_values($users));*/
 <main>
     <?php
         require_once 'main.php';
-    //mettre les differentes recette correcspondant aux recherches
     // + mettre le coeur rouge si il y en a un 
     //faire une verification dans ce type la pour filtrer la gestion des cookie et de favori
-
-    //exemple pris de l'exo final de TD
-            //l'utilisateur est il identifié?
-            /* if(isset($_SESSION['user']))    
-            {    if(!isset($_GET['page'])) $_GET['page']='accueil';
-                // L'utilisateur accède-t-il à une page autorisée
-                if(in_array($_GET['page'],array('accueil','rubrique','facturation')))
-                {    include($_GET['page'].".php");
-                }
-            }
-            else include('identification.php');*/
     ?>
 </main>
 

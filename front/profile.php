@@ -1,16 +1,17 @@
 <?php
+session_start();
 require_once 'source/head.php';
 require_once 'source/header.php';
 require_once '../public/functions.inc.php';
 
-session_start();
+
 
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
 }
 
 if (isset($_POST['change'])) {
-    $name = htmlspecialchars(trim($_POST['name']));
+    $name = htmlspecialchars(trim($user['login']));
     $firstName = htmlspecialchars(trim($_POST['firstName']));
     $login = htmlspecialchars(trim($_POST['login']));
     $password = htmlspecialchars(trim($_POST['password']));
@@ -21,7 +22,7 @@ if (isset($_POST['change'])) {
         'login' => $login,
         'password' => $password,
         'name' => $name,
-        'firstname' => $firstName,
+        'firstName' => $firstName,
         'sex' => $sex,
         'birthDate' => $birthDate
     );
@@ -32,7 +33,11 @@ if (isset($_POST['change'])) {
 }
 
 ?>
-
+<style> 
+    #champ {
+        
+    }
+</style>
 <h1>Inscription</h1>
 <div class="container-fluid bg-light">
     <!-- zone de connexion -->
@@ -41,13 +46,13 @@ if (isset($_POST['change'])) {
             <form class="container-fluid justify-content-start" method="POST">
 
                 <p>Login*</p>
-                <input type="login" name="login" required="required" value="<?php echo $user['login'] ?>">
+                <input disabled type="login" name="login" required="required" value="<?php echo $user['login'] ?>">
 
                 <p>Password*</p>
                 <input type="password" name="password" required="required" value="<?php echo $user['password'] ?>">
 
                 <p>Nom</p>
-                <input type="text" name="name" value="<?php echo $user['firstname'] ?>">
+                <input type="text" name="name" value="<?php echo $user['firstName'] ?>">
 
                 <p>Prenom</p>
                 <input type="text" name="firstName" value="<?php echo $user['name'] ?>">

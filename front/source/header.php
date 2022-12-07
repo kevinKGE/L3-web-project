@@ -1,4 +1,5 @@
 <?php
+
 require_once '../public/functions.inc.php';
 require_once '../public/regex.php';
 require_once '../public/Donnees.inc.php';
@@ -30,15 +31,21 @@ if (isset($_POST['submit2'])) {
                 <button class="btn btn-outline-success me-2" type="button">Recettes <i class="bi bi-heart-fill"></i></button>
             </form>
             <form class="d-flex" role="search" action=# method="POST">
-                <label class="">Recette : </label>
+                <label class="">Recette:  </label>
                 <input class="form-control me-2" name="search" type="search" placeholder="" aria-label="Search">
                 <button class="btn btn-outline-success" name="submit3" type="submit"><i class="bi bi-search"></i></button>
             </form>
             <?php
             if (isset($_SESSION['user'])) { ?>
-                <form class="container-fluid justify-content-start" >
-                    <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./profile.php'">Profile</button>
-                    <button class="btn btn-outline-success me-2" type="button" onclick="logout()">Se déconnecter</button>
+                <form class="container-fluid justify-content-start">
+                    <div>
+                        <?php if (isset($_SESSION['user']['name'])) {
+                            echo $_SESSION['user']['login'];
+                        } ?>
+                    </div>
+                    <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./profile.php'">Profil</button>
+
+                    <a type="button" href="public/logout.inc.php"><button class="btn btn-outline-success me-2">Se déconnecter</button></a>
                 </form>
             <?php
             } else { ?>
@@ -56,15 +63,3 @@ if (isset($_POST['submit2'])) {
         </div>
     </nav>
 </header>
-
-<script>
-    function logout() {
-        console.log("déconnexion");
-        $.ajax({
-            url: 'public\logout.inc.php',
-        });
-        // sessionStorage.clear();
-
-        // location.reload();
-    }
-</script>

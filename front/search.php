@@ -11,6 +11,8 @@ if (isset($_POST['submit3'])) {
         'exclude' => $exclude = array(),
         'unknown'=> $unknown = array(),
         'ListIngredients' => $ListIngredients = array(),
+        'PrintSearch' => $Affichage = array( 'score' => 0),
+                                            'list' => array(),
     );
     $search = $_POST['search'];
 
@@ -52,6 +54,7 @@ if (isset($_POST['submit3'])) {
                 }
 
         }
+
         foreach($Recettes as $OneRecipe => $ListInRecettes){
             foreach($ListInRecettes[array_keys($ListInRecettes)[3]] as $rank => $ingredient){
                 if(!in_array($ingredient, $result['ListIngredients'])){
@@ -59,6 +62,8 @@ if (isset($_POST['submit3'])) {
                 }
             }
           }
+
+          $result['ListIngredients'] = array_unique($result['ListIngredients']);
 
 
         echo "Liste des Aliment souhaiter";
@@ -86,5 +91,30 @@ if (isset($_POST['submit3'])) {
             }
          }
         }
+
+foreach ($Recettes as $recipe) {
+    $score = 0;
+    foreach ($result["exclude"] as $exclude) {
+        if (in_array($exclude, $recipe['index']))
+            continue 2; 
     }
+    foreach ($result["include"] as $include) {
+        if (in_array($include, $recipe['index']))
+            $score += 1; 
+    }
+    
+
+    if ($score => 0) {
+        $result["score"] = $score;
+        $result["PrintSearch"][] = $recipe;
+    }
+
+    usort($result["PrintSearch"]["List"], $result["PrintSearch"]["score"]);
+
+    
+    
+    
+   
+}
+}
 ?>
