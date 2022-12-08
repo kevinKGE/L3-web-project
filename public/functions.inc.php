@@ -234,4 +234,17 @@ function replace_special_char($chain) { // Replace special characters by a stand
         return $array_split;
     }
 
+    function get_index($chain){
+        global $Recettes;
+        $res = -1;
+        foreach($Recettes as $index_recipe => $recipes){
+            foreach($recipes as $index => $value){
+                if($value == $chain){
+                    $res = $index_recipe;
+                }
+            }
+        }
+        return $res;
+    }
+
     ?>

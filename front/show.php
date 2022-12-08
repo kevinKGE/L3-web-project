@@ -22,6 +22,7 @@
                 $ingredients = $recipes[array_keys($recipes)[1]];
                 $preparations = $recipes[array_keys($recipes)[2]];
                 $index = $recipes[array_keys($recipes)[3]];
+                $res =  get_index($title);
                 $ingredients_split = split_chain($ingredients, '|');
                 $preparations_split = split_chain($preparations, '.');
         
@@ -64,6 +65,8 @@
     foreach($cocktails as $recipes){
         $title = $recipes[array_keys($recipes)[0]];
         $index = $recipes[array_keys($recipes)[3]];
+        $res =  get_index($title);  
+        
 
         $name = valid_name($title);
 
@@ -89,7 +92,7 @@
                 }
             echo "</ul> </p>";
             echo "</div>";
-        echo "</div>";       
+        echo "</div>";    
     }
     }
     
