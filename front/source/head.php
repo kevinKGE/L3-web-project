@@ -114,6 +114,9 @@
       #button img{
         margin-top: 0rem;
       }
+      li{
+        color: #198754;
+      }
     </style>
 </head>
 

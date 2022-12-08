@@ -1,9 +1,11 @@
 <?php
 require_once 'source/head.php';
-require_once 'source/header.php';
+//require_once 'source/header.php';
 require_once '../public/Donnees.inc.php';
 
+
 if (isset($_POST['submit3'])) {
+    echo "<nav id='nav_index'>";
     echo $_POST['submit3'];
 
     $result = array (
@@ -66,60 +68,68 @@ if (isset($_POST['submit3'])) {
           $result['ListIngredients'] = array_unique($result['ListIngredients']);
 
 
-        echo "Liste des Aliment souhaiter";
+        echo "<strong>Liste des Aliment souhaiter :</strong>";
+        echo "<br>";
+        echo "<ul>";
         foreach ($result['include'] as $i => $value) {
            foreach ($result['ListIngredients'] as $j => $value2) {
                 if($value == $value2){
-                    echo " " . $result['include'][$i] . " ";
+                    
+                    echo "<li>" . $result['include'][$i] . "</li>";
+                    
                 }
                 else{
                     $result['unknown'][] = $value;
                 }
             }
         }
+        echo "</ul>";
     }
         echo "<br>";
-        echo "Liste des Aliment a exclure";
+        echo "<strong>Liste des Aliment a exclure :</strong>";
+        echo "<br>";
+        echo "<ul>";
         foreach ($result['exclude'] as $i => $value) {
             foreach ($result['ListIngredients'] as $j => $value2) {
                 if($value == $value2){
-                    echo " " . $result['exclude'][$i] . " ";
+                   
+                    echo "<li>" . $result['exclude'][$i] . "</li>";
+                   
                 }
                 else{
                     $result['unknown'][] = $value;
                 }
             }
         }
+        echo "</ul>";
 
-foreach ($Recettes as $recipe) {
-    $score = 0;
-    foreach ($result["exclude"] as $exclude) {
-        if (in_array($exclude, $recipe['index']))
-            continue 2; 
-    }
-    foreach ($result["include"] as $include) {
-        if (in_array($include, $recipe['index']))
-            $score += 1; 
-    }
-    
+    foreach ($Recettes as $recipe) {
+        $score = 0;
+        foreach ($result["exclude"] as $exclude) {
+            if (in_array($exclude, $recipe['index']))
+                continue 2; 
+        }
+        foreach ($result["include"] as $include) {
+            if (in_array($include, $recipe['index']))
+                $score += 1; 
+        }
+        
 
-    if ($score > 0) {
-        $result["score"] = $score;
-        $result["PrintSearch"][] = $recipe;
-    }
+        if ($score > 0) {
+            $result["score"] = $score;
+            $result["PrintSearch"][] = $recipe;
+        }
 
-    }
+        }
+
+        echo "</nav>";
+        echo "<main>";
 
     /**Affiche tout les éléments du tableau $result["PrintSearch"]["List] */
-    echo "<div class='recipe'>";
     foreach ($result['PrintSearch'] as $index_recipe => $recipes){
         if($index_recipe != 0){
             $title = $recipes[array_keys($recipes)[0]];
-            $ingredients = $recipes[array_keys($recipes)[1]];
-            $preparations = $recipes[array_keys($recipes)[2]];
             $index = $recipes[array_keys($recipes)[3]];
-            $ingredients_split = split_chain($ingredients, '|');
-            $preparations_split = split_chain($preparations, '.');
     
             $name = valid_name($title);
     
@@ -127,30 +137,28 @@ foreach ($Recettes as $recipe) {
                 $name = 'cocktail.png';
             }
 
-            echo "<center><h3> $title </h3></center>";
-            echo "<br>";
-
-            echo '<center><img src="../public/photos/' . $name . '" alt="img" width="200"></center>';
-            echo "<br>";
-
-            echo "<u><h4>Liste d'ingrédient :</h4></u>";
-            echo "<ul>";
-            foreach($ingredients_split as $key => $ingredient){
-                echo "<li>" . $ingredient . "</li>";
-            }
-            echo "</ul>";
-
-            echo "<br>";
-            echo "<u><h4>Préparation :</h4></u>";
-            echo "<ol>";
-            foreach($preparations_split as $key => $preparation){
-                echo "<li>" . $preparation . "</li>";
-            }
-            echo "</ol>";
+            echo "<div class='card' style='width: 18rem;'>";
+    
+            echo "<div class='button'>";
+            echo "<input type='image' src='../public/photos/heart_empty.png' id='button' onclick='fav('button')'/>";
+            echo "</div>";
+    
+            echo '<img src="../public/photos/' . $name . '" alt="img" width="100">';
+            echo "<div class='card-body'>";
+                
+                    echo "<h5 class='card-title'>";
+                        echo "<a href='?recipe=" . $title . "'>" . $title . "</a>"; 
+                    echo "</h5>";
+                echo "<p class='card-text'> <ul>";
+                    foreach($index as $key => $value){ 
+                        echo "<li>" . $value . "</li>";
+                    }
+                echo "</ul> </p>";
+                echo "</div>";
+            echo "</div>";       
         }
     }
-    echo "</div>";
-    
+    echo "</main>";
 }
 }
 ?>
