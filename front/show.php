@@ -1,13 +1,15 @@
-    <script>
-        function fav(imgid) {
-            /*var img = document.getElementById(imgid); 
-            if (img.src.match(../public/photos/heart_empty.png)) {
-                img.src = "../public/photos/heart_full.png";
+    <script type="text/javascript">
+        function changeImage(element) {
+            var x = document.getElementsById(element);
+            console.log(x);
+            var v = x.getAttribute("src");
+            if(v == "public/photos/heart_empty.png"){
+                v = "public/photos/heart_full.png";
             }
-            else {
-                img.src = "../public/photos/heart_empty.png";
+            else{
+                v = "public/photos/heart_empty.png";
             }
-            img.hide();*/
+            x.setAttribute("src", v);
         }
     </script>
 
@@ -53,7 +55,7 @@
         }
         echo "</div>";
     } else if(isset($_POST['submit3'])){
-        
+
 
 
 
@@ -71,9 +73,9 @@
 
         echo "<div class='card' style='width: 18rem;'>";
 
-        echo "<div class='button'>";
-        echo "<input type='image' src='../public/photos/heart_empty.png' id='button' onclick='fav('button')'/>";
-        echo "</div>";
+            echo "<div class='heart'>";
+                echo "<img id='image0' src='../public/photos/heart_empty.png' onclick='changeImage(image0);' /> ";
+            echo "</div>";
 
         echo '<img src="../public/photos/' . $name . '" alt="img" width="100">';
         echo "<div class='card-body'>";
