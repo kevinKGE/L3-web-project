@@ -13,6 +13,7 @@ if (isset($_POST['submit'])) {
     $sex = htmlspecialchars(trim($_POST['sex']));
     
     // hash of password:
+    // alternative :sha1()
     $password = password_hash($password, PASSWORD_DEFAULT);
     
     $userToAdd = array(
@@ -26,17 +27,17 @@ if (isset($_POST['submit'])) {
     );
 
     $sign_up_status = validate_format($userToAdd);
-    if ($sign_up_status != true){
-        echo $sign_up_status;
-    };
+    echo "status: ".$sign_up_status."<br>";
 
     if ($login && $password) {
-        if ($password != "") {
+        if ($sign_up_status === true) {
 
             user_signup($userToAdd);
             echo 'Inscription réussie';
 
-        } else echo "Le mot de passe est trop court !";
+        } else {
+            echo $sign_up_status;
+        }
     } else echo "Veuillez saisir tous les champs obligatoires !";
 }
 ?>

@@ -45,9 +45,9 @@ if (isset($_POST['submit2'])) {
                     </div>
                     <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./profile.php'">Profil</button>
 
-                    <a type="button" href="public/logout.inc.php"><button class="btn btn-outline-success me-2">Se déconnecter</button></a>
+                    <a class="btn btn-outline-success me-2" type="button" href="..\public\logout.inc.php">Se déconnecter</a>
                 </form>
-            <?php
+            <?php   
             } else { ?>
                 <form class="container-fluid justify-content-start" action=# method="POST">
                     <label>Login</label>
