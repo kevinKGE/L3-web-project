@@ -121,7 +121,7 @@ if (isset($_POST['submit3'])) {
         }
         
 
-        if ($score >= 0) {
+        if ($score > 0) {
             $result["score"] = $score;
             $result["PrintSearch"][] = $recipe;
         }
