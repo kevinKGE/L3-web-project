@@ -106,12 +106,18 @@ if (isset($_POST['submit3'])) {
     foreach ($Recettes as $recipe) {
         $score = 0;
         foreach ($result["exclude"] as $exclude) {
-            if (in_array($exclude, $recipe['index']))
-                continue 2; 
+            foreach($recipe['index'] as $index)
+                if(preg_match("/$exclude/i", $index)){
+                    $score--;
+                    continue 2;
+                }
+            
         }
         foreach ($result["include"] as $include) {
-            if (in_array($include, $recipe['index']))
-                $score += 1; 
+                foreach($recipe['index'] as $index)
+                    if(preg_match("/$include/i", $index)){
+                      $score++;
+                     }
         }
         
 
@@ -122,10 +128,13 @@ if (isset($_POST['submit3'])) {
 
         }
 
+       
+       
+
         echo "</nav>";
         echo "<main>";
 
-    /**Affiche tout les éléments du tableau $result["PrintSearch"]["List] */
+    
     foreach ($result['PrintSearch'] as $index_recipe => $recipes){
         if($index_recipe != 0){
             $title = $recipes[array_keys($recipes)[0]];
