@@ -24,9 +24,9 @@ if (isset($_POST['change'])) {
         'name' => $name,
         'firstName' => $firstName,
         'sex' => $sex,
-        'birthDate' => $birthDate,
-        'favorites' => array()
-    );  
+        'birthDate' => $birthDate
+    );
+
 
     $update_user_status = validate_format($new_values);
     // ICI mdp a pouvoir modifier
@@ -35,8 +35,8 @@ if (isset($_POST['change'])) {
         modify_user($new_values);
     } else {
         $error = true;
+    }
 }
-
 ?>
 <h1>Inscription</h1>
 <div class="container-fluid bg-light">
@@ -68,7 +68,7 @@ if (isset($_POST['change'])) {
                 <label for="female">Femme</label>
 
                 <input type="submit" name="change" onclick="" value="modifier">
-                
+
                 <div id="error">
                     <?php if ($error) echo $sign_up_status; ?>
                 </div>

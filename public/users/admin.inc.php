@@ -5,7 +5,4 @@
   'firstName' => '',
   'sex' => 'male',
   'birthDate' => '',
-  'favorites' => 
-  array (
-  ),
 )?>

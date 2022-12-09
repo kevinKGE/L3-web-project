@@ -24,8 +24,7 @@ if (isset($_POST['submit'])) {
         'name' => $name,
         'firstName' => $firstName,
         'sex' => $sex,
-        'birthDate' => $birthDate,
-        'favorites' => array()
+        'birthDate' => $birthDate
     );
 
     $sign_up_status = validate_format($userToAdd);

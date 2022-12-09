@@ -12,6 +12,7 @@ function user_signup($user) {
 
     if(!user_registered($user_login)){
         file_put_contents('../public/users/'.$user_login.'.inc.php', print_r("<?php \$user =".$user_data."?>", true));
+        file_put_contents('../public/favorites/'.$user_login.'.favorites.inc.php', print_r("<?php \$favorites = array (); ?>", true));
     } else {
         echo "User already registered";
     }
