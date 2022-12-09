@@ -7,30 +7,28 @@ function regex($value, $regex) {
 function validate_format($user){
 
     $date_of_the_day = date("Y-m-d");
+    $birthday = $user['birthDate'];
 
-    $date_of_birth = $user['birthDate'];
-    // ICI test à supprimer
-    echo $date_of_the_day."<br>";
-    echo $date_of_birth."<br>";
+    // substraction of the two dates
+    $res = ($date_of_the_day - $birthday);
 
-    // soustrait les deux dates:
-    $res = ($date_of_the_day - $date_of_birth);
-
-    echo $res."<br>";
+    list($year,$month,$day)=explode('-',$birthday);
 
     if ($user['login'] === "" || !regex($user['login'], "/^[a-zA-Z0-9]*$/")) {
-        return 'le login doit contenir uniquement des minuscules, majuscules non accentuées et des chiffres';
+        return 'Le login doit contenir uniquement des minuscules, majuscules non accentuées et des chiffres.';
     }
-    else if ($user['name'] !== "" && !regex($user['name'], "/^([A-Za-zÀ-ÖØ-öø-ÿ']+((\-)*[A-Za-zÀ-ÖØ-öø-ÿ']+)*)$/")){
-        return 'le nom doit contenir uniquement des minuscules, majuscules, des '-', des " \' " ou des espaces';
+    else if ($user['name'] !== "" && !regex($user['name'], "/^([A-Za-zÀ-ÖØ-öø-ÿ ])*([\-'])*([A-Za-zÀ-ÖØ-öø-ÿ ])*$/")){
+        return 'Le nom doit contenir uniquement des minuscules, majuscules, des '-', des " \' " ou des espaces.';
     }
-    else if ($user['firstName'] !== "" && !regex($user['firstName'], "/^([A-Za-zÀ-ÖØ-öø-ÿ']+((\-)*[A-Za-zÀ-ÖØ-öø-ÿ']+)*)$/")){
-        return 'le nom doit contenir uniquement des minuscules, majuscules, des '-', des " \' " ou des espaces';
+    else if ($user['firstName'] !== "" && !regex($user['firstName'], "/^([A-Za-zÀ-ÖØ-öø-ÿ ])*([\-'])*([A-Za-zÀ-ÖØ-öø-ÿ ])*$/")){
+        return 'Le prénom doit contenir uniquement des minuscules, majuscules, des '-', des " \' " ou des espaces.';
+    }
+    else if ($user['birthDate'] !== "" && !checkdate($month,$day,$year)){
+        return 'Date invalide.';
     }
     else if ($user['birthDate'] !== "" && $res < 18){
-        return 'vous devez avoir au moins 18 ans pour pouvoir vous inscrire';
+        return 'Vous devez avoir au moins 18 ans pour pouvoir vous inscrire.';
     }
 
     return true;
-    
 }
