@@ -75,6 +75,10 @@
        h5{
         text-align: center;
        }
+       h1{
+        text-align: center;
+        color: #198754;
+       }
        .navbar>.container-fluid{
         display: flex;
         align-items: center;
@@ -91,9 +95,11 @@
       }      
       h3{
         color: #198754;
+        text-align: center;
       }
       h4{
         color: #198754;
+        text-decoration: underline;
       }
       u{
         color: #198754;
@@ -116,6 +122,12 @@
       }
       li{
         color: #198754;
+      }
+      .in_detail_recipe{
+        text-align: center;
+      }
+      .strong_front{
+        font-weight : bold;
       }
     </style>
 </head>

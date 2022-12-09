@@ -12,8 +12,9 @@ else{ // If the page is defined
 }
 
 ?> 
-    <strong>Aliment courant</strong> 
-    </br>
+    <div class="strong_front">
+        Aliment courant :
+    </div> 
     </br>
 <?php 
 
@@ -37,7 +38,9 @@ else{ // If the page is defined
     </br>
     
     </br>
-    <p>Sous-catégories : </p>  
+    <div class="strong_front">
+        Sous-catégories :
+    </div> 
     
        <ul>
          <?php

@@ -1,11 +1,13 @@
 <?php
 require_once 'source/head.php';
-//require_once 'source/header.php';
 require_once '../public/Donnees.inc.php';
 
 
 if (isset($_POST['submit3'])) {
-    echo "<nav id='nav_index'>";
+    ?>
+        <nav id='nav_index'>
+    <?php
+
     echo $_POST['submit3'];
 
     $result = array (
@@ -22,15 +24,15 @@ if (isset($_POST['submit3'])) {
 
 
     if(empty($search)){
-        echo 'Veuillez saisir une recipe';
+        ?>Veuillez saisir une recipe<?php
     }
     else if(preg_match('/[^a-zÀ-ú" +-]/i', $search)){
-        echo 'Veuillez saisir une recipe valide';
+        ?>Veuillez saisir une recipe valide<?php
     }
     else{
 
        if(substr_count($search, '"' ) % 2 != 0){
-            echo 'Nombre de guillemets impairs';
+            ?>Nombre de guillemets impairs<?php
         }
         else{
             foreach ($matches[0] as $matches) {
@@ -68,40 +70,47 @@ if (isset($_POST['submit3'])) {
           $result['ListIngredients'] = array_unique($result['ListIngredients']);
 
 
-        echo "<strong>Liste des Aliment souhaiter :</strong>";
-        echo "<br>";
-        echo "<ul>";
+        ?>
+            <div class="strong_front">
+                Liste des Aliment souhaiter :
+            </div>
+
+            <ul>
+        <?php
         foreach ($result['include'] as $i => $value) {
            foreach ($result['ListIngredients'] as $j => $value2) {
                 if($value == $value2){
-                    
-                    echo "<li>" . $result['include'][$i] . "</li>";
-                    
+                    ?><li><?php echo $result['include'][$i]; ?></li><?php
                 }
                 else{
                     $result['unknown'][] = $value;
                 }
             }
         }
-        echo "</ul>";
+        ?>
+            </ul>
+        <?php
     }
-        echo "<br>";
-        echo "<strong>Liste des Aliment a exclure :</strong>";
-        echo "<br>";
-        echo "<ul>";
+        ?>
+        <div class="strong_front">
+            Liste des Aliment a exclure :
+        </div>
+
+        <ul>
+        <?php
         foreach ($result['exclude'] as $i => $value) {
             foreach ($result['ListIngredients'] as $j => $value2) {
                 if($value == $value2){
-                   
-                    echo "<li>" . $result['exclude'][$i] . "</li>";
-                   
+                    ?><li><?php echo $result['exclude'][$i]; ?></li><?php
                 }
                 else{
                     $result['unknown'][] = $value;
                 }
             }
         }
-        echo "</ul>";
+        ?>
+            </ul>
+        <?php
 
     foreach ($Recettes as $recipe) {
         $score = 0;
@@ -130,44 +139,48 @@ if (isset($_POST['submit3'])) {
 
        
        
+        ?>
+            </nav>
+            <main>
+        <?php
 
-        echo "</nav>";
-        echo "<main>";
-
-    
     foreach ($result['PrintSearch'] as $index_recipe => $recipes){
         if($index_recipe != 0){
             $title = $recipes[array_keys($recipes)[0]];
             $index = $recipes[array_keys($recipes)[3]];
-    
             $name = valid_name($title);
     
-            if(!file_exists("../public/photos/".$name)){
+            if (!file_exists("../public/photos/" . $name)) {
                 $name = 'cocktail.png';
             }
 
-            echo "<div class='card' style='width: 18rem;'>";
-    
-            echo "<div class='button'>";
-            echo "<input type='image' src='../public/photos/heart_empty.png' id='button' onclick='fav('button')'/>";
-            echo "</div>";
-    
-            echo '<img src="../public/photos/' . $name . '" alt="img" width="100">';
-            echo "<div class='card-body'>";
-                
-                    echo "<h5 class='card-title'>";
-                        echo "<a href='?recipe=" . $title . "'>" . $title . "</a>"; 
-                    echo "</h5>";
-                echo "<p class='card-text'> <ul>";
-                    foreach($index as $key => $value){ 
-                        echo "<li>" . $value . "</li>";
-                    }
-                echo "</ul> </p>";
-                echo "</div>";
-            echo "</div>";       
+            ?>
+                <div class="card" style="width: 18rem;">
+                    <button type="button" id="button" onclick="favoris(<?php $res ?>);"> <img id="<?php $res ?>" src="../public/photos/heart_full.png"></button>
+                    <img src="../public/photos/<?php echo $name; ?>" alt="img" width="100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="?recipe=<?php echo $title; ?>"><?php echo $title; ?></a>
+                        </h5>
+                        <p class='card-text'> 
+                            <ul>
+
+                                <?php
+                                    foreach ($index as $key => $value) {
+                                        ?><li> <?php echo $value; ?> </li> <?php
+                                    }
+                                ?>
+
+                            </ul> 
+                        </p>
+                    </div>
+                </div>
+            <?php
         }
     }
-    echo "</main>";
+    ?>
+        </main>
+    <?php
 }
 }
 ?>

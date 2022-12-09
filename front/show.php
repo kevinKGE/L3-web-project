@@ -13,7 +13,9 @@
 
     <?php
     if (isset($_GET['recipe'])) {
-        echo "<div class='recipe'>";
+        ?>
+            <div class='recipe'>
+        <?php
         foreach ($Recettes as $index_recipe => $recipes) {
             if ($recipes['titre'] == $_GET['recipe']) {
                 $title = $recipes[array_keys($recipes)[0]];
@@ -23,69 +25,88 @@
                 $res =  get_index($title);
                 $ingredients_split = split_chain($ingredients, '|');
                 $preparations_split = split_chain($preparations, '.');
-
                 $name = valid_name($title);
 
                 if (!file_exists("../public/photos/" . $name)) {
                     $name = 'cocktail.png';
                 }
 
-                echo "<center><h3> $title </h3></center>";
-                echo "<br>";
+                ?>
+                <div class="in_detail_recipe">
+                    <h3> <?php echo $title; ?> </h3>
+                    <br>
 
-                echo '<center><img src="../public/photos/' . $name . '" alt="img" width="200"></center>';
-                echo "<br>";
+                    <img src="../public/photos/<?php echo $name; ?>" alt="img" width="200">
+                    <br>
+                </div>
 
-                echo "<u><h4>Liste d'ingrédient :</h4></u>";
-                echo "<ul>";
-                foreach ($ingredients_split as $key => $ingredient) {
-                    echo "<li>" . $ingredient . "</li>";
-                }
-                echo "</ul>";
+                <div class="detail_recipe">
+                    <h4>Liste d'ingrédient :</h4>
+                </div>
 
-                echo "<br>";
-                echo "<u><h4>Préparation :</h4></u>";
-                echo "<ol>";
-                foreach ($preparations_split as $key => $preparation) {
-                    echo "<li>" . $preparation . "</li>";
-                }
-                echo "</ol>";
+                <ul>
+                    <?php
+                        foreach ($ingredients_split as $key => $ingredient) {
+                            ?><li><?php echo $ingredient; ?></li><?php
+                        }
+                    ?>
+                </ul>
+
+                <br>
+
+                <div class="detail_recipe">
+                    <h4>Préparation :</h4>
+                </div>
+
+                <ol>
+                    <?php
+                        foreach ($preparations_split as $key => $preparation) {
+                            ?><li><?php echo $preparation; ?></li><?php
+                        }
+                    ?>
+                </ol>
+                <?php
             }
         }
-        echo "</div>";
-    } else if (isset($_POST['submit3'])) {
+        ?>
+            </div>
+        <?php
+
     } else {
         // Show all the cocktails in the list 
         foreach ($cocktails as $recipes) {
             $title = $recipes[array_keys($recipes)[0]];
             $index = $recipes[array_keys($recipes)[3]];
             $res =  get_index($title);
-
-
             $name = valid_name($title);
 
             if (!file_exists("../public/photos/" . $name)) {
                 $name = 'cocktail.png';
             }
 
-            echo "<div class='card' style='width: 18rem;'>";
+            ?>
+                <div class="card" style="width: 18rem;">
+                    <button type="button" id="button" onclick="favoris(<?php $res ?>);"> <img id="<?php $res ?>" src="../public/photos/heart_full.png"></button>
+                    <img src="../public/photos/<?php echo $name; ?>" alt="img" width="100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="?recipe=<?php echo $title; ?>"><?php echo $title; ?></a>
+                        </h5>
+                        <p class='card-text'> 
+                            <ul>
 
-        echo "<button type='button' id='button' onclick='favoris('.$res.');'> <img id=''.$res.'' src='../public/photos/heart_full.png'></button>";
+                                <?php
+                                    foreach ($index as $key => $value) {
+                                        ?><li> <?php echo $value; ?> </li> <?php
+                                    }
+                                ?>
 
-            echo '<img src="../public/photos/' . $name . '" alt="img" width="100">';
-            echo "<div class='card-body'>";
-
-            echo "<h5 class='card-title'>";
-            echo "<a href='?recipe=" . $title . "'>" . $title . "</a>";
-            echo "</h5>";
-            echo "<p class='card-text'> <ul>";
-            foreach ($index as $key => $value) {
-                echo "<li>" . $value . "</li>";
-            }
-            echo "</ul> </p>";
-            echo "</div>";
-            echo "</div>";
+                            </ul> 
+                        </p>
+                    </div>
+                </div>
+            <?php
         }
     }
 
-    ?>
+?>
