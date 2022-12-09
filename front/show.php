@@ -1,15 +1,13 @@
     <script type="text/javascript">
-        function changeImage(element) {
-            var x = document.getElementsById(element);
-            console.log(x);
-            var v = x.getAttribute("src");
-            if(v == "public/photos/heart_empty.png"){
-                v = "public/photos/heart_full.png";
+       function favoris(idCocktail){
+            console.log(idCocktail);
+            var img = document.getElementById(idCocktail);
+
+            if (img.getAttribute("src") == "../public/photos/heart_empty.png"){
+                img.setAttribute("src", "../public/photos/heart_full.png");
+            }else{
+                img.setAttribute("src", "../public/photos/heart_empty.png");
             }
-            else{
-                v = "public/photos/heart_empty.png";
-            }
-            x.setAttribute("src", v);
         }
     </script>
 
@@ -76,9 +74,7 @@
 
         echo "<div class='card' style='width: 18rem;'>";
 
-            echo "<div class='heart'>";
-                echo "<img id='image0' src='../public/photos/heart_empty.png' onclick='changeImage(image0);' /> ";
-            echo "</div>";
+        echo "<button type='button' id='button' onclick='favoris('.$res.');'> <img id=''.$res.'' src='../public/photos/heart_full.png'></button>";
 
         echo '<img src="../public/photos/' . $name . '" alt="img" width="100">';
         echo "<div class='card-body'>";
