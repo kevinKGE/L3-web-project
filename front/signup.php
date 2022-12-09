@@ -4,6 +4,8 @@ require_once 'source/header.php';
 require_once '../public/functions.inc.php';
 require_once '../public/regex.php';
 
+$error = false;
+
 if (isset($_POST['submit'])) {
     $name = htmlspecialchars(trim($_POST['name']));
     $firstName = htmlspecialchars(trim($_POST['firstName']));
@@ -11,33 +13,30 @@ if (isset($_POST['submit'])) {
     $password = htmlspecialchars(trim($_POST['password']));
     $birthDate = htmlspecialchars(trim($_POST['birthDate']));
     $sex = htmlspecialchars(trim($_POST['sex']));
-    
+
     // hash of password:
-    $password = password_hash($password, PASSWORD_DEFAULT);
-    
+    $password = sha1($password, false);
+    // $password = password_hash($password, PASSWORD_DEFAULT);
+
     $userToAdd = array(
         'login' => $login,
         'password' => $password,
         'name' => $name,
         'firstName' => $firstName,
         'sex' => $sex,
-        'birthDate' => $birthDate,
-        'favorites' => array()
+        'birthDate' => $birthDate
     );
 
     $sign_up_status = validate_format($userToAdd);
-    if ($sign_up_status != true){
-        echo $sign_up_status;
-    };
+    echo "status: " . $sign_up_status . "<br>";
 
-    if ($login && $password) {
-        if ($password != "") {
-
-            user_signup($userToAdd);
-            echo 'Inscription réussie';
-
-        } else echo "Le mot de passe est trop court !";
-    } else echo "Veuillez saisir tous les champs obligatoires !";
+    if ($sign_up_status === true) {
+        user_signup($userToAdd);
+        // ICI à supprimer
+        echo 'Inscription réussie';
+    } else {
+        $error = true;
+    }
 }
 ?>
 
@@ -70,6 +69,10 @@ if (isset($_POST['submit'])) {
                 <label for="female">Femme</label>
 
                 <input type="submit" name="submit" onclick="user_signup($_POST)" value="inscription">
+
+                <div id="error">
+                    <?php if ($error) echo $sign_up_status; ?>
+                </div>
 
             </form>
         </div>

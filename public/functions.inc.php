@@ -12,6 +12,7 @@ function user_signup($user) {
 
     if(!user_registered($user_login)){
         file_put_contents('../public/users/'.$user_login.'.inc.php', print_r("<?php \$user =".$user_data."?>", true));
+        file_put_contents('../public/favorites/'.$user_login.'.favorites.inc.php', print_r("<?php \$favorites = array (); ?>", true));
     } else {
         echo "User already registered";
     }
@@ -20,9 +21,15 @@ function user_signup($user) {
 function login($user_login, $user_password) {
     if(user_registered($user_login)) {
         include '../public/users/'.$user_login.'.inc.php';
+        // ICI à supp
         var_dump($user);
         echo "password:".$user['password'].'<br>';
-        if(password_verify($user_password, $user['password'])){
+        echo sha1($user_password, false).'<br>';
+        echo sha1($user_password, false).'<br>';
+        echo sha1($user_password, false).'<br>';
+        if (sha1($user_password, false) == $user['password']) {
+            // ICI à supprimer
+        // if(password_verify($user_password, $user['password'])){
             echo 'Connexion réussie</br>';
             return $user;
         } else {

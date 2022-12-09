@@ -4,7 +4,7 @@ require_once 'source/head.php';
 require_once 'source/header.php';
 require_once '../public/functions.inc.php';
 
-
+$error = false;
 
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
@@ -27,17 +27,17 @@ if (isset($_POST['change'])) {
         'birthDate' => $birthDate
     );
 
-    // ICI vérifications à faire (regex etc)
 
-    modify_user($new_values);
-}
+    $update_user_status = validate_format($new_values);
+    // ICI mdp a pouvoir modifier
 
-?>
-<style> 
-    #champ {
-        
+    if ($update_user_status === true) {
+        modify_user($new_values);
+    } else {
+        $error = true;
     }
-</style>
+}
+?>
 <h1>Inscription</h1>
 <div class="container-fluid bg-light">
     <!-- zone de connexion -->
@@ -69,6 +69,9 @@ if (isset($_POST['change'])) {
 
                 <input type="submit" name="change" onclick="" value="modifier">
 
+                <div id="error">
+                    <?php if ($error) echo $sign_up_status; ?>
+                </div>
             </form>
         </div>
     </div>
