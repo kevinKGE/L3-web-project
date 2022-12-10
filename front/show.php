@@ -34,8 +34,8 @@ if (isset($_GET['recipe'])) {
                     <?php
                     foreach ($ingredients_split as $key => $ingredient) {
                     ?><li><?php echo $ingredient; ?></li><?php
-                                                }
-                                                    ?>
+                                                        }
+                                                            ?>
                 </ul>
 
                 <br>
@@ -48,8 +48,8 @@ if (isset($_GET['recipe'])) {
                     <?php
                     foreach ($preparations_split as $key => $preparation) {
                     ?><li><?php echo $preparation; ?></li><?php
-                                                }
-                                                    ?>
+                                                        }
+                                                            ?>
                 </ol>
         <?php
             }
@@ -72,7 +72,11 @@ if (isset($_GET['recipe'])) {
 
     ?>
         <div class="card" style="width: 18rem;">
-            <button type="button" id="button" onclick="favoris(<?php $res ?>);"> <img id="<?php $res ?>" src="../public/photos/heart_full.png"></button>
+        <?php echo $res; ?>
+            <button type="button" id="button" onclick="changeImage(document.getElementById('img'))">
+                <img id="<?php $res ?>" src="../public/photos/heart_full.png">
+            </button>
+            <!-- <button type="button" id="button" onclick="favoris(<?php $res ?>);"> <img id="<?php $res ?>" src="../public/photos/heart_full.png"></button> -->
             <img src="../public/photos/<?php echo $name; ?>" alt="img" width="100">
             <div class="card-body">
                 <h5 class="card-title">
@@ -97,14 +101,25 @@ if (isset($_GET['recipe'])) {
 ?>
 
 <script type="text/javascript">
-    function favoris(idCocktail) {
-        console.log(idCocktail);
-        var img = document.getElementById(idCocktail);
+    // function favoris(idCocktail) {
+    //     console.log(idCocktail);
+    //     var img = document.getElementById(idCocktail);
 
-        if (img.getAttribute("src") == "../public/photos/heart_empty.png") {
-            img.setAttribute("src", "../public/photos/heart_full.png");
+    //     (img.getAttribute("src") == "../public/photos/heart_empty.png") ?
+    //     img.setAttribute("src", "../public/photos/heart_full.png"):
+    //         img.setAttribute("src", "../public/photos/heart_empty.png");
+    // }
+
+    function changeImage(element) {
+        console.log(element);
+        var x = document.getElementById(element);
+        console.log(x);
+        var v = x.getAttribute("src");
+        if (v == "../public/photos/heart_empty.png") {
+            v = "../public/photos/heart_full.png";
         } else {
-            img.setAttribute("src", "../public/photos/heart_empty.png");
+            v = "../public/photos/heart_empty.png";
         }
+        x.setAttribute("src", v);
     }
 </script>

@@ -16,4 +16,3 @@ else{ // If the page is defined
 
   require_once 'show.php'; // Display the cocktails
 ?>
-
