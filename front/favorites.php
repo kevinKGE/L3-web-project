@@ -1,4 +1,21 @@
 <?php
+session_start();
+require_once 'source/head.php';
+require_once 'source/header.php';
+require_once '../public/functions.inc.php';
+
+if (!isset($_GET['page'])) { // If the page is not defined
+    $curent_page = 'Aliment'; // Add the page to the page
+} else { // If the page is defined
+    $curent_page = $_GET['page']; // Get the page where we are
+}
+
+//Get the recipe that corresponds with the ingredients (page where we are)
+$cocktails = array(); // List of cocktails to display
+
+research_recipe($curent_page); // Get the recipe that corresponds with the ingredients (page where we are)
+$cocktails = delete_duplicate_cocktails($cocktails); // Delete the duplicate cocktails in the list to display
+
 if (isset($_GET['recipe'])) {
 ?>
     <div class='recipe'>
@@ -34,8 +51,8 @@ if (isset($_GET['recipe'])) {
                     <?php
                     foreach ($ingredients_split as $key => $ingredient) {
                     ?><li><?php echo $ingredient; ?></li><?php
-                                                }
-                                                    ?>
+                                                        }
+                                                            ?>
                 </ul>
 
                 <br>
@@ -48,8 +65,8 @@ if (isset($_GET['recipe'])) {
                     <?php
                     foreach ($preparations_split as $key => $preparation) {
                     ?><li><?php echo $preparation; ?></li><?php
-                                                }
-                                                    ?>
+                                                        }
+                                                            ?>
                 </ol>
         <?php
             }
@@ -83,9 +100,10 @@ if (isset($_GET['recipe'])) {
 
                     <?php
                     foreach ($index as $key => $value) {
-                    ?><li> <?php echo $value; ?> </li> <?php
-                                                    }
-                                                        ?>
+                    ?><li> <?php echo $value; ?> </li>
+                    <?php
+                    }
+                    ?>
 
                 </ul>
                 </p>
@@ -94,6 +112,7 @@ if (isset($_GET['recipe'])) {
 <?php
     }
 }
+
 ?>
 
 <script type="text/javascript">

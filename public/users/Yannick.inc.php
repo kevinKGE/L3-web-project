@@ -4,8 +4,6 @@
   'name' => '',
   'firstName' => '',
   'sex' => 'male',
-  'birthDate' => '2001-05-05',
-  'favorites' => 
-  array (
+  'birthDate' => '2001-05-05'
   ),
 )?>
