@@ -9,11 +9,11 @@ else{ // If the page is defined
 
 <?php
     //Get the recipe that corresponds with the ingredients (page where we are)
-    $cocktails = array(); // List of cocktails to show
+    $cocktails = array(); // List of cocktails to display
 
     research_recipe($curent_page); // Get the recipe that corresponds with the ingredients (page where we are)
-    $cocktails = delete_duplicate_cocktails($cocktails); // Delete the duplicate cocktails in the list to show   
+    $cocktails = delete_duplicate_cocktails($cocktails); // Delete the duplicate cocktails in the list to display
 
-  require_once 'show.php'; // Show the cocktails
+  require_once 'show.php'; // Display the cocktails
 ?>
 

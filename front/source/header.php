@@ -4,6 +4,13 @@ require_once '../public/functions.inc.php';
 require_once '../public/regex.php';
 require_once '../public/Donnees.inc.php';
 
+$_SESSION['favorites'] = array();
+
+if(isset($_SESSION['user'])){
+    require_once '../public/favorites/'.$_SESSION['user']['login'].'.favorites.inc.php';
+    $_SESSION['favorites'] = $favorites;
+}
+
 
 if (isset($_POST['submit2'])) {
     $login = $_POST['login'];
@@ -28,10 +35,10 @@ if (isset($_POST['submit2'])) {
         <div class="container-fluid">
             <form class="container-fluid justify-content-start">
                 <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./index.php'">Navigation</button>
-                <button class="btn btn-outline-success me-2" type="button">Recettes <i class="bi bi-heart-fill"></i></button>
+                <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./favorites.php'">Recettes <i class="bi bi-heart-fill"></i></button>
             </form>
             <form class="d-flex" role="search" name="search" method="POST">
-                <label class="">Recette:  </label>
+                <label class="">Recette: </label>
                 <input class="form-control me-2" name="search" type="search" placeholder="" aria-label="Search">
                 <button class="btn btn-outline-success" name="submit3" type="submit"><i class="bi bi-search"></i></button>
             </form>
@@ -47,7 +54,7 @@ if (isset($_POST['submit2'])) {
 
                     <a class="btn btn-outline-success me-2" type="button" href="..\public\logout.inc.php">Se déconnecter</a>
                 </form>
-            <?php   
+            <?php
             } else { ?>
                 <form class="container-fluid justify-content-start" action=# method="POST">
                     <label>Login</label>

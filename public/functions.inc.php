@@ -176,7 +176,7 @@ function replace_special_char($chain) { // Replace special characters by a stand
 
     function delete_duplicate_cocktails($array){
         // Delete duplicates recipes in the list $cocktail
-        $new_arrays = array(); // New list of cocktails to show
+        $new_arrays = array(); // New list of cocktails to display
         $unwanted_arguments = array(); // List will contain the id to avoid
         foreach($array as $ids){ // For each list of cocktails
             if(!in_array($ids['titre'], $unwanted_arguments)){  // Check if the cocktail by is title is in the list and if it's not in the avoid list
