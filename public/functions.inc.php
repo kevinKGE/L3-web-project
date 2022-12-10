@@ -254,4 +254,58 @@ function replace_special_char($chain) { // Replace special characters by a stand
         return $res;
     }
 
-    ?>
+    function get_max_score($array_includes, $array_excludes){
+        $nb_i = 0;
+        $nb_e = 0;
+        $nb = 0;
+
+        foreach ($array_includes as $index_i => $includes) {
+            $nb_i = count($array_includes);
+        }
+
+        foreach ($array_excludes as $index_e => $excludes) {
+            $nb_e = count($array_excludes);
+        }
+
+        $nb = $nb_i + $nb_e;
+        return $nb;
+    }
+
+    function get_score($array_includes, $array_excludes, $array_recipes){
+        $nb_i = 0;
+        $nb_e = 0;
+        $nb = 0;
+        $doubles = array();
+
+        $index = $array_recipes[array_keys($array_recipes)[3]];            
+            foreach ($index as $key_i => $ingredients) {
+                $ingredient = strtolower($ingredients);
+                foreach ($array_includes as $key_in => $includes) {
+                    $include = strtolower($includes);
+                    foreach ($doubles as $key_d => $double) {
+                        if($include != $double){
+                            if(strpos($ingredient, $include) !== false){
+                                $nb_i++;
+                                $doubles[] = $include;
+                            }
+                        }
+                    }
+                }
+                foreach ($array_excludes as $key_ex => $excludes) {
+                    $exclude = strtolower($excludes);
+                    foreach ($doubles as $key_d => $double) {
+                        if($exclude != $double){
+                            if(strpos($ingredient, $exclude) !== false){
+                                $nb_e++;
+                                $doubles[] = $exclude;
+                            }
+                        }
+                    }
+                }
+            }
+        
+        $nb = $nb_i + $nb_e;
+        return $nb;
+    }
+
+?>
