@@ -79,10 +79,9 @@ if (isset($_POST['submit3'])) {
         <?php
         foreach ($result['include'] as $i => $value) {
            foreach ($result['ListIngredients'] as $j => $value2) {
-                if($value == $value2){
+                if ($value == $value2){
                     ?><li><?php echo $result['include'][$i]; ?></li><?php
-                }
-                else{
+                } else {
                     $result['unknown'][] = $value;
                 }
             }
@@ -115,18 +114,19 @@ if (isset($_POST['submit3'])) {
     foreach ($Recettes as $recipe) {
         $score = 0;
         foreach ($result["exclude"] as $exclude) {
-            foreach($recipe['index'] as $index)
+            foreach($recipe['index'] as $index){
                 if(preg_match("/$exclude/i", $index)){
                     $score--;
                     continue 2;
                 }
-            
+            }
         }
         foreach ($result["include"] as $include) {
-                foreach($recipe['index'] as $index)
+                foreach($recipe['index'] as $index){
                     if(preg_match("/$include/i", $index)){
                       $score++;
                      }
+                }
         }
         
 
@@ -145,17 +145,21 @@ if (isset($_POST['submit3'])) {
         <?php
 
     foreach ($result['PrintSearch'] as $index_recipe => $recipes){
+        
         if($index_recipe != 0){
             $title = $recipes[array_keys($recipes)[0]];
             $index = $recipes[array_keys($recipes)[3]];
             $name = valid_name($title);
-    
+            $nb_max_score = get_max_score($result["include"], $result["exclude"]);
+            $nb_score = get_score($result["include"], $result["exclude"], $recipes);
             if (!file_exists("../public/photos/" . $name)) {
                 $name = 'cocktail.png';
             }
 
             ?>
                 <div class="card" style="width: 18rem;">
+                    <p><?php echo $nb_max_score; ?></p>
+                    <p><?php echo $nb_score; ?></p>
                     <button type="button" id="button" onclick="favoris(<?php $res ?>);"> <img id="<?php $res ?>" src="../public/photos/heart_full.png"></button>
                     <img src="../public/photos/<?php echo $name; ?>" alt="img" width="100">
                     <div class="card-body">
@@ -176,11 +180,12 @@ if (isset($_POST['submit3'])) {
                     </div>
                 </div>
             <?php
+            }
         }
-    }
     ?>
         </main>
     <?php
+    }
 }
-}
+
 ?>
