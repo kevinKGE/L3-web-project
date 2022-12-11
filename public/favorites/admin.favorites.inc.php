@@ -1,1 +1,5 @@
-<?php $favorites = NULL;
+<?php $favorites = array (
+  0 => '1',
+  1 => '0',
+  2 => '3',
+);
