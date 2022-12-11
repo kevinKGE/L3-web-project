@@ -1,4 +1,5 @@
 <?php
+
 if (isset($_GET['recipe'])) {//if we are in a detail page of recipe
 ?>
     <div class='recipe'>
@@ -21,8 +22,8 @@ if (isset($_GET['recipe'])) {//if we are in a detail page of recipe
                 <div class="in_detail_recipe">
                     <h3> <?php echo $title; ?> </h3>
                     <button class="button" id="<?php echo $res; ?>"> 
-                <?php if (isset($_SESSION['favorites_temp'])){
-                    if (in_array($res, $_SESSION['favorites_temp'])) {
+                <?php if (isset($_SESSION['favorites_temp']) || isset($favorites)){
+                    if (in_array($res, $_SESSION['favorites_temp']) || in_array($res, $favorites)) {
                         ?><img src="../public/photos/heart_full.png" alt=""><?php
                     } else {
                         ?><img src="../public/photos/heart_empty.png" alt=""><?php
