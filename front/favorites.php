@@ -81,10 +81,10 @@
 
         // Ajax request to send the index of the recipe to the php file
         $.ajax({
-            url: '../public/like.php',
+            url: '../public/favorites_like.inc.php',
             type: 'GET',
             data: {
-                indice: (this.id)
+                index: (this.id)
             },
             complete: function(data){
                 location.reload();
