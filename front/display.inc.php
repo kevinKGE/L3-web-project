@@ -87,12 +87,12 @@ if (isset($_GET['recipe'])) {
             <button class="button" id="<?php echo $res; ?>">
                 <?php if (isset($_SESSION['favorites_temp'])) {
                     if (in_array($res, $_SESSION['favorites_temp'])) {
-                        ?><img src="../public/photos/heart_full.png"><?php
+                        ?><img alt="" src="../public/photos/heart_full.png"><?php
                     } else {
-                        ?><img src="../public/photos/heart_empty.png"><?php
+                        ?><img alt="" src="../public/photos/heart_empty.png"><?php
                     }
                 } else {
-                    ?><img src="../public/photos/heart_empty.png"><?php
+                    ?><img alt="" src="../public/photos/heart_empty.png"><?php
                 }?>
             </button>
             <img src="../public/photos/<?php echo $name; ?>" alt="" width="100">

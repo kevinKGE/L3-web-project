@@ -1,9 +1,18 @@
 <?php
 
+/** summary: check if the value match the regex
+ * @param string $value, string $regex
+ * return true if the value match the regex
+ */
 function regex($value, $regex) {
     return preg_match($regex, $value);
 }
 
+/** summary: check if user informations are valid
+ * @param $user
+ * return true if the user is valid
+ * return a string if the user is not valid
+ */
 function validate_format($user){
 
     $date_of_the_day = date("Y-m-d");
