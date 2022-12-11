@@ -21,19 +21,19 @@ if (isset($_GET['recipe'])) {
                 <div class="in_detail_recipe">
                     <h3> <?php echo $title; ?> </h3>
                     <button class="button" id="<?php echo $res; ?>">
-                        <?php if (isset($_SESSION['like'])) {
-                            if (in_array($res, $_SESSION['like'])) {
-                        ?><img src="../public/photos/heart_full.png"><?php
-                                                                    } else {
-                                                                        ?><img src="../public/photos/heart_empty.png"><?php
-                                                                    }
-                                                                } else {
-                                                                        ?><img src="../public/photos/heart_empty.png"><?php
-                                                                } ?>
-                    </button>
+                <?php if (isset($_SESSION['favorites_temp'])){
+                    if (in_array($res, $_SESSION['favorites_temp'])) {
+                        ?><img src="../public/photos/heart_full.png" alt=""><?php
+                    } else {
+                        ?><img src="../public/photos/heart_empty.png" alt=""><?php
+                    }
+                } else {
+                    ?><img src="../public/photos/heart_empty.png" alt=""><?php
+                }?>
+            </button>
                     <br>
 
-                    <img src="../public/photos/<?php echo $name; ?>" alt="img" width="200">
+                    <img src="../public/photos/<?php echo $name; ?>" alt="" width="200">
                     <br>
                 </div>
 
@@ -87,15 +87,15 @@ if (isset($_GET['recipe'])) {
             <button class="button" id="<?php echo $res; ?>">
                 <?php if (isset($_SESSION['favorites_temp'])) {
                     if (in_array($res, $_SESSION['favorites_temp'])) {
-                ?><img src="../public/photos/heart_full.png"><?php
-                                                                    } else {
-                                                                        ?><img src="../public/photos/heart_empty.png"><?php
-                                                                    }
-                                                                } else {
-                                                                        ?><img src="../public/photos/heart_empty.png"><?php
-                                                                } ?>
+                        ?><img src="../public/photos/heart_full.png"><?php
+                    } else {
+                        ?><img src="../public/photos/heart_empty.png"><?php
+                    }
+                } else {
+                    ?><img src="../public/photos/heart_empty.png"><?php
+                }?>
             </button>
-            <img src="../public/photos/<?php echo $name; ?>" alt="img" width="100">
+            <img src="../public/photos/<?php echo $name; ?>" alt="" width="100">
             <div class="card-body">
                 <h5 class="card-title">
                     <a href="?recipe=<?php echo $title; ?>"><?php echo $title; ?></a>
