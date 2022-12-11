@@ -72,11 +72,18 @@ if (isset($_GET['recipe'])) {
 
     ?>
         <div class="card" style="width: 18rem;">
-        <?php echo $res; ?>
-            <button type="button" id="button" onclick="changeImage(document.getElementById('img'))">
-                <img id="<?php $res ?>" src="../public/photos/heart_full.png">
+            
+            <button class="button" id="<?php echo $res; ?>">
+                <?php if (isset($_SESSION['like'])){
+                    if (in_array($res, $_SESSION['like'])) {
+                        ?><img src="../public/photos/heart_full.png"><?php
+                    } else {
+                        ?><img src="../public/photos/heart_empty.png"><?php
+                    }
+                } else {
+                    ?><img src="../public/photos/heart_empty.png"><?php
+                }?>
             </button>
-            <!-- <button type="button" id="button" onclick="favoris(<?php $res ?>);"> <img id="<?php $res ?>" src="../public/photos/heart_full.png"></button> -->
             <img src="../public/photos/<?php echo $name; ?>" alt="img" width="100">
             <div class="card-body">
                 <h5 class="card-title">
@@ -84,13 +91,11 @@ if (isset($_GET['recipe'])) {
                 </h5>
                 <p class='card-text'>
                 <ul>
-
                     <?php
                     foreach ($index as $key => $value) {
                     ?><li> <?php echo $value; ?> </li> <?php
                                                     }
                                                         ?>
-
                 </ul>
                 </p>
             </div>
@@ -100,26 +105,24 @@ if (isset($_GET['recipe'])) {
 }
 ?>
 
-<script type="text/javascript">
-    // function favoris(idCocktail) {
-    //     console.log(idCocktail);
-    //     var img = document.getElementById(idCocktail);
-
-    //     (img.getAttribute("src") == "../public/photos/heart_empty.png") ?
-    //     img.setAttribute("src", "../public/photos/heart_full.png"):
-    //         img.setAttribute("src", "../public/photos/heart_empty.png");
-    // }
-
-    function changeImage(element) {
-        console.log(element);
-        var x = document.getElementById(element);
-        console.log(x);
-        var v = x.getAttribute("src");
-        if (v == "../public/photos/heart_empty.png") {
-            v = "../public/photos/heart_full.png";
+<script>
+    $('.button').on('click', function() {
+        var img = $(this).find('img');
+        if(img.attr('src').match('../public/photos/heart_empty.png')) {
+            img.attr('src', '../public/photos/heart_full.png');
         } else {
-            v = "../public/photos/heart_empty.png";
+            img.attr('src', '../public/photos/heart_empty.png');
         }
-        x.setAttribute("src", v);
+
+
+
+        $.ajax({
+            url: '../public/like.php',
+            type: 'GET',
+            data: {
+                indice: (this.id)
+            }
+        });
     }
+    );
 </script>

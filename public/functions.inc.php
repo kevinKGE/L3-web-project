@@ -275,29 +275,48 @@ function replace_special_char($chain) { // Replace special characters by a stand
         $nb_i = 0;
         $nb_e = 0;
         $nb = 0;
-        $doubles = array();
+        $doubles_i = array();
+        $doubles_e = array();
+
+        foreach ($array_excludes as $index_e => $excludes) {
+            $nb_e = count($array_excludes);
+        }
 
         $index = $array_recipes[array_keys($array_recipes)[3]];            
             foreach ($index as $key_i => $ingredients) {
                 $ingredient = strtolower($ingredients);
                 foreach ($array_includes as $key_in => $includes) {
                     $include = strtolower($includes);
-                    foreach ($doubles as $key_d => $double) {
-                        if($include != $double){
-                            if(strpos($ingredient, $include) !== false){
-                                $nb_i++;
-                                $doubles[] = $include;
+                    if(empty($doubles_i)){
+                        if(strpos($ingredient, $include) !== false){
+                            $nb_i++;
+                            $doubles_i[] = $include;
+                        }
+                    }else {
+                        foreach ($doubles_i as $key_d => $double_i) {
+                            if($include != $double_i){
+                                if(strpos($ingredient, $include) !== false){
+                                    $nb_i++;
+                                    $doubles_i[] = $include;
+                                }
                             }
                         }
                     }
                 }
                 foreach ($array_excludes as $key_ex => $excludes) {
                     $exclude = strtolower($excludes);
-                    foreach ($doubles as $key_d => $double) {
-                        if($exclude != $double){
-                            if(strpos($ingredient, $exclude) !== false){
-                                $nb_e++;
-                                $doubles[] = $exclude;
+                    if (empty($doubles_e)){
+                        if (strpos($ingredient, $exclude) !== false){
+                            $nb_e--;
+                            $doubles_e[] = $exclude;
+                        }
+                    }else {
+                        foreach ($doubles_e as $key_d => $double_e) {
+                            if($exclude != $double_e){
+                                if(strpos($ingredient, $exclude) !== false){
+                                    $nb_e--;
+                                    $doubles_e[] = $exclude;
+                                }
                             }
                         }
                     }
@@ -307,5 +326,9 @@ function replace_special_char($chain) { // Replace special characters by a stand
         $nb = $nb_i + $nb_e;
         return $nb;
     }
+
+   function sort_recipe($nb_max, $nb, $recipe){
+       
+   }
 
 ?>

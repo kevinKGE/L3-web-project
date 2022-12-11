@@ -4,6 +4,7 @@ session_start();
 require_once 'source/head.php';
 require_once 'source/header.php';
 
+
 if(isset($_POST['search'])){
             require_once 'search.php';
         }else {
