@@ -2,7 +2,6 @@
 require_once 'source/head.php';
 require_once '../public/Donnees.inc.php';
 
-
 if (isset($_POST['submit3'])) {
     ?>
         <nav id='nav_index'>
@@ -246,10 +245,10 @@ if (isset($_POST['submit3'])) {
         }
 
         $.ajax({
-            url: '../public/like.php',
+            url: '../public/favorites_like.inc.php',
             type: 'GET',
             data: {
-                indice: (this.id)
+                index: (this.id)
             }
         });
     }

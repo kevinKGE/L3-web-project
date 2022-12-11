@@ -21,16 +21,16 @@ if (isset($_GET['recipe'])) {
                 <div class="in_detail_recipe">
                     <h3> <?php echo $title; ?> </h3>
                     <button class="button" id="<?php echo $res; ?>">
-                <?php if (isset($_SESSION['like'])){
-                    if (in_array($res, $_SESSION['like'])) {
+                        <?php if (isset($_SESSION['like'])) {
+                            if (in_array($res, $_SESSION['like'])) {
                         ?><img src="../public/photos/heart_full.png"><?php
-                    } else {
-                        ?><img src="../public/photos/heart_empty.png"><?php
-                    }
-                } else {
-                    ?><img src="../public/photos/heart_empty.png"><?php
-                }?>
-            </button>
+                                                                    } else {
+                                                                        ?><img src="../public/photos/heart_empty.png"><?php
+                                                                    }
+                                                                } else {
+                                                                        ?><img src="../public/photos/heart_empty.png"><?php
+                                                                } ?>
+                    </button>
                     <br>
 
                     <img src="../public/photos/<?php echo $name; ?>" alt="img" width="200">
@@ -83,17 +83,17 @@ if (isset($_GET['recipe'])) {
 
     ?>
         <div class="card" style="width: 18rem;">
-            
+
             <button class="button" id="<?php echo $res; ?>">
-                <?php if (isset($_SESSION['favorites_temp'])){
+                <?php if (isset($_SESSION['favorites_temp'])) {
                     if (in_array($res, $_SESSION['favorites_temp'])) {
-                        ?><img src="../public/photos/heart_full.png"><?php
-                    } else {
-                        ?><img src="../public/photos/heart_empty.png"><?php
-                    }
-                } else {
-                    ?><img src="../public/photos/heart_empty.png"><?php
-                }?>
+                ?><img src="../public/photos/heart_full.png"><?php
+                                                                    } else {
+                                                                        ?><img src="../public/photos/heart_empty.png"><?php
+                                                                    }
+                                                                } else {
+                                                                        ?><img src="../public/photos/heart_empty.png"><?php
+                                                                } ?>
             </button>
             <img src="../public/photos/<?php echo $name; ?>" alt="img" width="100">
             <div class="card-body">
@@ -119,21 +119,18 @@ if (isset($_GET['recipe'])) {
 <script>
     $('.button').on('click', function() {
         var img = $(this).find('img');
-        if(img.attr('src').match('../public/photos/heart_empty.png')) {
+        if (img.attr('src').match('../public/photos/heart_empty.png')) {
             img.attr('src', '../public/photos/heart_full.png');
         } else {
             img.attr('src', '../public/photos/heart_empty.png');
         }
 
-
-
         $.ajax({
-            url: '../public/like.php',
+            url: '../public/favorites_like.inc.php',
             type: 'GET',
             data: {
-                indice: (this.id)
+                index: (this.id)
             }
         });
-    }
-    );
+    });
 </script>

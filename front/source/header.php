@@ -26,7 +26,9 @@ if (isset($_POST['submit2'])) {
                     $_SESSION['favorites_temp'] += $value;
                 }
             }
-            file_put_contents('../public/favorites/'.$_SESSION['user']['login'].'.favorites.inc.php', '<?php $favorites = '.var_export($_SESSION['favorites_temp'], true).';');
+            if(!empty($_SESSION['favorites_temp'])){
+                file_put_contents('../public/favorites/'.$_SESSION['user']['login'].'.favorites.inc.php', '<?php $favorites = '.var_export($_SESSION['favorites_temp'], true).';');
+            }
         } else {
             echo 'Mauvais login ou mot de passe !</br>';
         }

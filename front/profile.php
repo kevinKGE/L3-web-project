@@ -9,10 +9,6 @@ $error = false;
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
 } 
-// else {
-    // if user is not logged in, redirect to index.php:
-    // echo '<script type="text/javascript">window.location.href = "index.php";</script>';
-// }
 
 if (isset($_POST['change'])) {
     $login = htmlspecialchars(trim($user['login']));
