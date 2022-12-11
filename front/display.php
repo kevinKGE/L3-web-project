@@ -116,6 +116,7 @@ if (isset($_GET['recipe'])) {
 ?>
 
 <script>
+    // this jQuery method is used to change the heart icon when the user click on it
     $('.button').on('click', function() {
         var img = $(this).find('img');
         if (img.attr('src').match('../public/photos/heart_empty.png')) {
@@ -124,6 +125,7 @@ if (isset($_GET['recipe'])) {
             img.attr('src', '../public/photos/heart_empty.png');
         }
 
+        // this jQuery method is used to send the index of the cocktail to the favorites_like.inc.php file
         $.ajax({
             url: '../public/favorites_like.inc.php',
             type: 'GET',

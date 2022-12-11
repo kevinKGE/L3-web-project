@@ -6,6 +6,7 @@ require_once '../public/Donnees.inc.php';
 
 $_SESSION['favorites'] = array();
 
+// if a user is connected, add his favorites to the favorites session
 if(isset($_SESSION['user'])){
     require_once '../public/favorites/'.$_SESSION['user']['login'].'.favorites.inc.php';
     $_SESSION['favorites'] = $favorites;
@@ -27,6 +28,7 @@ if (isset($_POST['submit2'])) {
                 }
             }
             if(!empty($_SESSION['favorites_temp'])){
+                // write the session favorites in the favorites file
                 file_put_contents('../public/favorites/'.$_SESSION['user']['login'].'.favorites.inc.php', '<?php $favorites = '.var_export($_SESSION['favorites_temp'], true).';');
             }
         } else {

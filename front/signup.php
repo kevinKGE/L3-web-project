@@ -7,7 +7,9 @@ require_once '../public/regex.inc.php';
 $error = false;
 $sign_up_done = false;
 
+
 if (isset($_POST['submit'])) {
+    // put the user informations into variables
     $name = htmlspecialchars(trim($_POST['name']));
     $firstName = htmlspecialchars(trim($_POST['firstName']));
     $login = htmlspecialchars(trim($_POST['login']));
@@ -15,10 +17,10 @@ if (isset($_POST['submit'])) {
     $birthDate = htmlspecialchars(trim($_POST['birthDate']));
     $sex = htmlspecialchars(trim($_POST['sex']));
 
-    // hash of password:
+    // hash of password
     $password = sha1($password, false);
 
-    // array of user to add:
+    // array of user to add
     $userToAdd = array(
         'login' => $login,
         'password' => $password,
@@ -28,7 +30,7 @@ if (isset($_POST['submit'])) {
         'birthDate' => $birthDate
     );
 
-    // validation of user to add:
+    // check the validation of the user to add
     $sign_up_status = validate_format($userToAdd);
 
     // if validation is ok, add user:

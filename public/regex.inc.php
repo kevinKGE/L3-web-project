@@ -15,16 +15,22 @@ function regex($value, $regex) {
  */
 function validate_format($user){
 
+    // get the date of the day
     $date_of_the_day = date("Y-m-d");
+    // get the birthday of the current user
     $birthday = $user['birthDate'];
     
     // substraction of the two dates
     $res = ($date_of_the_day - $birthday);
 
+    // split the birthday for the checkdate function
     if($birthday !== ""){
         list($year,$month,$day) = explode('-',$birthday);
     }
 
+    var_dump($user);
+
+    // Test if the user informations are valid
     if ($user['login'] === "" || !regex($user['login'], "/^[a-zA-Z0-9]*$/")) {
         return 'Le login doit contenir uniquement des minuscules, majuscules non accentuées et des chiffres.';
     }
@@ -39,10 +45,11 @@ function validate_format($user){
     }
     else if ($user['birthDate'] !== "" && !checkdate($month,$day,$year)){
         return 'Date invalide.';
-    } // ICI a finir
-    // else if ($user['sex'] != 'male' || $user['sex'] != 'female') {
-    //     return 'Le sexe est invalide.';
-    // }
+    }
+    else if (($user['sex'] != "male") && ($user['sex'] != "female")) {
+        return 'Le sexe est invalide.';
+    }
 
-    return true;
+    // If the user informations are valid return true
+    return true
 }

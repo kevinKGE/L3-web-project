@@ -70,6 +70,7 @@
 
 <script>
 
+    // jQuery method to change the heart icon when the user click on it
     $('.button').on('click', function() {
         var img = $(this).find('img');
         if(img.attr('src').match('../public/photos/heart_empty.png')) {
@@ -78,6 +79,7 @@
             img.attr('src', '../public/photos/heart_empty.png');
         }
 
+        // Ajax request to send the index of the recipe to the php file
         $.ajax({
             url: '../public/like.php',
             type: 'GET',

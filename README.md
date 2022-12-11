@@ -1,7 +1,8 @@
 
 # L3 Web Project
 
-A brief description of what this project does and who it's for
+This project is a web application that allows you to check cocktails recipes.
+You can create an account and add your own recipes into your favorites.
 
 
 ## Authors
