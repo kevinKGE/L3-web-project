@@ -31,15 +31,15 @@
                     <button class="button" id="<?php echo $res; ?>">
                         <?php if (isset($_SESSION['favorites_temp'])){
                             if (in_array($res, $_SESSION['favorites_temp'])) {
-                                ?><img src="../public/photos/heart_full.png"><?php
+                                ?><img src="../public/photos/heart_full.png" alt=""><?php
                             } else {
-                                ?><img src="../public/photos/heart_empty.png"><?php
+                                ?><img src="../public/photos/heart_empty.png" alt=""><?php
                             }
                         } else {
-                            ?><img src="../public/photos/heart_empty.png"><?php
+                            ?><img src="../public/photos/heart_empty.png" alt=""><?php
                         }?>
                     </button>
-                    <img src="../public/photos/<?php echo $name; ?>" alt="img" width="100">
+                    <img src="../public/photos/<?php echo $name; ?>" alt="" width="100">
                     <div class="card-body">
                         <h5 class="card-title">
                             <a href="?recipe=<?php echo $title; ?>"><?php echo $title; ?></a>
