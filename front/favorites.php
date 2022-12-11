@@ -96,15 +96,15 @@
     <main>
     <?php
     if (!empty($_SESSION['favorites_temp'])) {
-        foreach ($_SESSION['favorites_temp'] as $index => $index_recipes) {
+        foreach ($_SESSION['favorites_temp'] as $index => $index_recipes) { // foreach the list of recipe to find the one we want
             foreach($Recettes as $index_r => $recipes)
-            if ($index_recipes == $index_r){
-                $title = $recipes[array_keys($recipes)[0]];
-                $index = $recipes[array_keys($recipes)[3]];
-                $res =  get_index($title);
-                $name = valid_name($title);
+            if ($index_recipes == $index_r){ // if we find the recipe we want
+                $title = $recipes[array_keys($recipes)[0]]; // get the title of the recipe
+                $index = $recipes[array_keys($recipes)[3]]; // get the index of the recipe
+                $res =  get_index($title); // get the index of the recipe
+                $name = valid_name($title); // get the name of the image
         
-                if (!file_exists("../public/photos/" . $name)) {
+                if (!file_exists("../public/photos/" . $name)) { // if the image doesn't exist we put a default image
                     $name = 'cocktail.png';
                 }
         

@@ -84,12 +84,12 @@ if (isset($_GET['recipe'])) {//if we are in a detail page of recipe
 } else {
     // Show all the cocktails in the list 
     foreach ($cocktails as $recipes) {
-        $title = $recipes[array_keys($recipes)[0]];
-        $index = $recipes[array_keys($recipes)[3]];
-        $res =  get_index($title);
-        $name = valid_name($title);
+        $title = $recipes[array_keys($recipes)[0]]; // get the title of the recipe
+        $index = $recipes[array_keys($recipes)[3]]; // get the index of the recipe
+        $res =  get_index($title); // get the index of the recipe
+        $name = valid_name($title); // get the name of the image 
 
-        if (!file_exists("../public/photos/" . $name)) {
+        if (!file_exists("../public/photos/" . $name)) { // if the image doesn't exist we put a default image
             $name = 'cocktail.png';
         }
 

@@ -151,41 +151,41 @@ if (isset($_POST['submit3'])) {
             <main>
         <?php
 
-        foreach($result['PrintSearch'] as $index_recipe => $recipes){
-            if($index_recipe != 0){
-                $nb_max_score = get_max_score($result["include"], $result["exclude"]);
-                $nb_score = get_score($result["include"], $result["exclude"], $recipes);
+        foreach($result['PrintSearch'] as $index_recipe => $recipes){ // For each recipe
+            if($index_recipe != 0){ 
+                $nb_max_score = get_max_score($result["include"], $result["exclude"]); // Get the max score
+                $nb_score = get_score($result["include"], $result["exclude"], $recipes); // Get the score of the recipe
                 
-                if($nb_score > $nb_max_score){
+                if($nb_score > $nb_max_score){  // If the score is higher than the max score
                     $nb_score = $nb_max_score;
                 }
-                $T[$nb_score][] = $recipes;
+                $T[$nb_score][] = $recipes; // Add the recipe to the array
             } 
         }
 
-    if(!empty($T)){
-        krsort($T);
+    if(!empty($T)){ // If the array is not empty
+        krsort($T); // Sort the array by score
 
-        foreach ($T as $index_t => $recipes_t){
-            foreach ($recipes_t as $index_recipe => $recipes){
+        foreach ($T as $index_t => $recipes_t){   
+            foreach ($recipes_t as $index_recipe => $recipes){  
             
                 if($index_recipe != 0){
-                    $title = $recipes[array_keys($recipes)[0]];
-                    $index = $recipes[array_keys($recipes)[3]];
-                    $name = valid_name($title);
-                    $res =  get_index($title);
-                    $nb_max_score = get_max_score($result["include"], $result["exclude"]);
-                    $nb_score = get_score($result["include"], $result["exclude"], $recipes);
+                    $title = $recipes[array_keys($recipes)[0]]; // Get the title of the recipe
+                    $index = $recipes[array_keys($recipes)[3]]; // Get the index of the recipe
+                    $name = valid_name($title); // Get the name of the recipe
+                    $res =  get_index($title); // Get the index of the recipe
+                    $nb_max_score = get_max_score($result["include"], $result["exclude"]); // Get the max score
+                    $nb_score = get_score($result["include"], $result["exclude"], $recipes); // Get the score of the recipe
                     
     
-                    if($nb_score > $nb_max_score){
+                    if($nb_score > $nb_max_score){ // If the score is higher than the max score
                         $nb_score = $nb_max_score;
                     }
     
-                    $pourcent = ($nb_score * 100) / $nb_max_score;
-                    $pourcent = round($pourcent, 2);
+                    $pourcent = ($nb_score * 100) / $nb_max_score; // Get the percentage of the score
+                    $pourcent = round($pourcent, 2); // Round the percentage
         
-                    if (!file_exists("../public/photos/" . $name)) {
+                    if (!file_exists("../public/photos/" . $name)) { // If the photo doesn't exist
                         $name = 'cocktail.png';
                     }
     
