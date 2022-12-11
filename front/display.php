@@ -1,26 +1,26 @@
 <?php
-if (isset($_GET['recipe'])) {
+if (isset($_GET['recipe'])) {//if we are in a detail page of recipe
 ?>
     <div class='recipe'>
         <?php
-        foreach ($Recettes as $index_recipe => $recipes) {
-            if ($recipes['titre'] == $_GET['recipe']) {
-                $title = $recipes[array_keys($recipes)[0]];
-                $ingredients = $recipes[array_keys($recipes)[1]];
-                $preparations = $recipes[array_keys($recipes)[2]];
-                $index = $recipes[array_keys($recipes)[3]];
-                $res =  get_index($title);
-                $ingredients_split = split_chain($ingredients, '|');
-                $preparations_split = split_chain($preparations, '.');
-                $name = valid_name($title);
+        foreach ($Recettes as $index_recipe => $recipes) { // foreach the list of recipe to find the one we want
+            if ($recipes['titre'] == $_GET['recipe']) { // if we find the recipe we want
+                $title = $recipes[array_keys($recipes)[0]]; // get the title of the recipe
+                $ingredients = $recipes[array_keys($recipes)[1]]; // get the ingredients of the recipe
+                $preparations = $recipes[array_keys($recipes)[2]]; // get the preparations of the recipe
+                $index = $recipes[array_keys($recipes)[3]]; // get the index of the recipe
+                $res =  get_index($title); // get the index of the recipe
+                $ingredients_split = split_chain($ingredients, '|'); // split the ingredients in an array 
+                $preparations_split = split_chain($preparations, '.'); // split the preparations in an array
+                $name = valid_name($title); // get the name of the image
 
-                if (!file_exists("../public/photos/" . $name)) {
+                if (!file_exists("../public/photos/" . $name)) { // if the image doesn't exist we put a default image
                     $name = 'cocktail.png';
                 }
         ?>
                 <div class="in_detail_recipe">
                     <h3> <?php echo $title; ?> </h3>
-                    <button class="button" id="<?php echo $res; ?>">
+                    <button class="button" id="<?php echo $res; ?>"> 
                 <?php if (isset($_SESSION['favorites_temp'])){
                     if (in_array($res, $_SESSION['favorites_temp'])) {
                         ?><img src="../public/photos/heart_full.png" alt=""><?php
