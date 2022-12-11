@@ -16,6 +16,7 @@ function user_signup($user) {
         file_put_contents('../public/users/'.$user_login.'.inc.php', print_r("<?php \$user =".$user_data."?>", true));
         file_put_contents('../public/favorites/'.$user_login.'.favorites.inc.php', print_r("<?php \$favorites = array (); ?>", true));
     } else {
+        // ICI marche pas bien à supp ?
         echo "Utilisateur déjà enregistré";
     }
 }
@@ -24,14 +25,13 @@ function login($user_login, $user_password) {
     if(user_registered($user_login)) {
         include '../public/users/'.$user_login.'.inc.php';
         if (sha1($user_password, false) == $user['password']) {
-            echo 'Connexion réussie</br>';
             return $user;
         } else {
-            echo 'Mauvais mot de passe</br>';
+            echo 'Mauvais login mot de passe</br>';
             return false;
         }
     } else {
-        echo 'Utilisateur non enregistré</br>';
+        echo 'Mauvais login mot de passe</br>';
         return false;
     }
 }

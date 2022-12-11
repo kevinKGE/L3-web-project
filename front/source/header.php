@@ -17,11 +17,9 @@ if (isset($_POST['submit2'])) {
     // check if the login and password are not empty
     if ($login && $password) {
         // check if the login and password are correct
-        echo 'champs non vides</br>';
         $user = login($login, $password);
         if ($user) {
             $_SESSION['user'] = $user;
-            echo "session OK</br>";
         } else {
             echo 'Mauvais login ou mot de passe !</br>';
         }
@@ -49,17 +47,16 @@ if (isset($_POST['submit2'])) {
                             echo $_SESSION['user']['login'];
                         } ?>
                     </div>
-                    <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./profile.php'">Profil</button>
-
-                    <a class="btn btn-outline-success me-2" type="button" href="..\public\logout.inc.php">Se déconnecter</a>
+                    <a class="btn btn-outline-success me-2" href="../front/profile.php">Profil</a>
+                    <a class="btn btn-outline-success me-2" href="../public/logout.inc.php">Se déconnecter</a>
                 </form>
             <?php
             } else { ?>
-                <form class="container-fluid justify-content-start" action=# method="POST">
+                <form class="container-fluid justify-content-start" action="./" method="POST">
                     <label>Login</label>
-                    <input name="login"></input>
+                    <input name="login">
                     <label>Mot de passe</label>
-                    <input name='password'></input>
+                    <input name='password'>
                     <button class="btn btn-outline-success me-2" type="submit" name="submit2">Connexion</button>
                 </form>
                 <button class="btn btn-outline-success me-2" type="button" onclick="window.location.href='./signup.php'">S'inscrire</button>

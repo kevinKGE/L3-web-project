@@ -8,9 +8,11 @@ $error = false;
 
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
-}
-
-var_dump($user);
+} 
+// else {
+    // if user is not logged in, redirect to index.php:
+    // echo '<script type="text/javascript">window.location.href = "index.php";</script>';
+// }
 
 if (isset($_POST['change'])) {
     $login = htmlspecialchars(trim($user['login']));
@@ -30,7 +32,6 @@ if (isset($_POST['change'])) {
     );
 
     $update_status = validate_format($new_values);
-    // ICI mdp a pouvoir modifier
 
     if ($update_status === true) {
         modify_user($new_values);
@@ -50,7 +51,6 @@ if (isset($_POST['change'])) {
                 <input disabled type="login" name="login" required="required" value="<?php echo $user['login'] ?>">
 
                 <p>Password</p>
-                <!-- <input type="password" name="password" required="required" value="<?php echo $user['password'] ?>"> -->
                 <input type="password" name="password" value="">
 
                 <p>Nom</p>

@@ -1,6 +1,6 @@
 <?php $user =array (
-  'login' => 'admin',
-  'password' => 'd033e22ae348aeb5660fc2140aec35850c4da997',
+  'login' => 'oui',
+  'password' => '5898fc860300e228dcd54c0b1045b5fa0dcda502',
   'name' => '',
   'firstName' => '',
   'sex' => 'male',
