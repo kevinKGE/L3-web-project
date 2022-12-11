@@ -72,7 +72,7 @@
       margin: 3px;
       margin-top: 5px;
       margin-bottom: 5px;
-      height: 410px;
+      height: 470px;
     }
 
     a {

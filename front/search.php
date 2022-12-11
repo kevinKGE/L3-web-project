@@ -192,10 +192,14 @@ if (isset($_POST['submit3'])) {
                 $res =  get_index($title);
                 $nb_max_score = get_max_score($result["include"], $result["exclude"]);
                 $nb_score = get_score($result["include"], $result["exclude"], $recipes);
+                
 
                 if($nb_score > $nb_max_score){
                     $nb_score = $nb_max_score;
                 }
+
+                $pourcent = ($nb_score * 100) / $nb_max_score;
+                $pourcent = round($pourcent, 2);
     
                 if (!file_exists("../public/photos/" . $name)) {
                     $name = 'cocktail.png';
@@ -228,6 +232,10 @@ if (isset($_POST['submit3'])) {
                                                                 ?>
                         </ul>
                         </p>
+                        <p>
+                            <?php echo $pourcent; ?> %
+                        </p>
+
                     </div>
                 </div>
                 <?php

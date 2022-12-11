@@ -20,6 +20,17 @@ if (isset($_GET['recipe'])) {
         ?>
                 <div class="in_detail_recipe">
                     <h3> <?php echo $title; ?> </h3>
+                    <button class="button" id="<?php echo $res; ?>">
+                <?php if (isset($_SESSION['like'])){
+                    if (in_array($res, $_SESSION['like'])) {
+                        ?><img src="../public/photos/heart_full.png"><?php
+                    } else {
+                        ?><img src="../public/photos/heart_empty.png"><?php
+                    }
+                } else {
+                    ?><img src="../public/photos/heart_empty.png"><?php
+                }?>
+            </button>
                     <br>
 
                     <img src="../public/photos/<?php echo $name; ?>" alt="img" width="200">
