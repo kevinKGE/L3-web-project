@@ -85,8 +85,8 @@ if (isset($_GET['recipe'])) {
         <div class="card" style="width: 18rem;">
             
             <button class="button" id="<?php echo $res; ?>">
-                <?php if (isset($_SESSION['like'])){
-                    if (in_array($res, $_SESSION['like'])) {
+                <?php if (isset($_SESSION['favorites_temp'])){
+                    if (in_array($res, $_SESSION['favorites_temp'])) {
                         ?><img src="../public/photos/heart_full.png"><?php
                     } else {
                         ?><img src="../public/photos/heart_empty.png"><?php

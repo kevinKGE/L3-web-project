@@ -2,7 +2,7 @@
 require_once 'source/head.php';
 require_once 'source/header.php';
 require_once '../public/functions.inc.php';
-require_once '../public/regex.php';
+require_once '../public/regex.inc.php';
 
 $error = false;
 $sign_up_done = false;

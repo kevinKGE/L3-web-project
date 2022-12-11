@@ -30,7 +30,7 @@ function validate_format($user){
     }
     else if ($user['birthDate'] !== "" && !checkdate($month,$day,$year)){
         return 'Date invalide.';
-    }
+    } // ICI a finir
     // else if ($user['sex'] != 'male' || $user['sex'] != 'female') {
     //     return 'Le sexe est invalide.';
     // }

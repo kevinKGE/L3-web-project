@@ -1,7 +1,7 @@
 <?php
 
 require_once '../public/functions.inc.php';
-require_once '../public/regex.php';
+require_once '../public/regex.inc.php';
 require_once '../public/Donnees.inc.php';
 
 $_SESSION['favorites'] = array();
@@ -22,11 +22,11 @@ if (isset($_POST['submit2'])) {
             $_SESSION['user'] = $user;
             // add the favorites to the session into the favorites file
             foreach($_SESSION['favorites'] as $key => $value){
-                if(!in_array($value, $_SESSION['like'])){
-                    $_SESSION['like'] += $value;
+                if(!in_array($value, $_SESSION['favorites_temp'])){
+                    $_SESSION['favorites_temp'] += $value;
                 }
             }
-            file_put_contents('../public/favorites/'.$_SESSION['user']['login'].'.favorites.inc.php', '<?php $favorites = '.var_export($_SESSION['like'], true).';');
+            file_put_contents('../public/favorites/'.$_SESSION['user']['login'].'.favorites.inc.php', '<?php $favorites = '.var_export($_SESSION['favorites_temp'], true).';');
         } else {
             echo 'Mauvais login ou mot de passe !</br>';
         }

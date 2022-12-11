@@ -18,9 +18,6 @@ if(isset($_POST['search'])){
     <main>
         <?php
                 require_once 'main.php';
-            
-        // + mettre le coeur rouge si il y en a un 
-        //faire une verification dans ce type la pour filtrer la gestion des cookie et de favori
         ?>
     </main>
 
