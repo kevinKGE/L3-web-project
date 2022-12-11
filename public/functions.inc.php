@@ -1,9 +1,11 @@
 <?php
 require_once 'Donnees.inc.php';
 
+
 /*******************************************/
 /*        Signup and login functions        /
 /*******************************************/
+
 
 function user_signup($user) {
 
@@ -14,7 +16,7 @@ function user_signup($user) {
         file_put_contents('../public/users/'.$user_login.'.inc.php', print_r("<?php \$user =".$user_data."?>", true));
         file_put_contents('../public/favorites/'.$user_login.'.favorites.inc.php', print_r("<?php \$favorites = array (); ?>", true));
     } else {
-        echo "User already registered";
+        echo "Utilisateur déjà enregistré";
     }
 }
 
@@ -57,9 +59,11 @@ function modify_user($user_to_modify) {
     file_put_contents('../public/users/'.$user_to_modify['login'].'.inc.php', print_r("<?php \$user =".$user_data."?>", true));
 }
 
+
 /*******************************************/
 /*            Research fuctions:            /
 /*******************************************/
+
 
 function replace_special_char($chain) { // Replace special characters by a standard characters
     $standard = array( 
