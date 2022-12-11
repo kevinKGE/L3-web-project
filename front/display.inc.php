@@ -108,7 +108,6 @@ if (isset($_GET['recipe'])) {
                                                     }
                                                         ?>
                 </ul>
-                </p>
             </div>
         </div>
 <?php
