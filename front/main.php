@@ -14,5 +14,5 @@ else{ // If the page is defined
     research_recipe($curent_page); // Get the recipe that corresponds with the ingredients (page where we are)
     $cocktails = delete_duplicate_cocktails($cocktails); // Delete the duplicate cocktails in the list to display
 
-  require_once 'show.php'; // Display the cocktails
+  require_once 'display.inc.php'; // Display the cocktails
 ?>

@@ -10,13 +10,6 @@ if (isset($_POST['submit3'])) {
 
     echo $_POST['submit3'];
 
-    /** array result
-     * include : array of ingredients to include
-     * exclude : array of ingredients to exclude
-     * unknown : array of ingredients unknown
-     * ListIngredients : array of all ingredients
-     * PrintSearch : array of recipes to print
-     */
     $result = array (
         'include' => $include = array(),
         'exclude' => $exclude = array(),
@@ -68,14 +61,6 @@ if (isset($_POST['submit3'])) {
 
         }
 
-        /**foreach
-         * $Recettes : array of all recipes
-         * $OneRecipe : index of recipe
-         * $ListInRecettes : array of recipe
-         * $rank : index of recipe
-         * $ingredient : ingredient of recipe
-         * $result['ListIngredients'] : array of all ingredients
-         */
         foreach($Recettes as $OneRecipe => $ListInRecettes){
             foreach($ListInRecettes[array_keys($ListInRecettes)[3]] as $rank => $ingredient){
                 if(!in_array($ingredient, $result['ListIngredients'])){
@@ -204,8 +189,8 @@ if (isset($_POST['submit3'])) {
             ?>
                 <div class="card" style="width: 18rem;">                    
                     <button class="button" id="<?php echo $res; ?>">
-                        <?php if (isset($_SESSION['like'])){
-                            if (in_array($res, $_SESSION['like'])) {
+                        <?php if (isset($_SESSION['favorites_temp'])){
+                            if (in_array($res, $_SESSION['favorites_temp'])) {
                                 ?><img src="../public/photos/heart_full.png"><?php
                             } else {
                                 ?><img src="../public/photos/heart_empty.png"><?php

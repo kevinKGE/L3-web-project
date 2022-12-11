@@ -12,8 +12,8 @@
     </nav>
     <main>
     <?php
-    if (!empty($_SESSION['like'])) {
-        foreach ($_SESSION['like'] as $index => $index_recipes) {
+    if (!empty($_SESSION['favorites_temp'])) {
+        foreach ($_SESSION['favorites_temp'] as $index => $index_recipes) {
             foreach($Recettes as $index_r => $recipes)
             if ($index_recipes == $index_r){
                 $title = $recipes[array_keys($recipes)[0]];
@@ -29,8 +29,8 @@
                 <div class="card" style="width: 18rem;">
                     
                     <button class="button" id="<?php echo $res; ?>">
-                        <?php if (isset($_SESSION['like'])){
-                            if (in_array($res, $_SESSION['like'])) {
+                        <?php if (isset($_SESSION['favorites_temp'])){
+                            if (in_array($res, $_SESSION['favorites_temp'])) {
                                 ?><img src="../public/photos/heart_full.png"><?php
                             } else {
                                 ?><img src="../public/photos/heart_empty.png"><?php
