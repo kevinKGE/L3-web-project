@@ -23,7 +23,18 @@ if (isset($_GET['recipe'])) {//if we are in a detail page of recipe
                     <h3> <?php echo $title; ?> </h3>
                     <button class="button" id="<?php echo $res; ?>"> 
                 <?php if (isset($_SESSION['favorites_temp']) || isset($favorites)){
-                    if (in_array($res, $_SESSION['favorites_temp']) || in_array($res, $favorites)) {
+                    if(isset($_SESSION['favorites_temp'])){
+                            $favorites_temp = $_SESSION['favorites_temp'];
+                        }else{
+                            $favorites_temp = array();
+                        }
+                        if(isset($favorites)){
+                            $favorite = $favorites;
+                        }else{
+                            $favorite = array();
+                        }
+
+                    if (in_array($res, $favorites_temp) || in_array($res, $favorite)) {
                         ?><img src="../public/photos/heart_full.png" alt=""><?php
                     } else {
                         ?><img src="../public/photos/heart_empty.png" alt=""><?php
@@ -86,8 +97,19 @@ if (isset($_GET['recipe'])) {//if we are in a detail page of recipe
         <div class="card" style="width: 18rem;">
 
             <button class="button" id="<?php echo $res; ?>">
-                <?php if (isset($_SESSION['favorites_temp'])) {
-                    if (in_array($res, $_SESSION['favorites_temp'])) {
+                <?php if (isset($_SESSION['favorites_temp']) || isset($favorites)){
+                        if(isset($_SESSION['favorites_temp'])){
+                            $favorites_temp = $_SESSION['favorites_temp'];
+                        }else{
+                            $favorites_temp = array();
+                        }
+                        if(isset($favorites)){
+                            $favorite = $favorites;
+                        }else{
+                            $favorite = array();
+                        }
+
+                    if (in_array($res, $favorites_temp) || in_array($res, $favorite)) {
                         ?><img alt="" src="../public/photos/heart_full.png"><?php
                     } else {
                         ?><img alt="" src="../public/photos/heart_empty.png"><?php

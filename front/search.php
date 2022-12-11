@@ -192,8 +192,19 @@ if (isset($_POST['submit3'])) {
                 ?>
                     <div class="card" style="width: 18rem;">                    
                         <button class="button" id="<?php echo $res; ?>">
-                            <?php if (isset($_SESSION['favorites_temp'])){
-                                if (in_array($res, $_SESSION['favorites_temp'])) {
+                            <?php if (isset($_SESSION['favorites_temp']) || isset($favorites)){
+                    if(isset($_SESSION['favorites_temp'])){
+                            $favorites_temp = $_SESSION['favorites_temp'];
+                        }else{
+                            $favorites_temp = array();
+                        }
+                        if(isset($favorites)){
+                            $favorite = $favorites;
+                        }else{
+                            $favorite = array();
+                        }
+
+                    if (in_array($res, $favorites_temp) || in_array($res, $favorite)) {
                                     ?><img src="../public/photos/heart_full.png" alt=""><?php
                                 } else {
                                     ?><img src="../public/photos/heart_empty.png" alt=""><?php
