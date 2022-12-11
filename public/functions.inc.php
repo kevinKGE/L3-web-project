@@ -1,54 +1,39 @@
 <?php
 require_once 'Donnees.inc.php';
-function user_signup($user) {
-    // Pour pouvoir recuperer les données utilisateur : include
-    $user_login = $user['login'];
-    // ICI a finir
-    //hashage du mot de passe
-    echo ($user['password']);   
-    // $user['password'] = hash_password($user['password']);
 
+
+/*******************************************/
+/*        Signup and login functions        /
+/*******************************************/
+
+
+function user_signup($user) {
+
+    $user_login = $user['login'];
     $user_data = var_export($user, true);
 
     if(!user_registered($user_login)){
         file_put_contents('../public/users/'.$user_login.'.inc.php', print_r("<?php \$user =".$user_data."?>", true));
         file_put_contents('../public/favorites/'.$user_login.'.favorites.inc.php', print_r("<?php \$favorites = array (); ?>", true));
     } else {
-        echo "User already registered";
+        // ICI marche pas bien à supp ?
+        echo "Utilisateur déjà enregistré";
     }
 }
 
 function login($user_login, $user_password) {
     if(user_registered($user_login)) {
         include '../public/users/'.$user_login.'.inc.php';
-        // ICI à supp
-        var_dump($user);
-        echo "password:".$user['password'].'<br>';
-        echo sha1($user_password, false).'<br>';
-        echo sha1($user_password, false).'<br>';
-        echo sha1($user_password, false).'<br>';
         if (sha1($user_password, false) == $user['password']) {
-            // ICI à supprimer
-        // if(password_verify($user_password, $user['password'])){
-            echo 'Connexion réussie</br>';
             return $user;
         } else {
-            echo 'Mauvais mot de passe</br>';
+            echo 'Mauvais login mot de passe</br>';
             return false;
         }
     } else {
-        echo 'Utilisateur non enregistré</br>';
+        echo 'Mauvais login mot de passe</br>';
         return false;
     }
-}
-
-function logout() {
-    echo "déconnexion PHP</br>";
-
-    $_SESSION = array();
-    session_destroy();
-
-    header("Refresh:0");
 }
 
 function user_registered($user_login) {
@@ -60,25 +45,25 @@ function user_registered($user_login) {
     }
 }
 
-/*
-function hash_password(string $passwd){
-    return password_hash($passwd, PASSWORD_DEFAULT);
+function modify_user($user_to_modify) {
+
+    // if the password is empty, we keep the old one
+    if($user_to_modify['password'] === "") {
+        include '../public/users/'.$user_to_modify['login'].'.inc.php';
+        $user_to_modify['password'] = $user['password'];
+    } else { // else we hash the new password
+        $user_to_modify['password'] = sha1($user_to_modify['password'], false);
+    }
+
+    $user_data = var_export($user_to_modify, true);
+    file_put_contents('../public/users/'.$user_to_modify['login'].'.inc.php', print_r("<?php \$user =".$user_data."?>", true));
 }
 
-function check_password(string $passwd, string $hash){
-    return password_verify($passwd, $hash);
-}
-*/
 
-function modify_user($user) {
+/*******************************************/
+/*            Research fuctions:            /
+/*******************************************/
 
-    var_dump($user);
-
-    $user_data = var_export($user, true);
-
-   file_put_contents('../public/users/'.$user['login'].'.inc.php', print_r("<?php \$user =".$user_data."?>", true));
-    
-}
 
 function replace_special_char($chain) { // Replace special characters by a standard characters
     $standard = array( 
@@ -326,9 +311,3 @@ function replace_special_char($chain) { // Replace special characters by a stand
         $nb = $nb_i + $nb_e;
         return $nb;
     }
-
-   function sort_recipe($nb_max, $nb, $recipe){
-       
-   }
-
-?>
