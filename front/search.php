@@ -23,16 +23,16 @@ if (isset($_POST['submit3'])) {
 
     // Check if search is empty
     if(empty($search)){
-        ?>Veuillez saisir une recipe<?php
+        ?><p>Veuillez saisir une recipe</p><?php
     } // Check if search is valid
     else if(preg_match('/[^a-zÀ-ú" +-]/i', $search)){
-        ?>Veuillez saisir une recipe valide<?php
+        ?><p>Veuillez saisir une recipe valide</p><?php
     }
     else{
         // Check if number of quotes is even
 
        if(substr_count($search, '"' ) % 2 != 0){
-            ?>Nombre de guillemets impairs<?php
+            ?><p>Nombre de guillemets impairs</p><?php
         }
         else{
             // Check if number of + is even
@@ -163,70 +163,76 @@ if (isset($_POST['submit3'])) {
             } 
         }
 
+    if(!empty($T)){
         krsort($T);
-        
 
-    foreach ($T as $index_t => $recipes_t){
-        foreach ($recipes_t as $index_recipe => $recipes){
-        
-            if($index_recipe != 0){
-                $title = $recipes[array_keys($recipes)[0]];
-                $index = $recipes[array_keys($recipes)[3]];
-                $name = valid_name($title);
-                $res =  get_index($title);
-                $nb_max_score = get_max_score($result["include"], $result["exclude"]);
-                $nb_score = get_score($result["include"], $result["exclude"], $recipes);
-                
-
-                if($nb_score > $nb_max_score){
-                    $nb_score = $nb_max_score;
-                }
-
-                $pourcent = ($nb_score * 100) / $nb_max_score;
-                $pourcent = round($pourcent, 2);
+        foreach ($T as $index_t => $recipes_t){
+            foreach ($recipes_t as $index_recipe => $recipes){
+            
+                if($index_recipe != 0){
+                    $title = $recipes[array_keys($recipes)[0]];
+                    $index = $recipes[array_keys($recipes)[3]];
+                    $name = valid_name($title);
+                    $res =  get_index($title);
+                    $nb_max_score = get_max_score($result["include"], $result["exclude"]);
+                    $nb_score = get_score($result["include"], $result["exclude"], $recipes);
+                    
     
-                if (!file_exists("../public/photos/" . $name)) {
-                    $name = 'cocktail.png';
-                }
-
-            ?>
-                <div class="card" style="width: 18rem;">                    
-                    <button class="button" id="<?php echo $res; ?>">
-                        <?php if (isset($_SESSION['favorites_temp'])){
-                            if (in_array($res, $_SESSION['favorites_temp'])) {
-                                ?><img src="../public/photos/heart_full.png" alt=""><?php
+                    if($nb_score > $nb_max_score){
+                        $nb_score = $nb_max_score;
+                    }
+    
+                    $pourcent = ($nb_score * 100) / $nb_max_score;
+                    $pourcent = round($pourcent, 2);
+        
+                    if (!file_exists("../public/photos/" . $name)) {
+                        $name = 'cocktail.png';
+                    }
+    
+                ?>
+                    <div class="card" style="width: 18rem;">                    
+                        <button class="button" id="<?php echo $res; ?>">
+                            <?php if (isset($_SESSION['favorites_temp'])){
+                                if (in_array($res, $_SESSION['favorites_temp'])) {
+                                    ?><img src="../public/photos/heart_full.png" alt=""><?php
+                                } else {
+                                    ?><img src="../public/photos/heart_empty.png" alt=""><?php
+                                }
                             } else {
                                 ?><img src="../public/photos/heart_empty.png" alt=""><?php
-                            }
-                        } else {
-                            ?><img src="../public/photos/heart_empty.png" alt=""><?php
-                        }?>
-                    </button>
-                    <img src="../public/photos/<?php echo $name; ?>" alt="" width="100">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <a href="?recipe=<?php echo $title; ?>"><?php echo $title; ?></a>
-                        </h5>
-                        <p class='card-text'>
-                        <ul>
-                            <?php
-                            foreach ($index as $key => $value) {
-                            ?><li> <?php echo $value; ?> </li> <?php
-                                                            }
-                                                                ?>
-                        </ul>
-                        </p>
-                        <p>
-                            <?php echo $pourcent; ?> %
-                        </p>
-
-                    </div>
-                </div>
-                <?php
-                }
-    }
+                            }?>
+                        </button>
+                        <img src="../public/photos/<?php echo $name; ?>" alt="" width="100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="?recipe=<?php echo $title; ?>"><?php echo $title; ?></a>
+                            </h5>
+                            <p class='card-text'>
+                            <ul>
+                                <?php
+                                foreach ($index as $key => $value) {
+                                ?><li> <?php echo $value; ?> </li> <?php
+                                                                }
+                                                                    ?>
+                            </ul>
+                            </p>
+                            <p>
+                                <?php echo $pourcent; ?> %
+                            </p>
     
+                        </div>
+                    </div>
+                    <?php
+                    }
         }
+        
+            }
+
+    }
+        
+        
+
+    
     ?>
         </main>
     <?php
