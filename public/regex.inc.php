@@ -28,8 +28,6 @@ function validate_format($user){
         list($year,$month,$day) = explode('-',$birthday);
     }
 
-    var_dump($user);
-
     // Test if the user informations are valid
     if ($user['login'] === "" || !regex($user['login'], "/^[a-zA-Z0-9]*$/")) {
         return 'Le login doit contenir uniquement des minuscules, majuscules non accentuées et des chiffres.';

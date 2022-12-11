@@ -84,7 +84,7 @@
             url: '../public/like.php',
             type: 'GET',
             data: {
-                indice: (this.id)
+                index: (this.id)
             },
             complete: function(data){
                 location.reload();
