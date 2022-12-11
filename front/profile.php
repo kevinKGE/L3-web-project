@@ -73,7 +73,7 @@ if (isset($_POST['change'])) {
                 <input type="submit" name="change" onclick="" value="modifier">
 
                 <div id="error">
-                    <?php if ($error) echo $update_status; ?>
+                    <?php if ($error){ echo $update_status; } ?>
                 </div>
             </form>
         </div>
