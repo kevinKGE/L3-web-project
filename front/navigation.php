@@ -46,7 +46,7 @@ else{ // If the page is defined
          <?php
        foreach ($ListRecipe as $key => $SC) { // For each element of the array 'ListRecipe', SC = sous-categorie
             if($key != "super-categorie"){ // If the element is not a super-category
-                foreach($SC as $indice => $Fruit) { // For each element of the array 'sous-categorie'
+                foreach($SC as $index => $Fruit) { // For each element of the array 'sous-categorie'
                     ?>
                     <li><a href="?page=<?php echo $Fruit; ?>"> <?php echo $Fruit; ?></a> </li> <!-- Show a link word of the array $Recette -->
                     <?php
