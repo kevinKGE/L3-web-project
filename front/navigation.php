@@ -58,6 +58,5 @@ else{ // If the page is defined
         <?php
        
        $_SESSION['way'] = $history; // Save the array history in the session
-       //var_dump($_SESSION['way']); // Display the history
        ?>
        
