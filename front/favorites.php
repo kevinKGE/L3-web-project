@@ -12,56 +12,60 @@
     </nav>
     <main>
     <?php
-    foreach ($_SESSION['like'] as $index => $index_recipes) {
-        foreach($Recettes as $index_r => $recipes)
-        if ($index_recipes == $index_r){
-            $title = $recipes[array_keys($recipes)[0]];
-            $index = $recipes[array_keys($recipes)[3]];
-            $res =  get_index($title);
-            $name = valid_name($title);
-    
-            if (!file_exists("../public/photos/" . $name)) {
-                $name = 'cocktail.png';
-            }
-    
-        ?>
-            <div class="card" style="width: 18rem;">
-                
-                <button class="button" id="<?php echo $res; ?>">
-                    <?php if (isset($_SESSION['like'])){
-                        if (in_array($res, $_SESSION['like'])) {
-                            ?><img src="../public/photos/heart_full.png"><?php
+    if (!empty($_SESSION['like'])) {
+        foreach ($_SESSION['like'] as $index => $index_recipes) {
+            foreach($Recettes as $index_r => $recipes)
+            if ($index_recipes == $index_r){
+                $title = $recipes[array_keys($recipes)[0]];
+                $index = $recipes[array_keys($recipes)[3]];
+                $res =  get_index($title);
+                $name = valid_name($title);
+        
+                if (!file_exists("../public/photos/" . $name)) {
+                    $name = 'cocktail.png';
+                }
+        
+            ?>
+                <div class="card" style="width: 18rem;">
+                    
+                    <button class="button" id="<?php echo $res; ?>">
+                        <?php if (isset($_SESSION['like'])){
+                            if (in_array($res, $_SESSION['like'])) {
+                                ?><img src="../public/photos/heart_full.png"><?php
+                            } else {
+                                ?><img src="../public/photos/heart_empty.png"><?php
+                            }
                         } else {
                             ?><img src="../public/photos/heart_empty.png"><?php
-                        }
-                    } else {
-                        ?><img src="../public/photos/heart_empty.png"><?php
-                    }?>
-                </button>
-                <img src="../public/photos/<?php echo $name; ?>" alt="img" width="100">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="?recipe=<?php echo $title; ?>"><?php echo $title; ?></a>
-                    </h5>
-                    <p class='card-text'>
-                    <ul>
-    
-                        <?php
-                        foreach ($index as $key => $value) {
-                        ?><li> <?php echo $value; ?> </li> <?php
-                                                        }
-                                                            ?>
-    
-                    </ul>
-                    </p>
+                        }?>
+                    </button>
+                    <img src="../public/photos/<?php echo $name; ?>" alt="img" width="100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="?recipe=<?php echo $title; ?>"><?php echo $title; ?></a>
+                        </h5>
+                        <p class='card-text'>
+                        <ul>
+        
+                            <?php
+                            foreach ($index as $key => $value) {
+                            ?><li> <?php echo $value; ?> </li> <?php
+                                                            }
+                                                                ?>
+        
+                        </ul>
+                        </p>
+                    </div>
                 </div>
-            </div>
-        
-        
-<?php
+            
+            
+    <?php
+        }
+        }
     }
-    }
-?>
+    ?>
+    
+    
     </main>
 
 <script>
