@@ -10,31 +10,40 @@ if (isset($_POST['submit3'])) {
 
     echo $_POST['submit3'];
 
+    /** array result
+     * include : array of ingredients to include
+     * exclude : array of ingredients to exclude
+     * unknown : array of ingredients unknown
+     * ListIngredients : array of all ingredients
+     * PrintSearch : array of recipes to print
+     */
     $result = array (
         'include' => $include = array(),
         'exclude' => $exclude = array(),
         'unknown'=> $unknown = array(),
         'ListIngredients' => $ListIngredients = array(),
-        'PrintSearch' => $Affichage = array( 'score' => 0),
-                                            'list' => array(),
+        'PrintSearch' => $Affichage = array('score' => 0),
+                                            
     );
     $search = $_POST['search'];
 
     preg_match_all('/[-+]?"[^"]+"|[^ ]+/', $search, $matches);
 
-
+    // Check if search is empty
     if(empty($search)){
         ?>Veuillez saisir une recipe<?php
-    }
+    } // Check if search is valid
     else if(preg_match('/[^a-zÀ-ú" +-]/i', $search)){
         ?>Veuillez saisir une recipe valide<?php
     }
     else{
+        // Check if number of quotes is even
 
        if(substr_count($search, '"' ) % 2 != 0){
             ?>Nombre de guillemets impairs<?php
         }
         else{
+            // Check if number of + is even
             foreach ($matches[0] as $matches) {
                 $key = substr($matches, 0, 1);
                 if ($key == '+') {
@@ -59,6 +68,14 @@ if (isset($_POST['submit3'])) {
 
         }
 
+        /**foreach
+         * $Recettes : array of all recipes
+         * $OneRecipe : index of recipe
+         * $ListInRecettes : array of recipe
+         * $rank : index of recipe
+         * $ingredient : ingredient of recipe
+         * $result['ListIngredients'] : array of all ingredients
+         */
         foreach($Recettes as $OneRecipe => $ListInRecettes){
             foreach($ListInRecettes[array_keys($ListInRecettes)[3]] as $rank => $ingredient){
                 if(!in_array($ingredient, $result['ListIngredients'])){
@@ -67,6 +84,7 @@ if (isset($_POST['submit3'])) {
             }
           }
 
+          // Remove duplicate in $result['ListIngredients']
           $result['ListIngredients'] = array_unique($result['ListIngredients']);
 
 
@@ -77,6 +95,8 @@ if (isset($_POST['submit3'])) {
 
             <ul>
         <?php
+       
+      
         foreach ($result['include'] as $i => $value) {
            foreach ($result['ListIngredients'] as $j => $value2) {
                 if ($value == $value2){
@@ -129,13 +149,23 @@ if (isset($_POST['submit3'])) {
                 }
         }
         
-
-        if ($score > 0) {
-            $result["score"] = $score;
+        if(empty($result["include"]))
+            {
+                if($score == 0)
+                $result["PrintSearch"][] = $recipe;
+            }
+        else if ($score > 0) {
+            $result["PrintSearch"]['score'] = $score;
             $result["PrintSearch"][] = $recipe;
+            
         }
 
+        
+
         }
+        
+        
+
 
        
        
@@ -151,7 +181,8 @@ if (isset($_POST['submit3'])) {
             $index = $recipes[array_keys($recipes)[3]];
             $name = valid_name($title);
             $nb_max_score = get_max_score($result["include"], $result["exclude"]);
-            $nb_score = get_score($result["include"], $result["exclude"], $recipes);
+            //Take the score of the recipe
+            $nb_score = $result["PrintSearch"]['score'];
             if (!file_exists("../public/photos/" . $name)) {
                 $name = 'cocktail.png';
             }
