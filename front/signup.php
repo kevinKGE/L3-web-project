@@ -75,7 +75,7 @@ if (isset($_POST['submit'])) {
                 <input type="submit" name="submit" onclick="user_signup($_POST)" value="inscription">
 
                 <div id="error">
-                    <?php if($error) {echo $sign_up_status; } else if($sign_up_done) {echo "Inscription réussie.";} ?>
+                    <?php if($error) {echo $sign_up_status; } ?>
                 </div>
 
             </form>
