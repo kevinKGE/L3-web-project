@@ -5,6 +5,7 @@ require_once '../public/functions.inc.php';
 require_once '../public/regex.php';
 
 $error = false;
+$sign_up_done = false;
 
 if (isset($_POST['submit'])) {
     $name = htmlspecialchars(trim($_POST['name']));
@@ -16,8 +17,8 @@ if (isset($_POST['submit'])) {
 
     // hash of password:
     $password = sha1($password, false);
-    // $password = password_hash($password, PASSWORD_DEFAULT);
 
+    // array of user to add:
     $userToAdd = array(
         'login' => $login,
         'password' => $password,
@@ -27,17 +28,18 @@ if (isset($_POST['submit'])) {
         'birthDate' => $birthDate
     );
 
+    // validation of user to add:
     $sign_up_status = validate_format($userToAdd);
-    echo "status: " . $sign_up_status . "<br>";
 
+    // if validation is ok, add user:
     if ($sign_up_status === true) {
         user_signup($userToAdd);
-        // ICI à supprimer
-        echo 'Inscription réussie';
-    } else {
+        $sign_up_done = true;
+    } else { // else, display error:
         $error = true;
     }
 }
+
 ?>
 
 <h1>Inscription</h1>
@@ -46,10 +48,10 @@ if (isset($_POST['submit'])) {
         <div class="col">
             <form class="container-fluid justify-content-start" action=# method="POST">
 
-                <p>Login*</p>
+                <p>Login *</p>
                 <input type="login" name="login" required="required">
 
-                <p>Password*</p>
+                <p>Password *</p>
                 <input type="password" name="password" required="required">
 
                 <p>Nom</p>
@@ -71,7 +73,7 @@ if (isset($_POST['submit'])) {
                 <input type="submit" name="submit" onclick="user_signup($_POST)" value="inscription">
 
                 <div id="error">
-                    <?php if ($error) echo $sign_up_status; ?>
+                    <?php if($error) echo $sign_up_status; if($sign_up_done) echo "Inscription réussie"; ?>
                 </div>
 
             </form>

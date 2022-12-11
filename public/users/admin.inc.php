@@ -1,8 +1,8 @@
 <?php $user =array (
   'login' => 'admin',
-  'password' => 'd033e22ae348aeb5660fc2140aec35850c4da997',
-  'name' => '',
-  'firstName' => '',
+  'password' => '37031f99ac78580c9f82e04fa237d295ea10ca41',
+  'name' => 'JeanPierre',
+  'firstName' => 'machin',
   'sex' => 'male',
   'birthDate' => '',
 )?>

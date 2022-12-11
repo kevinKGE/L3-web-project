@@ -11,13 +11,12 @@ if(isset($_SESSION['user'])){
     $_SESSION['favorites'] = $favorites;
 }
 
-
 if (isset($_POST['submit2'])) {
     $login = $_POST['login'];
     $password = $_POST['password'];
-    // vérifie que les champs ne sont pas vides
+    // check if the login and password are not empty
     if ($login && $password) {
-        // vérifie que le login et le mot de passe correspondent à ceux de la base de données
+        // check if the login and password are correct
         echo 'champs non vides</br>';
         $user = login($login, $password);
         if ($user) {
