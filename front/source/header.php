@@ -30,7 +30,7 @@ if (isset($_POST['submit2'])) {
                 file_put_contents('../public/favorites/'.$_SESSION['user']['login'].'.favorites.inc.php', '<?php $favorites = '.var_export($_SESSION['favorites_temp'], true).';');
             }
         } else {
-            echo 'Mauvais login ou mot de passe !</br>';
+            echo 'Mauvais login ou mot de passe !<br>';
         }
     }
 }

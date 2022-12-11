@@ -15,7 +15,7 @@ else{ // If the page is defined
     <div class="strong_front">
         Aliment courant :
     </div> 
-    </br>
+    <br>
 <?php 
 
     if(isset($_GET['page'])){ // If the page is defined
@@ -35,9 +35,9 @@ else{ // If the page is defined
           <?php
         }
     ?>
-    </br>
+    <br>
     
-    </br>
+    <br>
     <div class="strong_front">
         Sous-catégories :
     </div> 

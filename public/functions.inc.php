@@ -36,11 +36,11 @@ function login($user_login, $user_password)
         if (sha1($user_password, false) == $user['password']) {
             return $user;
         } else {
-            echo 'Mauvais login mot de passe</br>';
+            echo 'Mauvais login mot de passe<br>';
             return false;
         }
     } else {
-        echo 'Mauvais login mot de passe</br>';
+        echo 'Mauvais login mot de passe<br>';
         return false;
     }
 }
