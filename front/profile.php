@@ -48,26 +48,26 @@ if (isset($_POST['change'])) {
             <form class="container-fluid justify-content-start" method="POST">
 
                 <p>Login *</p>
-                <input disabled type="login" name="login" required="required" value="<?php echo $user['login'] ?>">
+                <input disabled type="text" name="login" required="required" value="<?php if($user['login']) echo $user['login'] ?>">
 
                 <p>Password</p>
                 <input type="password" name="password" value="">
 
                 <p>Nom</p>
-                <input type="text" name="name" value="<?php echo $user['firstName'] ?>">
+                <input type="text" name="name" value="<?php if($user['firstName']) echo $user['firstName'] ?>">
 
                 <p>Prenom</p>
-                <input type="text" name="firstName" value="<?php echo $user['name'] ?>">
+                <input type="text" name="firstName" value="<?php if($user['name']) echo $user['name'] ?>">
 
                 <p>Date de naissance</p>
-                <input type="date" name="birthDate" value="<?php echo $user['birthDay'] ?>">
+                <input type="date" name="birthDate" value="<?php if($user['birthDay']) echo $user['birthDay'] ?>">
 
                 <p>Sexe</p>
-                <input type="radio" name="sex" value="male" checked value="<?php echo $user['sex'] ?>">
-                <label for="male">Homme</label>
+                <input type="radio" name="sex" checked value="<?php if($user['sex'] ) echo $user['sex'] ?>">
+                <label>Homme</label>
 
-                <input type="radio" name="sex" value="female" value="<?php echo $user['sex'] ?>">
-                <label for="female">Femme</label>
+                <input type="radio" name="sex" value="<?php if($user['sex']) echo $user['sex'] ?>">
+                <label>Femme</label>
 
                 <input type="submit" name="change" onclick="" value="modifier">
 

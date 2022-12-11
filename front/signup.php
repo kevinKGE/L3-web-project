@@ -49,7 +49,7 @@ if (isset($_POST['submit'])) {
             <form class="container-fluid justify-content-start" action=# method="POST">
 
                 <p>Login *</p>
-                <input type="login" name="login" required="required">
+                <input type="text" name="login" required="required">
 
                 <p>Password *</p>
                 <input type="password" name="password" required="required">
@@ -65,10 +65,10 @@ if (isset($_POST['submit'])) {
 
                 <p>Sexe</p>
                 <input type="radio" name="sex" value="male" checked>
-                <label for="male">Homme</label>
+                <label>Homme</label>
 
                 <input type="radio" name="sex" value="female">
-                <label for="female">Femme</label>
+                <label>Femme</label>
 
                 <input type="submit" name="submit" onclick="user_signup($_POST)" value="inscription">
 
