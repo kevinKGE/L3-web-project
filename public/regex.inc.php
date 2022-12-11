@@ -51,5 +51,5 @@ function validate_format($user){
     }
 
     // If the user informations are valid return true
-    return true
+    return true;
 }
