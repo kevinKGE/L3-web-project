@@ -33,10 +33,10 @@ function validate_format($user){
         return 'Le login doit contenir uniquement des minuscules, majuscules non accentuées et des chiffres.';
     }
     else if ($user['name'] !== "" && !regex($user['name'], "/^([A-Za-zÀ-ÖØ-öø-ÿ ])*([\-'])*([A-Za-zÀ-ÖØ-öø-ÿ ])*$/")){
-        return 'Le nom doit contenir uniquement des minuscules, majuscules, des '-', des " \' " ou des espaces.';
+        return "Le nom doit contenir uniquement des minuscules, majuscules, des '-', des ' ou des espaces.";
     }
     else if ($user['firstName'] !== "" && !regex($user['firstName'], "/^([A-Za-zÀ-ÖØ-öø-ÿ ])*([\-'])*([A-Za-zÀ-ÖØ-öø-ÿ ])*$/")){
-        return 'Le prénom doit contenir uniquement des minuscules, majuscules, des '-', des " \' " ou des espaces.';
+        return "Le nom doit contenir uniquement des minuscules, majuscules, des '-', des ' ou des espaces.";
     }
     else if ($user['birthDate'] !== "" && $res < 18){
         return 'Vous devez avoir au moins 18 ans pour pouvoir vous inscrire.';

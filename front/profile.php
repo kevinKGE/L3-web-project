@@ -35,7 +35,7 @@ if (isset($_POST['change'])) {
     $update_status = validate_format($new_values);
 
     // if the new values are valid, update the user
-    if ($update_status === true) {
+    if ($update_status === "ok") {
         modify_user($new_values);
     } else {
         $error = true;
