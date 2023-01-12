@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
     $sign_up_status = validate_format($userToAdd);
 
     // if validation is ok, add user:
-    if ($sign_up_status === "ok") {
+    if ($sign_up_status === true) {
         user_signup($userToAdd);
         $sign_up_done = true;
     } else { // else, display error:
